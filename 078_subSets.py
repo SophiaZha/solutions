@@ -1,11 +1,8 @@
 from typing import List
-
-
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
         tmp_res = []
-
         def dfs(i):
             if (i == len(nums)):
                 res.append(tmp_res.copy())
@@ -15,14 +12,33 @@ class Solution:
                 dfs(i + 1)
                 tmp_res.pop()
                 dfs(i + 1)
-
         dfs(0)
         return res
+
+    def subset2(self, nums: List[int]) -> List[List[int]]:
+        subsets = [[]]
+        if not nums:
+            return subsets
+        for num in nums:
+            for idx in range(len(subsets)):
+                subsets.append(subsets[idx]+[num])
+        return subsets
+
+    def subset3(self, nums: List[int]) -> List[List[int]]:
+        subsets = [[]]
+        if not nums:
+            return subsets
+        for num in nums:
+            for idx in range(len(subsets)):
+                subsets = subsets + [subsets[idx]+[num]]
+        return subsets
 
 
 mynum = [1, 2, 3]
 x = Solution()
 print(x.subsets(mynum))
+print(x.subset2(mynum))
+print(x.subset3(mynum))
 
 """ 
 78. Subsets
