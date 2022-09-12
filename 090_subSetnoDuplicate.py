@@ -1,3 +1,4 @@
+import copy
 from typing import List
 
 
@@ -23,9 +24,25 @@ class Solution:
 
         backtrack(0, [])
         return res
+
+    def subsetsWithDup2(self, nums: List[int]) -> List[List[int]]:
+        res = [[ ]]
+        nums.sort()
+        size = 0
+        for i in range(len(nums)):
+            j = size if i > 0 and (nums[i] == nums[i-1]) else 0
+            size = len(res)
+            while j < size:
+                res.append(res[j] + [nums[i]])
+                j += 1
+        return res
+
+
+
 nums = [1,2,2]
 sol = Solution()
 print(sol.subsetsWithDup(nums))
+print(sol.subsetsWithDup2(nums))
 """
 90. Subsets II
 Medium
