@@ -45,6 +45,18 @@ class Solution:
                 stack.append([node.right, level + 1])
 
         return res
+
+s = Solution()
+r = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
+print(s.maxDepth(r))
+
+r = TreeNode(3, TreeNode(9, None, None ), TreeNode(20, TreeNode(15), TreeNode(7)))
+print(s.maxDepth(r))
+
+r = TreeNode(1, None, TreeNode(2))
+print(s.maxDepth(r))
+
+
 """
 104. Maximum Depth of Binary Tree
 Easy
