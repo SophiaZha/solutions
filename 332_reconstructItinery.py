@@ -1,3 +1,7 @@
+import collections
+from typing import List
+
+
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         adj = {u: collections.deque() for u, v in tickets}
