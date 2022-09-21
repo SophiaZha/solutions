@@ -1,28 +1,21 @@
-class Solution(object):
-    def productBySkip(self, nums, k):  # not correct solution actually
-        ans = 1
+from typing import List
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [1] * (len(nums))
+
+        prefix = 1
         for i in range(len(nums)):
-            if (i != k):
-                ans *= nums[i]
-        return ans
+            res[i] = prefix
+            prefix *= nums[i]
+        postfix = 1
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
+        return res
 
-    def productExceptSelf(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        ans = list(range(len(nums)))
-        totalnum = 1
-        for val in nums:
-            totalnum *= val
 
-        for i in range(len(nums)):
-            if (nums[i] != 0):
-                ans[i] = totalnum / nums[i]
-            else:
-                ans[i] = self.productBySkip(nums, i)
-
-        return ans
 """
 238. Product of Array Except Self
 Medium
