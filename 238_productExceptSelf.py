@@ -10,11 +10,16 @@ class Solution:
             res[i] = prefix
             prefix *= nums[i]
         postfix = 1
-        for i in range(len(nums) - 1, -1, -1):
+        for i in reversed(range(len(nums))):
+#       for i in range(len(nums) -1, -1, -1):
+#       same reversed range, but difficult to follow
             res[i] *= postfix
             postfix *= nums[i]
         return res
 
+sol = Solution()
+nums = [1,2,3,4]
+print(sol.productExceptSelf(nums))
 
 """
 238. Product of Array Except Self
