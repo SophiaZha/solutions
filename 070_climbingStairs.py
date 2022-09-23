@@ -9,6 +9,15 @@ class Solution:
             n1 = n2
             n2 = temp
         return n2
+
+    def climbStairs2(self, n: int) -> int:
+        if n <= 2:
+            return n
+        n1, n2 = 1, 2
+        for i in range( 3, n + 1):
+            n2, n1 = n1 + n2 , n2
+        return n2
+
 n = 4
 x = Solution()
 print(x.climbStairs(n))
