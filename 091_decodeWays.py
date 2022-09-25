@@ -8,7 +8,6 @@ class Solution: #L
                 return dp[i]
             if s[i] == "0":
                 return 0
-
             res = dfs(i + 1)
             if i + 1 < len(s) and (
                 s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
@@ -16,24 +15,21 @@ class Solution: #L
                 res += dfs(i + 2)
             dp[i] = res
             return res
-
-        return dfs(0)
+        val = dfs(0)
+        return val
 
     def numDecodings2(self, s: str) -> int:
         dp = {len(s): 1}
-        for i in range(len(s) - 1, -1, -1):
+        for i in reversed(range(len(s))):
             if s[i] == "0":
                 dp[i] = 0
             else:
-                dp[i] = dp[i + 1]
-
-            if i + 1 < len(s) and (
-                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
-            ):
-                dp[i] += dp[i + 2]
+                dp[i] = dp[i+1]
+            if i < len(s) -1 and ( s[i] == "1" or (s[i] == "2" and s[i+1] in "0123456") ):
+                dp[i] += dp[i+2]
         return dp[0]
 
-s = "706"
+s = "10"
 sol = Solution()
 print(sol.numDecodings(s))
 print(sol.numDecodings2(s))
