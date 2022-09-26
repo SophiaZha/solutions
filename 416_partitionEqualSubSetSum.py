@@ -68,6 +68,7 @@ class Solution:
         return dfs(tuple(nums), n - 1, subset_sum)
 
 nums = [1,5,11,5]
+nums = [1,5,9,5]
 sol = Solution()
 print(sol.canPartition0(nums))
 print(sol.canPartition(nums))
