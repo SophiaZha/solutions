@@ -17,6 +17,26 @@ class Solution:
             return dp[(i, total)]
 
         return backtrack(0, 0)
+
+    def findTargetSumWaysL(self, nums: List[int], target: int) -> int:
+        dp = {}  # index, currentTotal
+
+        def backTrack(i, currentTotal):
+            if i == len(nums) - 1:
+                if currentTotal == target:
+                    return 1
+                else:
+                    return 0
+
+            if (i, currentTotal) in dp:
+                return dp[(i, currentTotal)]
+
+            dp[(i, currentTotal)] = backTrack(i + 1, currentTotal + nums[i + 1]) + backTrack(i + 1,
+                                                                                             currentTotal - nums[i + 1])
+            return dp[(i, currentTotal)]
+
+        return backTrack(-1, 0)
+
 """
 494. Target Sum
 Medium

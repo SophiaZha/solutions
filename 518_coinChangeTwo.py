@@ -6,20 +6,17 @@ class Solution:
         # Time: O(n*m)
         # Memory: O(n*m)
         cache = {}
-
-        def dfs(i, a):
-            if a == amount:
-                return 1
-            if a > amount:
-                return 0
+        def dfs(i, curSum):
             if i == len(coins):
                 return 0
-            if (i, a) in cache:
-                return cache[(i, a)]
-
-            cache[(i, a)] = dfs(i, a + coins[i]) + dfs(i + 1, a)
-            return cache[(i, a)]
-
+            if curSum > amount:
+                return 0
+            if curSum == amount:
+                return 1
+            if (i, curSum) in cache:
+                return cache[(i, curSum)]
+            cache[(i, curSum)] = dfs(i, curSum + coins[i]) + dfs(i + 1, curSum)
+            return cache[(i, curSum)]
         return dfs(0, 0)
 
     def change2(self, amount: int, coins: List[int]) -> int:
