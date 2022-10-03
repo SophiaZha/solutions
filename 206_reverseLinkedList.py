@@ -35,6 +35,16 @@ class Solution:
         print("ending  reverse: " + str(newHead.val))
         return newHead
 
+    def reverseListR(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+
+        p = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+
+        return p
+
     def to_linked_list(self,iterable):
         head = None
         for val in reversed(iterable):
@@ -50,6 +60,7 @@ class Solution:
 
 sol = Solution()
 result = sol.to_linked_list([1,2,3,4,5])
+reversedList = sol.reverseList(result)
 reversedList = sol.reverseListRecursive(result)
 print(sol.to_native_list(reversedList))
 
