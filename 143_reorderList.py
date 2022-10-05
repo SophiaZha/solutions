@@ -7,6 +7,24 @@ class ListNode:
         self.next = next
 
 class Solution:
+    def reorderListL(self, head: ListNode) -> None:
+        if not head:
+            return
+
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev, curr = None, slow
+
+        while curr:
+            curr.next, prev, curr = prev, curr, curr.next
+
+        while prev.next:
+            head.next, head = prev, head.next
+            prev.next, prev = head, prev.next
+
     def reorderList(self, head: Optional[ListNode]) -> None:
         slow, fast = head, head.next
         while fast and fast.next:

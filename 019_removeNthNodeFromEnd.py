@@ -8,6 +8,24 @@ class ListNode:
 
 
 class Solution:
+    def removeNthFromEndL(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = head
+        len = 1
+        while dummy.next:
+            len += 1
+            dummy = dummy.next
+        if len == 1:
+            return None
+
+        dummy = head
+        while len - n - 1 > 0:
+            dummy = dummy.next
+            len -= 1
+
+        dummy.next = dummy.next.next
+
+        return head
+
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(0, head)
         left = dummy
@@ -39,7 +57,7 @@ class Solution:
 
 sol = Solution()
 l1 = sol.to_linked_list([1,2,3,4,5])
-l1 = sol.removeNthFromEnd(l1, 2)
+l1 = sol.removeNthFromEndL(l1, 2)
 print(sol.to_native_list(l1))
 
 
