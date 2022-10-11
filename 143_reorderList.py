@@ -21,9 +21,10 @@ class Solution:
         while curr:
             curr.next, prev, curr = prev, curr, curr.next
 
-        while prev.next:
-            head.next, head = prev, head.next
-            prev.next, prev = head, prev.next
+        first, second = head, prev
+        while second.next:
+            first.next, first = second, first.next
+            second.next, second = first, second.next
 
     def reorderList(self, head: Optional[ListNode]) -> None:
         slow, fast = head, head.next
@@ -56,11 +57,15 @@ class Solution:
         return lst
 
 sol = Solution()
+
+
 l1 = sol.to_linked_list([1,2,3,4])
-Solution().reorderList(l1)
+Solution().reorderListL(l1)
 print(sol.to_native_list(l1))
 
-
+l1 = sol.to_linked_list([1,2,3,4,5])
+Solution().reorderListL(l1)
+print(sol.to_native_list(l1))
 """
 143. Reorder List
 Medium
