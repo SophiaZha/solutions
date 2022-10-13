@@ -6,7 +6,7 @@ class Node:
         self.random = random
 
 class Solution:
-    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+    def copyRandomListL(self, head: 'Optional[Node]') -> 'Optional[Node]':
         oldToCopy = {None: None}
 
         cur = head
@@ -23,6 +23,7 @@ class Solution:
             cur = cur.next
 
         return oldToCopy[head]
+
 ##################################################################Official
     def __init__(self):
         # Creating a visited dictionary to hold old node reference as "key" and new node reference as the "value"
