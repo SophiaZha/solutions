@@ -39,6 +39,18 @@ class Solution:
 
         return dummy.next
 
+    def mergeList0(self, l1: List[Optional[ListNode]], l2: List[Optional[ListNode]]):
+        if not l1:
+            return l2
+        elif not l2:
+            return l1
+        elif l1.val < l2.val:
+            l1.next = self.mergeList(l1.next, l2)
+            return l1
+        else:
+            l2.next = self.mergeList(l2.next, l1)
+            return l2
+
 
 """
 23. Merge k Sorted Lists
