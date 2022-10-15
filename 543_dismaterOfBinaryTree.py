@@ -10,20 +10,48 @@ class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         res = 0
 
-        def dfs(root):
+        def longest_path(root):
             nonlocal res
 
             if not root:
                 return 0
-            left = dfs(root.left)
-            right = dfs(root.right)
+            left = longest_path(root.left)
+            right = longest_path(root.right)
             res = max(res, left + right)
 
             return 1 + max(left, right)
 
-        dfs(root)
+        longest_path(root)
         return res
 
+    #below print detail recursive call stack
+    def diameterOfBinaryTreeL(self, root: Optional[TreeNode]) -> int:
+        level = ":"
+        dia = 0
+
+        def longest_path(node: TreeNode):
+            nonlocal level
+            level += "  "
+            print(level, end='')
+            if not node:
+                print(None)
+                level = level[0:-2]
+                return 0
+            else:
+                print(node.val)
+            nonlocal dia
+            left = longest_path(node.left)
+            right = longest_path(node.right)
+
+            dia = max(dia, left + right)
+            print(level + "for " + str(node.val) + " dia = " + str(dia) + " left= " + str(left) + " right= " + str(
+                right) + " return: " + str(max(left, right) + 1))
+            level = level[0:-2]
+            return max(left, right) + 1
+
+        longest_path(root)
+        print("dia = " + str(dia))
+        return dia
 """
 543. Diameter of Binary Tree
 Easy
