@@ -27,6 +27,22 @@ class Solution:
             if rightSide:
                 res.append(rightSide.val)
         return res
+#################################################DFS recursive
+    def rightSideViewO(self, root: TreeNode) -> List[int]:
+        if root is None:
+            return []
+
+        rightside = []
+
+        def helper(node: TreeNode, level: int) -> None:
+            if level == len(rightside):
+                rightside.append(node.val)
+            for child in [node.right, node.left]:
+                if child:
+                    helper(child, level + 1)
+
+        helper(root, 0)
+        return rightside
 
 """
 199. Binary Tree Right Side View
