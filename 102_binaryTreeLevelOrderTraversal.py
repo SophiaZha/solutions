@@ -14,7 +14,6 @@ class Solution:
         q = collections.deque()
         if root:
             q.append(root)
-
         while q:
             val = []
 
@@ -27,6 +26,26 @@ class Solution:
                     q.append(node.right)
             res.append(val)
         return res
+####################################################################O
+    def levelOrderO(self, root: TreeNode) -> List[List[int]]:
+        levels = []
+        if not root:
+            return levels
+
+        def dfs(node, level):
+            if len(levels) == level:
+                levels.append([])
+
+            levels[level].append(node.val)
+
+            if node.left:
+                dfs(node.left, level + 1)
+            if node.right:
+                dfs(node.right, level + 1)
+
+        dfs(root, 0)
+        return levels
+
 
 """
 102. Binary Tree Level Order Traversal
