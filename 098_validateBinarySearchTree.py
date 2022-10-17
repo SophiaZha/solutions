@@ -1,4 +1,5 @@
 # Definition for a binary tree node.
+import math
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -20,7 +21,7 @@ class Solution:
 
             return valid(node.left, left, node.val) and valid(node.right, node.val, right)
 
-        return valid(root, float("-inf"), float("inf"))
+        return valid(root, -math.inf, math.inf)
 """
 98. Validate Binary Search Tree
 Medium
