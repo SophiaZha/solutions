@@ -29,6 +29,49 @@ class Solution:
         dfs(root)
         return res[0]
 
+############################################# changed list to single variable only
+    def maxPathSumL(self, root: Optional[TreeNode]) -> int:
+        res = root.val
+
+        def dfs(node):
+            if not node:
+                return 0
+
+            leftMax = dfs(node.left)
+            rightMax = dfs(node.right)
+            leftMax = max(leftMax, 0)
+            rightMax = max(rightMax, 0)
+            nonlocal res
+            res = max(res, node.val + leftMax + rightMax)
+
+            return node.val + max(leftMax, rightMax)
+
+        dfs(root)
+        return res
+################################################################O
+    def maxPathSumO(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def max_gain(node):
+            nonlocal max_sum
+            if not node:
+                return 0
+            # max sum on the left and right sub-trees of node
+            left_gain = max(max_gain(node.left), 0)
+            right_gain = max(max_gain(node.right), 0)
+            # the price to start a new path where `node` is a highest node
+            price_newpath = node.val + left_gain + right_gain
+            # update max_sum if it's better to start a new path
+            max_sum = max(max_sum, price_newpath)
+            # for recursion :
+            # return the max gain if continue the same path
+            return node.val + max(left_gain, right_gain)
+        max_sum = float('-inf')
+        max_gain(root)
+        return max_sum
+
 """
 124. Binary Tree Maximum Path Sum
 Hard

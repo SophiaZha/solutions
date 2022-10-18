@@ -1,20 +1,17 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Codec:
-
     def serialize(self, root):
         """Encodes a tree to a single string.
-
         :type root: TreeNode
         :rtype: str
         """
         res = []
-
         def dfs(node):
             if not node:
                 res.append("N")
@@ -22,7 +19,6 @@ class Codec:
             res.append(str(node.val))
             dfs(node.left)
             dfs(node.right)
-
         dfs(root)
         return ",".join(res)
 
@@ -46,6 +42,89 @@ class Codec:
             return node
 
         return dfs()
+#####################################################################O
+# Serialization
+class CodecO:
+
+    def serializeO(self, root):
+        """ Encodes a tree to a single string.
+        :type root: TreeNode
+        :rtype: str
+        """
+
+        def rserialize(root, string):
+            """ a recursive helper function for the serialize() function."""
+            # check base case
+            if root is None:
+                string += 'None,'
+            else:
+                string += str(root.val) + ','
+                string = rserialize(root.left, string)
+                string = rserialize(root.right, string)
+            return string
+
+        return rserialize(root, '')
+
+    def deserializeO(self, data):
+        """Decodes your encoded data to tree.
+        :type data: str
+        :rtype: TreeNode
+        """
+
+        def rdeserialize(l):
+            """ a recursive helper function for deserialization."""
+            if l[0] == 'None':
+                l.pop(0)
+                return None
+
+            root = TreeNode(l[0])
+            l.pop(0)
+            root.left = rdeserialize(l)
+            root.right = rdeserialize(l)
+            return root
+
+        data_list = data.split(',')
+        root = rdeserialize(data_list)
+        return root
+#########################################################################L
+    def serializeL(self, root):
+        """Encodes a tree to a single string.
+        :type root: TreeNode
+        :rtype: str
+        """
+        res = []
+        def dfs(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            dfs(node.left)
+            dfs(node.right)
+
+        dfs(root)
+        return ",".join(res)
+
+    def deserializeL(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+
+        def dfs(list):
+            if list[0] == 'N':
+                list.pop(0)
+                return None
+            root = TreeNode(list[0])
+            list.pop(0)
+            root.left = dfs(list)
+            root.right = dfs(list)
+            return root
+
+        data_list = data.split(",")
+        root = dfs(data_list)
+        return root
+
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
