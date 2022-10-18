@@ -24,6 +24,15 @@ class Solution:
                 return curr.val
             curr = curr.right
 
+#######################################################################################O
+    def kthSmallestO(self, root: Optional[TreeNode], k: int) -> int:
+
+        def inOrder(node):
+            return inOrder(node.left) + [node.val] + inOrder(node.right) if node else []
+
+        return inOrder(root)[k - 1]
+
+
 """
 230. Kth Smallest Element in a BST
 Medium
