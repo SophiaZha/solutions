@@ -70,44 +70,59 @@ class Node(object):
         self.neighbors = neighbors
 """
 from collections import deque
-class Solution(object):
-
-    def cloneGraph(self, node):
-        """
-        :type node: Node
-        :rtype: Node
-        """
-
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return node
 
-        # Dictionary to save the visited node and it's respective clone
-        # as key and value respectively. This helps to avoid cycles.
+        q = deque([node])
         visited = {}
-
-        # Put the first node in the queue
-        queue = deque([node])
-        # Clone the node and put it in the visited dictionary.
         visited[node] = Node(node.val, [])
 
-        # Start BFS traversal
-        while queue:
-            # Pop a node say "n" from the from the front of the queue.
-            n = queue.popleft()
-            # Iterate through all the neighbors of the node
-            for neighbor in n.neighbors:
-                if neighbor not in visited:
-                    # Clone the neighbor and put in the visited, if not present already
-                    visited[neighbor] = Node(neighbor.val, [])
-                    # Add the newly encountered node to the queue.
-                    queue.append(neighbor)
-                # Add the clone of the neighbor to the neighbors of the clone node "n".
-                visited[n].neighbors.append(visited[neighbor])
+        while q:
+            thisnode = q.pop()
+            for n in thisnode.neighbors:
+                if n not in visited:
+                    visited[n] = Node(n.val, [])
+                    q.append(n)
+                visited[thisnode].neighbors.append(visited[n])
 
-        # Return the clone of the node from visited.
         return visited[node]
+###################################################################O the below commented lines are working equally
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, neighbors):
+        self.val = val
+        self.neighbors = neighbors
+"""
 
 
+class Solution(object):
+
+    def __init__(self):
+        self.visited = {}
+
+    def cloneGraph(self, node):
+        if not node:
+            return node
+
+        if node in self.visited:
+            return self.visited[node]
+
+        clone_node = Node(node.val, [])
+        self.visited[node] = clone_node
+
+        #        if node.neighbors:
+        #            clone_node.neighbors = [self.cloneGraph(n) for n in node.neighbors]
+
+        #        for n in node.neighbors:
+        #            clone_node.neighbors.append(self.cloneGraph(n))
+
+        #        clone_node.neighbors.extend([self.cloneGraph(n) for n in node.neighbors])
+        clone_node.neighbors.extend(self.cloneGraph(n) for n in node.neighbors)   # above 3 ways also work equally
+
+        return clone_node
 """
 133. Clone Graph
 Medium
