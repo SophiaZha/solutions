@@ -1,6 +1,34 @@
 from collections import deque
 from typing import List
 
+###################################L
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        island = 0
+        visited = set()
+
+        ROW = len(grid)
+        COL = len(grid[0])
+
+        def dfs(r, c):
+            if r not in range(ROW) or c not in range(COL) \
+                    or (r, c) in visited or grid[r][c] == "0":
+                return
+
+            visited.add((r, c))
+            dfs(r + 1, c)
+            dfs(r, c + 1)
+            dfs(r - 1, c)
+            dfs(r, c - 1)
+
+        for r in range(ROW):
+            for c in range(COL):
+                if grid[r][c] == "1" and (r, c) not in visited:
+                    island += 1
+                    dfs(r, c)
+
+        return island
+
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
