@@ -95,6 +95,47 @@ class SolutionBFS:
 
         return islands
 
+################################L
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+
+        q = deque()
+        rows, cols = len(grid), len(grid[0])
+        visited = set()
+        island = 0
+
+        def bfs(r, c):
+            q.append((r, c))
+
+            while q:
+                (r, c) = q.popleft()
+
+                if r + 1 in range(rows) and (r + 1, c) not in visited \
+                        and grid[r + 1][c] == "1":
+                    q.append((r + 1, c))
+                    visited.add((r + 1, c))
+                if r - 1 in range(rows) and (r - 1, c) not in visited \
+                        and grid[r - 1][c] == "1":
+                    q.append((r - 1, c))
+                    visited.add((r - 1, c))
+                if c + 1 in range(cols) and (r, c + 1) not in visited \
+                        and grid[r][c + 1] == "1":
+                    q.append((r, c + 1))
+                    visited.add((r, c + 1))
+                if c - 1 in range(cols) and (r, c - 1) not in visited \
+                        and grid[r][c - 1] == "1":
+                    q.append((r, c - 1))
+                    visited.add((r, c - 1))
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1" and (r, c) not in visited:
+                    bfs(r, c)
+                    visited.add((r, c))
+                    island += 1
+
+        return island
+
 
 """
 200. Number of Islands
