@@ -49,7 +49,7 @@ class Solution:
         def bfs(m, n):
             q = deque([(m, n)])
             while q:
-                r, c = q.popleft()
+                r, c = q.popleft()   # change to pop() to make it DFS instead of BFS
                 if board[r][c] != "O":
                     continue
                 board[r][c] = "E"
@@ -67,9 +67,6 @@ class Solution:
                     board[r][c] = "X"
                 elif board[r][c] == "E":
                     board[r][c] = "O"
-
-
-
 """
 130. Surrounded Regions
 Medium
