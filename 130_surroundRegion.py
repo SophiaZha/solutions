@@ -1,36 +1,74 @@
+from collections import deque
 from typing import List
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        row, col = len(board), len(board[0])
+
+        def dfs(r, c):
+            if (r not in range(row)
+                    or c not in range(col)
+                    or board[r][c] == "E"
+                    or board[r][c] == "X"
+            ):
+                return
+            else:
+                board[r][c] = "E"
+
+            for (x, y) in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)):
+                if (x in range(1, row - 1) and y in range(1, col - 1) and board[x][y] == "O"):
+                    dfs(x, y)
+
+        for i in range(row):
+            dfs(i, 0)
+            dfs(i, col - 1)
+        for i in range(col):
+            dfs(0, i)
+            dfs(row - 1, i)
+
+        for r in range(row):
+            for c in range(col):
+                if board[r][c] == "O":
+                    board[r][c] = "X"
+                if board[r][c] == "E":
+                    board[r][c] = "O"
+
+        return board
+################################################L BFS
+from itertools import product
 
 
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
-        ROWS, COLS = len(board), len(board[0])
+        if not board or not board[0]:
+            return
 
-        def capture(r, c):
-            if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] != "O":
-                return
-            board[r][c] = "T"
-            capture(r + 1, c)
-            capture(r - 1, c)
-            capture(r, c + 1)
-            capture(r, c - 1)
+        rows, cols = len(board), len(board[0])
+        boards = list(product(range(rows), [0, cols - 1])) + list(product([0, rows - 1], range(cols)))
+        print(boards)
 
-        # 1. (DFS) Capture unsurrounded regions (O -> T)
-        for r in range(ROWS):
-            for c in range(COLS):
-                if board[r][c] == "O" and (r in [0, ROWS - 1] or c in [0, COLS - 1]):
-                    capture(r, c)
+        def bfs(m, n):
+            q = deque([(m, n)])
+            while q:
+                r, c = q.popleft()
+                if board[r][c] != "O":
+                    continue
+                board[r][c] = "E"
+                for (x, y) in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)):
+                    if (x in range(rows) and y in range(cols) and board[x][y] == "O"):
+                        q.append((x, y))
 
-        # 2. Capture surrounded regions (O -> X)
-        for r in range(ROWS):
-            for c in range(COLS):
+        for r, c in boards:
+            if board[r][c] == "O":
+                bfs(r, c)
+
+        for r in range(rows):
+            for c in range(cols):
                 if board[r][c] == "O":
                     board[r][c] = "X"
-
-        # 3. Uncapture unsurrounded regions (T -> O)
-        for r in range(ROWS):
-            for c in range(COLS):
-                if board[r][c] == "T":
+                elif board[r][c] == "E":
                     board[r][c] = "O"
+
+
 
 """
 130. Surrounded Regions
