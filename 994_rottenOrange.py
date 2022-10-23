@@ -1,7 +1,6 @@
 import collections
 from typing import List
 
-
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         q = collections.deque()
@@ -21,7 +20,7 @@ class Solution:
             for i in range(length):
                 r, c = q.popleft()
 
-                for dr, dc in directions:
+                for dr, dc in directions:sky
                     row, col = r + dr, c + dc
                     # if in bounds and nonrotten, make rotten
                     # and add to q
@@ -36,6 +35,70 @@ class Solution:
             time += 1
         return time if fresh == 0 else -1
 
+#############################L  Time O(N*M); Space O(N*M)
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        q = collections.deque()
+        rows, cols = len(grid), len(grid[0])
+        time = 0
+        fresh = 0
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 1:
+                    fresh += 1
+                elif grid[r][c] == 2:
+                    q.append((r, c))
+
+        while fresh > 0 and q:
+            time += 1
+            for i in range(len(q)):
+                (r, c) = q.popleft()
+                for (x, y) in ((r + 1, c), (r, c + 1), (r - 1, c), (r, c - 1)):
+                    if (x in range(rows) and
+                            y in range(cols) and
+                            grid[x][y] == 1
+                    ):
+                        q.append((x, y))
+                        grid[x][y] = 2
+                        fresh -= 1
+
+        return time if fresh == 0 else -1
+
+################################ O in place, Time O(n^2 * M^2); Space O(1)
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        ROWS, COLS = len(grid), len(grid[0])
+
+        # run the rotting process, by marking the rotten oranges with the timestamp
+        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+        def runRottingProcess(timestamp):
+            # flag to indicate if the rotting process should be continued
+            to_be_continued = False
+            for row in range(ROWS):
+                for col in range(COLS):
+                    if grid[row][col] == timestamp:
+                        # current contaminated cell
+                        for d in directions:
+                            n_row, n_col = row + d[0], col + d[1]
+                            if ROWS > n_row >= 0 and COLS > n_col >= 0:
+                                if grid[n_row][n_col] == 1:
+                                    # this fresh orange would be contaminated next
+                                    grid[n_row][n_col] = timestamp + 1
+                                    to_be_continued = True
+            return to_be_continued
+
+        timestamp = 2
+        while runRottingProcess(timestamp):
+            timestamp += 1
+        # end of process, to check if there are still fresh oranges left
+        for row in grid:
+            for cell in row:
+                if cell == 1:  # still got a fresh orange left
+                    return -1
+        # return elapsed minutes if no fresh orange left
+        return timestamp - 2
 """
 994. Rotting Oranges
 Medium
