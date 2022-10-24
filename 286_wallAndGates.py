@@ -40,15 +40,48 @@ class Solution:
                 addRooms(r, c + 1)
                 addRooms(r, c - 1)
             dist += 1
+##################################### L Self Solution
+class Solution:
+    def wallsAndGates(self, rooms: List[List[int]]) -> None:
+        rows, cols = len(rooms), len(rooms[0])
+
+        q = deque()
+
+        def bfs():
+            step = 0
+            while q:
+                step += 1
+                for i in range(len(q)):
+                    (r, c) = q.popleft()
+                    for (x, y) in ((r + 1, c), (r, c + 1), (r - 1, c), (r, c - 1)):
+
+                        if (x not in range(rows) or
+                                y not in range(cols) or
+                                rooms[x][y] == 0 or
+                                rooms[x][y] == -1 or
+                                rooms[x][y] < 2147483647
+                        ):
+                            continue
+                        rooms[x][y] = min(step, rooms[x][y])
+                        q.append((x, y))
+
+        for r in range(rows):
+            for c in range(cols):
+                if rooms[r][c] == 0:
+                    q.append((r, c))
+        bfs()
+
+
 """
-[LeetCode] 286. Walls and Gates 墙和门
- 
+[LeetCode] 286. Walls and Gates
+Medium 
 
 You are given a m x n 2D grid initialized with these three possible values.
 
 -1 - A wall or an obstacle.
 0 - A gate.
-INF - Infinity means an empty room. We use the value 231 - 1 = 2147483647 to represent INF as you may assume that the distance to a gate is less than 2147483647.
+INF - Infinity means an empty room. We use the value 231 - 1 = 2147483647 to represent INF 
+as you may assume that the distance to a gate is less than 2147483647.
 Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.
 
 For example, given the 2D grid:
@@ -61,11 +94,30 @@ After running your function, the 2D grid should be:
   2   2   1  -1
   1  -1   2  -1
   0  -1   3   4
+
+Example 1:
+
+Input: rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]
+Output: [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]
+
+Example 2:
+
+Input: rooms = [[-1]]
+Output: [[-1]]
+
  
 
-这道题类似一种迷宫问题，规定了 -1 表示墙，0表示门，让求每个点到门的最近的曼哈顿距离，这其实类似于求距离场 Distance Map 的问题，那么先考虑用 DFS 来解，思路是，搜索0的位置，每找到一个0，
-以其周围四个相邻点为起点，开始 DFS 遍历，并带入深度值1，如果遇到的值大于当前深度值，将位置值赋为当前深度值，并对当前点的四个相邻点开始DFS遍历，注意此时深度值需要加1，这样遍历完成后，所有的位置就被正确地更新
+Constraints:
 
+    m == rooms.length
+    n == rooms[i].length
+    1 <= m, n <= 250
+    rooms[i][j] is -1, 0, or 231 - 1.
+
+Accepted
+251,003
+Submissions
+416,821
  
 """
 
