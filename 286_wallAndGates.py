@@ -62,7 +62,7 @@ class Solution:
                                 rooms[x][y] < 2147483647
                         ):
                             continue
-                        rooms[x][y] = min(step, rooms[x][y])
+                        rooms[x][y] = step
                         q.append((x, y))
 
         for r in range(rows):
@@ -70,7 +70,6 @@ class Solution:
                 if rooms[r][c] == 0:
                     q.append((r, c))
         bfs()
-
 
 """
 [LeetCode] 286. Walls and Gates
