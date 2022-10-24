@@ -1,10 +1,10 @@
-from numba import List
-
+from typing import List
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # dfs
         preMap = {i: [] for i in range(numCourses)}
+        # preMap = [[] for i in range(numCourses)]  ###### this line is equally good as the above one
 
         # map each course to : prereq list
         for crs, pre in prerequisites:
@@ -30,6 +30,90 @@ class Solution:
             if not dfs(c):
                 return False
         return True
+############################################### topological sort
+class GNode(object):
+    """  data structure represent a vertex in the graph."""
+    def __init__(self):
+        self.inDegrees = 0
+        self.outNodes = []
+
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        from collections import defaultdict, deque
+        # key: index of node; value: GNode
+        graph = defaultdict(GNode)
+
+        totalDeps = 0
+        for relation in prerequisites:
+            nextCourse, prevCourse = relation[0], relation[1]
+            graph[prevCourse].outNodes.append(nextCourse)
+            graph[nextCourse].inDegrees += 1
+            totalDeps += 1
+
+        # we start from courses that have no prerequisites.
+        # we could use either set, stack or queue to keep track of courses with no dependence.
+        nodepCourses = deque()
+        for index, node in graph.items():
+            if node.inDegrees == 0:
+                nodepCourses.append(index)
+
+        removedEdges = 0
+        while nodepCourses:
+            # pop out course without dependency
+            course = nodepCourses.pop()
+
+            # remove its outgoing edges one by one
+            for nextCourse in graph[course].outNodes:
+                graph[nextCourse].inDegrees -= 1
+                removedEdges += 1
+                # while removing edges, we might discover new courses with prerequisites removed, i.e. new courses without prerequisites.
+                if graph[nextCourse].inDegrees == 0:
+                    nodepCourses.append(nextCourse)
+
+        if removedEdges == totalDeps:
+            return True
+        else:
+            # if there are still some edges left, then there exist some cycles
+            # Due to the dead-lock (dependencies), we cannot remove the cyclic edges
+            return False
+################################################## L
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+
+        req_dict = [[] for i in range(numCourses)]
+        for cs, req in prerequisites:
+            req_dict[cs].append(req)
+
+        visiting = set()
+
+        def dfs(cs):
+            if cs in visiting:
+                return False
+            if len(req_dict[cs]) == 0:
+                return True
+
+            visiting.add(cs)
+            for req in req_dict[cs]:
+                if not dfs(req):
+                    return False
+                else:
+                    req_dict[cs].remove(req)
+
+            visiting.remove(cs)
+            return True
+
+        for i in range(numCourses):
+            if not dfs(i):
+                return False
+
+        return True
+
+
 """
 207. Course Schedule
 Medium
