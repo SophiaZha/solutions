@@ -1,8 +1,11 @@
 import collections
-from typing import List
-
-
 class Solution:
+    def getPatterns(self, word):
+        p = []
+        for j in range(len(word)):
+            p.append(word[:j] + "*" + word[j + 1:])
+        return p
+
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0
@@ -10,8 +13,7 @@ class Solution:
         nei = collections.defaultdict(list)
         wordList.append(beginWord)
         for word in wordList:
-            for j in range(len(word)):
-                pattern = word[:j] + "*" + word[j + 1 :]
+            for pattern in self.getPatterns(word):
                 nei[pattern].append(word)
 
         visit = set([beginWord])
@@ -22,8 +24,7 @@ class Solution:
                 word = q.popleft()
                 if word == endWord:
                     return res
-                for j in range(len(word)):
-                    pattern = word[:j] + "*" + word[j + 1 :]
+                for pattern in self.getPatterns(word):
                     for neiWord in nei[pattern]:
                         if neiWord not in visit:
                             visit.add(neiWord)
