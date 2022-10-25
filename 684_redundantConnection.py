@@ -21,10 +21,10 @@ class Solution:
                 return False
             if rank[p1] > rank[p2]:
                 par[p2] = p1
-                rank[p1] += rank[p2]
+                rank[p1] += 1
             else:
                 par[p1] = p2
-                rank[p2] += rank[p1]
+                rank[p2] += 1
             return True
 
         for n1, n2 in edges:
