@@ -20,7 +20,7 @@ class Solution:
             dsu.union(a, b)
         return len(set(dsu.findParent(x) for x in range(n)))
 
-
+##########################################################################################
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         par = [i for i in range(n)]
