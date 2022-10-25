@@ -1,4 +1,8 @@
 # Problem is free on Lintcode  https://www.lintcode.com/problem/178/description
+from collections import deque
+from typing import List
+
+
 class Solution:
     """
     @param n: An integer
@@ -29,6 +33,51 @@ class Solution:
             return True
 
         return dfs(0, -1) and n == len(visit)
+#############################  L Easier to understand, remove parent route
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        adj = {i: [] for i in range(n)}
+        for x, y in edges:
+            adj[x].append(y)
+            adj[y].append(x)
+
+        visited = set()
+
+        def dfs(x):
+            if x in visited:
+                return False
+            visited.add(x)
+
+            for nei in adj[x]:
+                adj[nei].remove(x)
+                if not dfs(nei):
+                    return False
+            return True
+
+        return dfs(0) and len(visited) == n
+########################################### Iterative DFS
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        adj = {i: [] for i in range(n)}
+        for x, y in edges:
+            adj[x].append(y)
+            adj[y].append(x)
+
+        visited = set()
+        stack = deque([0])
+
+        while stack:
+            x = stack.popleft()
+            if x in visited:
+                return False
+            visited.add(x)
+
+            for nei in adj[x]:
+                adj[nei].remove(x)
+                stack.append(nei)
+
+        return len(visited) == n
+
 
 """
 261. Graph Valid Tree
