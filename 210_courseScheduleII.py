@@ -29,6 +29,56 @@ class Solution:
             if dfs(c) == False:
                 return []
         return courseOrderToTake
+#####################
+from collections import defaultdict, deque
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        adj_list = defaultdict(list)
+        indegree = {}
+        for dest, src in prerequisites:
+            adj_list[src].append(dest)
+            indegree[dest] = indegree.get(dest, 0) + 1
+
+        zero_indegree_queue = deque([k for k in range(numCourses) if k not in indegree])
+
+        topological_sorted_order = []
+
+        while zero_indegree_queue:
+            vertex = zero_indegree_queue.popleft()
+            topological_sorted_order.append(vertex)
+
+            if vertex in adj_list:
+                for neighbor in adj_list[vertex]:
+                    indegree[neighbor] -= 1
+
+                    if indegree[neighbor] == 0:
+                        zero_indegree_queue.append(neighbor)
+
+        return topological_sorted_order if len(topological_sorted_order) == numCourses else []
+############################## L
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        adj_list = defaultdict(list)
+        indegree = {}
+
+        for des, src in prerequisites:
+            adj_list[src].append(des)
+            indegree[des] = indegree.get(des, 0) + 1
+
+        no_src_course = deque([k for k in range(numCourses) if k not in indegree])
+        course_seq = []
+
+        while no_src_course:
+            src = no_src_course.popleft()
+            course_seq.append(src)
+
+            for des in adj_list[src]:
+                indegree[des] = indegree.get(des) - 1
+                if indegree[des] == 0:
+                    no_src_course.append(des)
+
+        return course_seq if len(course_seq) == numCourses else []
+
 
 """
 210. Course Schedule II
