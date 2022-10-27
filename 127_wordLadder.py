@@ -1,4 +1,7 @@
 import collections
+from typing import List
+
+
 class Solution:
     def getPatterns(self, word):
         p = []
@@ -31,6 +34,35 @@ class Solution:
                             q.append(neiWord)
             res += 1
         return 0
+
+#########################
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        q = collections.deque([beginWord])
+
+        pattern_word = collections.defaultdict(list)
+        for w in wordList:
+            for i in range(len(w)):
+                pattern = w[:i] + "*" + w[i + 1:]
+                pattern_word[pattern].append(w)
+
+        res = 1
+        visited = set(beginWord)
+        while q:
+            for i in range(len(q)):
+                w = q.popleft()
+                if w == endWord:
+                    return res
+                visited.add(w)
+                for i in range(len(w)):
+                    pattern = w[:i] + "*" + w[i + 1:]
+                    for next_w in pattern_word[pattern]:
+                        if next_w not in visited:
+                            q.append(next_w)
+            res += 1
+        return 0
+
+
 """
 127. Word Ladder
 Hard
