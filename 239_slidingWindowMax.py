@@ -13,8 +13,9 @@ class Solution:
 
             if l > q[0]:
                 q.popleft()
-
-            if r >= k -1 :
+            #Both lines below works
+            #if r >= k -1 :
+            if (r - l) == k - 1:
                 output.append(nums[q[0]])
                 l += 1
             r +=1
