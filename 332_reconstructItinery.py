@@ -10,28 +10,71 @@ class Solution:
         tickets.sort()
         for u, v in tickets:
             adj[u].append(v)
-
         def dfs(cur):
+            print("inside " + cur)
             if len(res) == len(tickets) + 1:
+                print("return " + cur + " true")
                 return True
             if cur not in adj:
+                print("return " + cur + " false 1")
                 return False
 
             temp = list(adj[cur])
             for v in temp:
-                adj[cur].popleft()
+                print(cur +"pop " + adj[cur].popleft())
                 res.append(v)
                 if dfs(v):
                     return res
                 res.pop()
+                print(cur +"append " + v)
                 adj[cur].append(v)
+            print("return " + cur + " false 2")
             return False
 
         dfs("JFK")
         return res
 
-    """
-    332. Reconstruct Itinerary
+    def findItinerarya(self, tickets: List[List[str]]) -> List[str]:
+        print("--------------------------------")
+        res = ["JFK"]
+        adj = {s: [] for s, d in tickets}
+        tickets.sort()
+        for s, d in tickets:
+            adj[s].append(d)
+
+        def dfs(cur):
+            print("inside " + cur)
+            if len(res) == len(tickets) + 1:
+                print("return " + cur + " true")
+                return True
+            if cur not in adj:
+                print("return " + cur + " false 1")
+                return False
+
+            temp = list(adj[cur])
+            for i, v in enumerate(temp):
+                print(cur +"pop " +  adj[cur].pop(i))
+                res.append(v)
+                if dfs(v):
+                    return True
+                print(cur +"append " + v)
+                adj[cur].insert(i, v)
+                #adj[cur].insert(len(adj[cur]),v)
+                res.pop()
+            print("return " + cur + " false 2")
+            return False
+
+        dfs("JFK")
+        return res
+
+tickets =   [["JFK", "KUL"], ["JFK", "NRT"], ["NRT", "JFK"]]
+so = Solution()
+print(so.findItinerary(tickets))
+print(so.findItinerarya(tickets))
+
+
+"""
+332. Reconstruct Itinerary
 Hard
 
 4250
