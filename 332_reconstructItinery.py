@@ -1,34 +1,53 @@
 import collections
 from typing import List
-
-
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        adj = {u: collections.deque() for u, v in tickets}
+        adj = {src: collections.deque() for src, des in tickets}
         res = ["JFK"]
-
         tickets.sort()
-        for u, v in tickets:
-            adj[u].append(v)
+        for src, des in tickets:
+            adj[src].append(des)
 
-        def dfs(cur):
+        def dfs(src):
             if len(res) == len(tickets) + 1:
                 return True
-            if cur not in adj:
+            if src not in adj:
                 return False
 
-            temp = list(adj[cur])
-            for v in temp:
-                adj[cur].popleft()
-                res.append(v)
-                if dfs(v):
+            temp = list(adj[src])
+            for u in temp:
+                res.append(u)
+                adj[src].popleft()
+                if dfs(u):
                     return res
+                adj[src].append(u)
                 res.pop()
-                adj[cur].append(v)
-            return False
-
         dfs("JFK")
         return res
+#############
+    class Solution:
+        def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+            res = ["JFK"]
+            adj = {s: [] for s, d in tickets}
+            tickets.sort()
+            for s, d in tickets:
+                adj[s].append(d)
+            def dfs(s):
+                if len(res) == len(tickets) + 1:
+                    return True
+                if s not in adj:
+                    return False
+
+                temp = list(adj[s])
+                for i, v in enumerate(temp):
+                    adj[s].pop(i)
+                    res.append(v)
+                    if dfs(v):
+                        return True
+                    adj[s].insert(i, v)
+                    res.pop()
+            dfs("JFK")
+            return res
 
     """
     332. Reconstruct Itinerary

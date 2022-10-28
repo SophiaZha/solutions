@@ -27,6 +27,11 @@ class Solution:
                 if nei not in visit:
                     heapq.heappush(minH, [neiCost, nei])
         return res
+points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+so = Solution()
+print(so.minCostConnectPoints(points))
+
+
 """
 1584. Min Cost to Connect All Points
 Medium
