@@ -26,6 +26,28 @@ class Solution:
                     continue
                 visit.add((neiR, neiC))
                 heapq.heappush(minH, [max(t, grid[neiR][neiC]), neiR, neiC])
+######################## L
+class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        t, n = 0, len(grid)
+        minH = [[grid[0][0], 0, 0]]
+        visit = set()
+
+        while minH:
+            h, r, c = heapq.heappop(minH)
+            if (r, c) in visit:
+                continue
+            visit.add((r, c))
+            if (r, c) == (n - 1, n - 1):
+                return h
+
+            for (x, y) in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)):
+                if (x in range(n) and
+                        y in range(n) and
+                        (x, y) not in visit
+                ):
+                    heapq.heappush(minH, [max(h, grid[x][y]), x, y])
+
 
 """
 778. Swim in Rising Water
