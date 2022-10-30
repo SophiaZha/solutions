@@ -1,3 +1,5 @@
+import typing
+from collections import defaultdict, deque,  Counter
 from typing import List
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
@@ -14,11 +16,9 @@ class Solution:
                     break
         visited = {}  # {char: bool} False visited, True current path
         res = []
-
         def dfs(char):
             if char in visited:
                 return visited[char]
-
             visited[char] = True
             for neighChar in adj[char]:
                 if dfs(neighChar):
@@ -28,19 +28,81 @@ class Solution:
         for char in adj:
             if dfs(char):
                 return ""
-
         res.reverse()
         return "".join(res)
+###################  O
+    def alienOrderD(self, words: List[str]) -> str:
+        reverse_adj_list = {c : [] for word in words for c in word}
 
+        for first_word, second_word in zip(words, words[1:]):
+            for c, d in zip(first_word, second_word):
+                if c != d:
+                    reverse_adj_list[d].append(c)
+                    break
+            else:
+                if len(second_word) < len(first_word):
+                    return ""
+
+        seen = {} # False = grey, True = black.
+        output = []
+        def visit(node):  # Return True iff there are no cycles.
+            if node in seen:
+                return seen[node] # If this node was grey (False), a cycle was detected.
+            seen[node] = False # Mark node as grey.
+            for next_node in reverse_adj_list[node]:
+                result = visit(next_node)
+                if not result:
+                    return False # Cycle was detected lower down.
+            seen[node] = True # Mark node as black.
+            output.append(node)
+            return True
+
+        if not all(visit(node) for node in reverse_adj_list):
+            return ""
+
+        return "".join(output)
+
+    def alienOrderB(self, words: List[str]) -> str:
+
+        adj_list = defaultdict(set)
+        in_degree = Counter({c : 0 for word in words for c in word})
+
+        for first_word, second_word in zip(words, words[1:]):
+            for c, d in zip(first_word, second_word):
+                if c != d:
+                    if d not in adj_list[c]:
+                        adj_list[c].add(d)
+                        in_degree[d] += 1
+                    break
+            else:
+                if len(second_word) < len(first_word): return ""
+
+        output = []
+        queue = deque([c for c in in_degree if in_degree[c] == 0])
+        while queue:
+            c = queue.popleft()
+            output.append(c)
+            for d in adj_list[c]:
+                in_degree[d] -= 1
+                if in_degree[d] == 0:
+                    queue.append(d)
+
+        # If not all letters are in output, that means there was a cycle and so
+        # no valid ordering. Return "" as per the problem description.
+        if len(output) < len(in_degree):
+            return ""
+        # Otherwise, convert the ordering we found into a string and return it.
+        return "".join(output)
 sol = Solution()
 words =  [  "wrt",  "wrf",  "er",  "ett",  "rftt"]
-print(sol.alienOrder((words)))
-
+#print(sol.alienOrderB((words)))
 words =  [  "wrt",  "wrf",  "er",  "rftt"]
-print(sol.alienOrder((words)))
-
+#print(sol.alienOrderB((words)))
 words =  [  "z",  "x",  "z"]
-print(sol.alienOrder((words)))
+#print(sol.alienOrderB((words)))
+words =  [  "abc",  "ab"]
+print(sol.alienOrderB((words)))
+
 
 
 """
