@@ -1,7 +1,36 @@
-import typing
 from collections import defaultdict, deque,  Counter
 from typing import List
 class Solution:
+    def alienOrderL(self, words: List[str]) -> str:
+        adj = {c: set() for word in words for c in word}
+        for fw, sw in zip(words, words[1:]):
+            for c, d in zip(fw, sw):
+                if c != d:
+                    adj[c].add(d)
+                    break
+            else:
+                if len(fw) > len(sw):
+                    print("length conflicting")
+                    return ""
+        res = []
+        visit = {}
+        def dfs(c):
+            if c in visit:
+                return visit[c]
+            visit[c] = False
+            for nei in adj[c]:
+                if not dfs(nei):
+                    return False
+            visit[c] = True
+            print("append res " + c)
+            res.append(c)
+            return True
+
+        if not all(dfs(c) for c in adj):
+            return ""
+        res.reverse()
+        return "".join(res)
+
     def alienOrder(self, words: List[str]) -> str:
         adj = {char: set() for word in words for char in word}
         for i in range(len(words) - 1):
@@ -25,6 +54,7 @@ class Solution:
                     return True
             visited[char] = False
             res.append(char)
+
         for char in adj:
             if dfs(char):
                 return ""
@@ -33,7 +63,6 @@ class Solution:
 ###################  O
     def alienOrderD(self, words: List[str]) -> str:
         reverse_adj_list = {c : [] for word in words for c in word}
-
         for first_word, second_word in zip(words, words[1:]):
             for c, d in zip(first_word, second_word):
                 if c != d:
@@ -42,7 +71,6 @@ class Solution:
             else:
                 if len(second_word) < len(first_word):
                     return ""
-
         seen = {} # False = grey, True = black.
         output = []
         def visit(node):  # Return True iff there are no cycles.
@@ -56,10 +84,8 @@ class Solution:
             seen[node] = True # Mark node as black.
             output.append(node)
             return True
-
         if not all(visit(node) for node in reverse_adj_list):
             return ""
-
         return "".join(output)
 
     def alienOrderB(self, words: List[str]) -> str:
@@ -95,13 +121,13 @@ class Solution:
         return "".join(output)
 sol = Solution()
 words =  [  "wrt",  "wrf",  "er",  "ett",  "rftt"]
-#print(sol.alienOrderB((words)))
+print(sol.alienOrderL((words)))
 words =  [  "wrt",  "wrf",  "er",  "rftt"]
 #print(sol.alienOrderB((words)))
 words =  [  "z",  "x",  "z"]
 #print(sol.alienOrderB((words)))
 words =  [  "abc",  "ab"]
-print(sol.alienOrderB((words)))
+#print(sol.alienOrderB((words)))
 
 
 

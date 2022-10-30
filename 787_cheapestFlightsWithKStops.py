@@ -17,6 +17,23 @@ class Solution: #L
 
         return -1 if prices[dst] == float("inf") else prices[dst]
 
+    def findCheapestPriceL(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        prices = [float("inf")] * n
+
+        prices[src] = 0
+
+        for i in range(k + 1):
+            tp = prices.copy()
+            for s, d, c in flights:
+                if prices[s] == float("inf"):
+                    continue
+                tp[d] = min(c + prices[s], tp[d])
+            prices = tp
+
+        return -1 if prices[dst] == float("inf") else prices[dst]
+
+
+
 n = 4
 flights = [[0,1,100],[1,2,100],[0,2,100],[1,3,600],[2,3,200]]
 src = 0
