@@ -61,6 +61,13 @@ words =  [  "wrt",  "wrf",  "er",  "ett",  "rftt"]
 in_degree = Counter({c: 0 for word in words for c in word})
 print(in_degree)
 
+arr = [1, 3, 4, 1, 2, 1, 1, 3, 4, 3, 5, 1, 2, 5, 3, 4, 5]
+counter = Counter(arr)
+top_three = counter.most_common(3)
+print(counter)
+print("top three = " + str(top_three))
+
+
 olded = defaultdict(list)
 times = [[2,1,1],[2,3,1],[3,4,1]]
 edges = {u: [] for u, v, w in times}
