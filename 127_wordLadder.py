@@ -62,6 +62,30 @@ class Solution:
             res += 1
         return 0
 
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        adj = defaultdict(list)
+        for w in wordList:
+            for i in range(len(w)):
+                pattern = w[:i] + "*" + w[i + 1:]
+                adj[pattern].append(w)
+
+        q = deque([beginWord])
+        length = 1
+        visit = set()
+        while q:
+            for i in range(len(q)):
+                w = q.popleft()
+                visit.add(w)
+                if w == endWord:
+                    return length
+                for i in range(len(w)):
+                    pattern = w[:i] + "*" + w[i + 1:]
+                    for nei in adj[pattern]:
+                        if nei not in visit:
+                            q.append(nei)
+            length += 1
+        return 0
+
 
 """
 127. Word Ladder
