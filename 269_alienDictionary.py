@@ -119,6 +119,39 @@ class Solution:
             return ""
         # Otherwise, convert the ordering we found into a string and return it.
         return "".join(output)
+
+    def alienOrder7(self, words: List[str]) -> str:
+        adj = {i: set() for word in words for i in word}
+        in_degree = {i: 0 for word in words for i in word}
+        for fw, sw in zip(words, words[1:]):
+            for c, d in zip(fw, sw):
+                if c != d:
+                    if d not in adj[c]:
+                        adj[c].add(d)
+                        in_degree[d] += 1
+                    break
+            else:
+                if len(fw) > len(sw): return ""
+
+        res = []
+        q = deque()
+        for c in in_degree:
+            if in_degree[c] == 0:
+                q.append(c)
+
+        while q:
+            c = q.popleft()
+            res += c
+            for d in adj[c]:
+                in_degree[d] -= 1
+                if in_degree[d] == 0:
+                    q.append(d)
+
+        if len(res) < len(in_degree):
+            return ""
+        return "".join(res)
+
+
 sol = Solution()
 words =  [  "wrt",  "wrf",  "er",  "ett",  "rftt"]
 print(sol.alienOrderL((words)))
