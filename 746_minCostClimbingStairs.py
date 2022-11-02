@@ -1,6 +1,5 @@
 from typing import List
 
-
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         cost.append(0)
@@ -8,6 +7,15 @@ class Solution:
             cost[i] = cost[i] + min(cost[i + 1], cost[i + 2])
         res = min(cost[0], cost[1])
         return res
+
+    def minCostClimbingStairsL(self, cost: List[int]) -> int:
+        n = len(cost)
+        paid = [0] * n
+        paid[n - 1] = cost[n - 1]
+        paid[n - 2] = min(cost[n - 2], paid[n - 1] + cost[n - 2])
+        for i in range(len(cost) - 3, -1, -1):
+            paid[i] = min(cost[i] + paid[i + 2], paid[i + 1] + cost[i])
+        return min(paid[0], paid[1])
 
 cost = [10, 15, 20]
 sol = Solution()
