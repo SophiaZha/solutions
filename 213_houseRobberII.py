@@ -15,10 +15,6 @@ class Solution:  # L
 #############
 class Solution:
     def rob(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
 
         def simple_rob(nums, i, j):
             rob, not_rob = 0, 0
