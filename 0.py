@@ -12,6 +12,8 @@ heapq.heapify(li1)
 # prints 10, 9 and 8
 print("The 3 largest numbers in list are : ", end="")
 print(heapq.nlargest(3, li1))
+print("The largest numbers in list are : ", end="")
+print(heapq.nlargest(1, li1))
 
 # using nsmallest to print 3 smallest numbers
 # prints 1, 3 and 4
