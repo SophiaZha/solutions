@@ -14,6 +14,17 @@ class Solution:  # L
             res = max(res, maxCur)
         return res
 
+##################################################################
+
+    def maxProductO(self, nums: List[int]) -> int:
+        res = nums[0]
+        cur_min, cur_max = 1, 1
+        for num in nums:
+            cur_max, cur_min = max(cur_max * num, cur_min * num, num), min(cur_max * num, cur_min * num, num)
+            res = max(res, cur_max)
+        return res
+
+
 """
 152. Maximum Product Subarray
 Medium
