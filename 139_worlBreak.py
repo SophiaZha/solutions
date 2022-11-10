@@ -1,7 +1,5 @@
 from functools import lru_cache
 from typing import List, FrozenSet
-
-
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dp = [False] * (len(s) + 1)
