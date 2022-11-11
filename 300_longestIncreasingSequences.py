@@ -1,8 +1,6 @@
 from typing import List
-
-
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
+    def lengthOfLIS(self, nums: List[int]) -> int:  #Time complexity: O(N2)O(N2)
         lis = [1] * len(nums)
 
         for i in reversed(range(len(nums))):
@@ -11,6 +9,37 @@ class Solution:
                     lis[i] = max(lis[i], 1 + lis[j])
 
         return max(lis)
+
+    def lengthOfLIS2(self, nums: List[int]) -> int:  #Time complexity: O(N2)O(N2)
+        sub = [nums[0]]
+
+        for num in nums[1:]:
+            if num > sub[-1]:
+                sub.append(num)
+            else:
+                # Find the first element in sub that is greater than or equal to num
+                i = 0
+                while num > sub[i]:
+                    i += 1
+                sub[i] = num
+
+        return len(sub)
+
+    def lengthOfLIS3(self, nums: List[int]) -> int:   #N*LogN Time Complexity Binary Search
+        sub = []
+        for num in nums:
+            i = bisect_left(sub, num)
+
+            # If num is greater than any element in sub
+            if i == len(sub):
+                sub.append(num)
+
+            # Otherwise, replace the first element in sub greater than or equal to num
+            else:
+                sub[i] = num
+
+        return len(sub)
+
 
 """
 300. Longest Increasing Subsequence
