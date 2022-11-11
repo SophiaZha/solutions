@@ -1,6 +1,74 @@
 import itertools
 import heapq
 from collections import defaultdict, Counter
+import operator
+
+dict_cities = {'Uganda': 763, 'France': 830, 'Tokyo': 193, 'Malaysia': 1682}
+max_val = list(dict_cities.values())
+max_ke = list(dict_cities.keys())
+print("1: " + max_ke[max_val.index(max(max_val))])  #1: Malaysia
+print("2: " + max(dict_cities, key= dict_cities.get))  #2: Malaysia
+
+your_dictionary = {'Australia':1780, 'England':6723, 'Tokyo': 1946}
+new_maximum_val = max(your_dictionary.keys(), key=(lambda new_k: your_dictionary[new_k]))
+print("Maximum Value''s key ", new_maximum_val)   #England
+print("Maximum Value''s key 2 ", max(your_dictionary, key=your_dictionary.get))  #England
+
+print('Maximum Value: ',your_dictionary[new_maximum_val])  # 6723
+new_minimum_val = min(your_dictionary.keys(), key=(lambda new_k: your_dictionary[new_k]))
+print('Minimum Value: ',your_dictionary[new_minimum_val])   # 1780
+
+my_dictionary = {'Micheal': {'i': 15, 'z': 14},
+                 'George': {'q': 2, 'y': 10, 'w': 3},
+                 'John': {'n': 19}}
+new_out = {}
+for new_k, new_v in my_dictionary.items():
+    count_new = 0
+    for element in new_v.values():
+        if element > count_new:
+            count_new = element
+    new_out[new_k] = count_new
+print("new out " + str(new_out))   # {'Micheal': 15, 'George': 10, 'John': 19}
+
+new_out_again = {}
+for new_k, new_v in my_dictionary.items():
+    new_out_again[new_k] = max(new_v.values())
+print("new out again " + str(new_out_again))   #{'Micheal': 15, 'George': 10, 'John': 19}
+
+dict_new = {'Micheal': [17,27,81], 'Elijah': [19,61,92]}
+new_val = max((max(dict_new[key]) for key in dict_new))
+print("dict_new new_val " + str(new_val))   # 92
+
+val_2 = max(dict_new[key] for key in dict_new)
+print("the list with largest value: " + str(val_2))   #[19,61,92]  because 19 > 17
+val_3 = min(dict_new[key] for key in dict_new)
+print("the list with smallest value: " + str(val_3))   #[17, 27, 81]  because 19 > 17
+val_4 = max(min(dict_new[key] for key in dict_new))
+print("the list with smallest value overall, and get the largest: " + str(val_4))   # 81
+
+alpha_dict = {"g": 14, "q": 16, "h": 19}
+new_value = max(alpha_dict, key=alpha_dict.get)
+print("Highest value from dictionary:",new_value)   # h
+
+name_dict = {"Oliva": 18, "potter": 56, "Harry": 15}
+new_val = name_dict.values()
+maximum_val = max(new_val)
+print("Maximum value from dict:",maximum_val)  #56
+
+Country_dict = {'China':982, 'Egypt':758, 'Malaysia' : 12}
+new_val = max(Country_dict, key= lambda x: Country_dict[x])
+print("maximum value from Country_dict:",new_val)   #China
+new_val = max(Country_dict, key=Country_dict.get)
+print("maximum value from Country_dict 2 :",new_val)   #China
+
+max_dict = {'Australia':178, 'Germany':213, 'Japan': 867}
+new_ma_val = max(max_dict.items(), key=operator.itemgetter(1))[0]
+print("use operator itemgetter  " + new_ma_val)
+
+my_new_dict = {"q": 18, "z": 10, "o": 13}
+fin_max = max(my_new_dict, key=my_new_dict.get)
+print("my_new_dict Maximum value:",fin_max)   # q
+
 
 # initializing list
 li1 = [6, 7, 9, 4, 3, 5, 8, 10, 1]
