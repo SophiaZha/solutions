@@ -10,9 +10,16 @@ class Solution:
 
         return max(lis)
 
+    def lengthOfLISO(self, nums: List[int]) -> int:
+        dp = [1] * len(nums)
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
+
     def lengthOfLIS2(self, nums: List[int]) -> int:  #Time complexity: O(N2)O(N2)
         sub = [nums[0]]
-
         for num in nums[1:]:
             if num > sub[-1]:
                 sub.append(num)
