@@ -1,3 +1,4 @@
+from bisect import bisect_left
 from typing import List
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:  #Time complexity: O(N2)O(N2)

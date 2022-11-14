@@ -1,3 +1,4 @@
+from collections import deque
 from functools import lru_cache
 from typing import List, FrozenSet
 class Solution:
@@ -14,8 +15,7 @@ class Solution:
 
         return dp[0]
 ########### OBFS
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+    def wordBreakOBFS(self, s: str, wordDict: List[str]) -> bool:
         word_set = set(wordDict)
         q = deque()
         visited = set()
@@ -33,7 +33,22 @@ class Solution:
             visited.add(start)
         return False
 ################# recursion with memorization
-class Solution:
+    def wordBreakL(self, s: str, wordDict: List[str]) -> bool:
+        q = deque()
+        q.append(0)
+        visit = set([0])
+
+        while q:
+            st = q.popleft()
+            for w in wordDict:
+                end = st + len(w)
+                if end not in visit and s[st: end] == w:
+                    q.append(end)
+                    visit.add(end)
+                    if end == len(s):
+                        return True
+        return False
+
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         @lru_cache
         def wordBreakMemo(s: str, word_dict: FrozenSet[str], start: int):
@@ -50,7 +65,7 @@ class Solution:
 s = "leetcode"
 wordDict = ["leet","code"]
 sol = Solution()
-print(sol.wordBreak(s, wordDict))
+print(sol.wordBreakL(s, wordDict))
 
 
 """
