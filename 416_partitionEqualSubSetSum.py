@@ -69,6 +69,24 @@ class Solution:
         n = len(nums)
         return dfs(tuple(nums), n - 1, subset_sum)
 
+    def canPartitionA(self, nums: List[int]) -> bool:  # based on 2 dimesion array
+        if sum(nums) % 2 != 0:
+            return False
+        half = sum(nums) // 2
+        n = len(nums)
+        dp = [[False] * (half + 1) for _ in range(n + 1)]
+        dp[0][0] = True
+
+        for i in range(1, len(nums) + 1):
+            curr = nums[i - 1]
+            for j in range(0, half + 1):
+                if j < curr:
+                    dp[i][j] = dp[i - 1][j]
+                else:
+                    dp[i][j] = dp[i - 1][j] or dp[i - 1][j - curr]
+        return dp[n][half]
+
+
 nums = [1,5,11,5]
 nums = [1,5,9,5]
 sol = Solution()
