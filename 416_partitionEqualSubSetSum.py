@@ -23,6 +23,7 @@ class Solution:
 
 
     def canPartition(self, nums: List[int]) -> bool:  #brutal force, T(2^n) S(n)， not good
+        #List is not hashable, so @lru_cache(maxsize=None) does not work here
         def dfs(nums: List[int], n: int, subset_sum: int) -> bool:
             # Base cases
             if subset_sum == 0:
@@ -47,6 +48,7 @@ class Solution:
     def canPartition2(self, nums: List[int]) -> bool:
         @lru_cache(maxsize=None)
         def dfs(nums: Tuple[int], n: int, subset_sum: int) -> bool:
+            print("call dfs n = " + str(n) + ", subset_sum = " + str(subset_sum))
             # Base cases
             if subset_sum == 0:
                 return True
@@ -70,9 +72,9 @@ class Solution:
 nums = [1,5,11,5]
 nums = [1,5,9,5]
 sol = Solution()
-print(sol.canPartition0(nums))
+#print(sol.canPartition0(nums))
+#print(sol.canPartition(nums))
 print(sol.canPartition(nums))
-print(sol.canPartition2(nums))
 
 
 
