@@ -2,10 +2,7 @@ class TrieNode:
     def __init__(self):
         self.children = {}
         self.endOfWord = False
-
-
 class Trie:
-
     def __init__(self):
         self.root = TrieNode()
 
@@ -50,7 +47,8 @@ Medium
 Add to List
 
 Share
-A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. 
+There are various applications of this data structure, such as autocomplete and spellchecker.
 
 Implement the Trie class:
 
