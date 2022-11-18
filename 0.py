@@ -3,6 +3,22 @@ import heapq
 from collections import defaultdict, Counter
 import operator
 
+car = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+x = car.setdefault("model", "Bronco")
+print(x)
+x = car.get("xmodel")
+print(x)
+#print(car["xmodel"])   -- KeyError
+x = car.get("xmodel", "default")
+print(x)
+x = car.setdefault("xmodel", "Bronco")
+print(x)
+
+
 dict_cities = {'Uganda': 763, 'France': 830, 'Tokyo': 193, 'Malaysia': 1682}
 max_val = list(dict_cities.values())
 max_ke = list(dict_cities.keys())

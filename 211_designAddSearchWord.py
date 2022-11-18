@@ -37,20 +37,11 @@ class WordDictionary:
 
 ################################O
 class WordDictionary:
-
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
         self.trie = {}
 
-
     def addWord(self, word: str) -> None:
-        """
-        Adds a word into the data structure.
-        """
         node = self.trie
-
         for ch in word:
             if not ch in node:
                 node[ch] = {}
@@ -58,9 +49,6 @@ class WordDictionary:
         node['$'] = True
 
     def search(self, word: str) -> bool:
-        """
-        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any letter.
-        """
         def search_in_node(word, node) -> bool:
             for i, ch in enumerate(word):
                 if not ch in node:

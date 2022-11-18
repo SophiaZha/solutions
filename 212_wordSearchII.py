@@ -1,12 +1,10 @@
 from typing import List
 
-
 class TrieNode:
     def __init__(self):
         self.children = {}
         self.isWord = False
         self.refs = 0
-
     def addWord(self, word):
         cur = self
         cur.refs += 1
@@ -16,7 +14,6 @@ class TrieNode:
             cur = cur.children[c]
             cur.refs += 1
         cur.isWord = True
-
     def removeWord(self, word):
         cur = self
         cur.refs -= 1
@@ -24,7 +21,6 @@ class TrieNode:
             if c in cur.children:
                 cur = cur.children[c]
                 cur.refs -= 1
-
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
