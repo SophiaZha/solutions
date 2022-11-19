@@ -3,6 +3,15 @@ import heapq
 from collections import defaultdict, Counter
 import operator
 
+class check:
+    def __init__(self):
+        print("Address of self = ", id(self))
+obj = check()
+print("Address of class object = ", id(obj))
+obj2 = check()
+print("Address of class object2 = ", id(obj2))
+# https://www.geeksforgeeks.org/self-in-python-class/
+
 car = {
   "brand": "Ford",
   "model": "Mustang",

@@ -1,5 +1,4 @@
 from typing import List
-
 class TrieNode:
     def __init__(self):
         self.children = {}
@@ -21,13 +20,11 @@ class TrieNode:
             if c in cur.children:
                 cur = cur.children[c]
                 cur.refs -= 1
-
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         root = TrieNode()
         for w in words:
             root.addWord(w)
-
         ROWS, COLS = len(board), len(board[0])
         res, visit = set(), set()
 
@@ -42,7 +39,6 @@ class Solution:
                 or (r, c) in visit
             ):
                 return
-
             visit.add((r, c))
             node = node.children[board[r][c]]
             word += board[r][c]
@@ -62,9 +58,8 @@ class Solution:
                 dfs(r, c, root, "")
 
         return list(res)
-#############O
-class Solution:
-    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+
+    def findWordsO(self, board: List[List[str]], words: List[str]) -> List[str]:
         WORD_KEY = '$'
 
         trie = {}
@@ -82,17 +77,14 @@ class Solution:
         matchedWords = []
 
         def backtracking(row, col, parent):
-
             letter = board[row][col]
             currNode = parent[letter]
-
             # check if we find a match of word
             word_match = currNode.pop(WORD_KEY, False)
             if word_match:
                 # also we removed the matched word to avoid duplicates,
                 #   as well as avoiding using set() for results.
                 matchedWords.append(word_match)
-
             # Before the EXPLORATION, mark the cell as visited
             board[row][col] = '#'
 
@@ -119,6 +111,18 @@ class Solution:
                     backtracking(row, col, trie)
 
         return matchedWords
+
+board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+words = ["oath","pea","eat","rain"]
+so = Solution()
+print(so.findWords(board, words))
+print(so.findWordsO(board, words))
+board = [["a","b"],["c","d"]]
+words = ["abcb"]
+print(so.findWords(board, words))
+print(so.findWordsO(board, words))
+
+
 """
 212. Word Search II
 Hard
