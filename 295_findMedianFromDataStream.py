@@ -3,9 +3,6 @@ import heapq
 
 class MedianFinder:
     def __init__(self):
-        """
-        initialize your data structure here.
-        """
         # two heaps, large, small, minheap, maxheap
         # heaps should be equal size
         self.small, self.large = [], []
