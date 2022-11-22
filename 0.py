@@ -2,6 +2,19 @@ import itertools
 import heapq
 from collections import defaultdict, Counter
 import operator
+import math
+
+n = 10
+k = 2
+# Get the number of ways to choose k items from n items without repetition and without order
+nCk = math.comb(n, k)
+print(nCk)
+n = 5
+k = 3
+# Get the number of ways to choose k items from n items without repetition and without order
+nCk = math.comb(n, k)
+print(nCk)
+# https://docs.python.org/3/library/math.html#math.comb
 
 class check:
     def __init__(self):
