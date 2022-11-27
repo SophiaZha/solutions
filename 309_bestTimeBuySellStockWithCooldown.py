@@ -1,11 +1,9 @@
+from typing import List
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        # State: Buying or Selling?
-        # If Buy -> i + 1
-        # If Sell -> i + 2
-
         dp = {}  # key=(i, buying) val=max_profit
-
         def dfs(i, buying):
             if i >= len(prices):
                 return 0
@@ -21,6 +19,13 @@ class Solution:
                 dp[(i, buying)] = max(sell, cooldown)
             return dp[(i, buying)]
         return dfs(0, True)
+
+    def maxProfit2(self, prices: List[int]) -> int:
+        sold, held, reset = float('-inf'), float('-inf'), 0
+        for price in prices:
+            sold, held, reset = held + price, max(held, reset-price), max(reset, sold)
+        return max(sold, reset)
+
 """
 309. Best Time to Buy and Sell Stock with Cooldown
 Medium
