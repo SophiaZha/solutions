@@ -2,7 +2,6 @@ from typing import List
 
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        # MEMOIZATION
         # Time: O(n*m)
         # Memory: O(n*m)
         cache = {}
@@ -20,7 +19,6 @@ class Solution:
         return dfs(0, 0)
 
     def change2(self, amount: int, coins: List[int]) -> int:
-        # DYNAMIC PROGRAMMING
         # Time: O(n*m)
         # Memory: O(n*m)
         dp = [[0] * (len(coins) + 1) for i in range(amount + 1)]
@@ -33,7 +31,6 @@ class Solution:
         return dp[amount][0]
 
     def change3(self, amount: int, coins: List[int]) -> int:
-        # DYNAMIC PROGRAMMING
         # Time: O(n*m)
         # Memory: O(n) where n = amount
         dp = [0] * (amount + 1)
@@ -51,13 +48,6 @@ class Solution:
 """
 518. Coin Change II
 Medium
-
-6244
-
-114
-
-Add to List
-
 Share
 You are given an integer array coins representing coins of different denominations and an integer amount representing a 
 total amount of money.
