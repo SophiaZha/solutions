@@ -20,6 +20,20 @@ sales.update(tuesday_sales)
 print(sales)
 
 
+letters = Counter("mississippi")
+letters["p"]
+letters["s"]
+for letter in letters:
+    print(letter, letters[letter])
+for letter in letters.keys():
+    print(letter, letters[letter])
+for count in letters.values():
+    print(count)
+for letter, count in letters.items():
+    print(letter, count)
+
+
+
 n = 10
 k = 2
 # Get the number of ways to choose k items from n items without repetition and without order
