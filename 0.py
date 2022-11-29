@@ -4,12 +4,12 @@ from collections import defaultdict, Counter
 import operator
 import math
 
-# Use a string as an argument
 print(Counter("mississippi"))
-# Use a list as an argument
+print("String as input   :",  end='')
 print(Counter(list("mississippi")))
+print("List as input     :",  end='')
 print(Counter(i=4, s=4, p=2, m=1))
-print("set: ",  end='')
+print("Set as input      :",  end='')
 print(Counter(set("mississippi")))
 
 sales = Counter(apple=25, orange=15, banana=12)
@@ -31,8 +31,6 @@ for count in letters.values():
     print(count)
 for letter, count in letters.items():
     print(letter, count)
-
-
 
 n = 10
 k = 2
