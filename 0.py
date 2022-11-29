@@ -4,6 +4,22 @@ from collections import defaultdict, Counter
 import operator
 import math
 
+# Use a string as an argument
+print(Counter("mississippi"))
+# Use a list as an argument
+print(Counter(list("mississippi")))
+print(Counter(i=4, s=4, p=2, m=1))
+print("set: ",  end='')
+print(Counter(set("mississippi")))
+
+sales = Counter(apple=25, orange=15, banana=12)
+monday_sales = Counter(apple=10, orange=8, banana=3)
+sales.update(monday_sales)
+tuesday_sales = {"apple": 4, "orange": 7, "tomato": 4}
+sales.update(tuesday_sales)
+print(sales)
+
+
 n = 10
 k = 2
 # Get the number of ways to choose k items from n items without repetition and without order
