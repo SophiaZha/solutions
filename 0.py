@@ -4,6 +4,10 @@ from collections import defaultdict, Counter
 import operator
 import math
 from collections import OrderedDict
+thistuple = (1, 3, 7, 8, 7, 5, 4, 6, 8, 5)
+x = thistuple.count(5)
+print("total occurance of x is: ", end = '')
+print(x)
 
 print("This is a Dict:\n")
 d = {}

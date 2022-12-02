@@ -27,7 +27,8 @@ Add to List
 Share
 Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
 
-An interleaving of two strings s and t is a configuration where s and t are divided into n and m non-empty substrings respectively, such that:
+An interleaving of two strings s and t is a configuration where s and t are
+ divided into n and m non-empty substrings respectively, such that:
 
 s = s1 + s2 + ... + sn
 t = t1 + t2 + ... + tm
