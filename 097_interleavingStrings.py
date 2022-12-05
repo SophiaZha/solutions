@@ -45,10 +45,8 @@ class Solution:
         }
         return is_Interleave(s1, 0, s2, 0, s3, 0, memo);
     }
-}
 
-public class Solution {
-    public boolean isInterleave(String s1, String s2, String s3) {
+    public boolean isInterleave2(String s1, String s2, String s3) {
         if (s3.length() != s1.length() + s2.length()) {
             return false;
         }
