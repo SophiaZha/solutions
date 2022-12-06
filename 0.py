@@ -4,6 +4,18 @@ from collections import defaultdict, Counter
 import operator
 import math
 from collections import OrderedDict
+
+txt = "I could eat bananas all day, bananas are my favorite fruit"
+x = txt.rpartition("bananas")
+print(x)
+print(x[0])
+print(x[1])
+print(x[2])
+
+txt = "Hello, welcome to my world."
+x = txt.find("welcome")
+print("txt find " + str(x))
+
 thistuple = (1, 3, 7, 8, 7, 5, 4, 6, 8, 5)
 x = thistuple.count(5)
 print("total occurance of x is: ", end = '')
