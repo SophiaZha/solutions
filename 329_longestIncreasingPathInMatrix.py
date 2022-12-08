@@ -24,7 +24,7 @@ class Solution:
                 dfs(r, c, -1)
         return max(dp.values())
  """
-    329. Longest Increasing Path in a Matrix
+329. Longest Increasing Path in a Matrix
 Hard
 Given an m x n integers matrix, return the length of the longest increasing path in matrix.
 
