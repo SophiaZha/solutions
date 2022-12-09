@@ -31,6 +31,23 @@ class Solution:
             return cache[(i,j)]
         return dfs(0,0)
 
+    def numDistinct2(self, s: str, t: str) -> int:
+        memo = {}
+        def uniqueSubsequences(i, j):
+            M, N = len(s), len(t)
+            if i == M or j == N:
+                return int(j == len(t))
+            if (i, j) in memo:
+                return memo[i, j]
+            # Always make this recursive call
+            ans = uniqueSubsequences(i + 1, j)
+            # If the characters match, make the other
+            # one and add the result to "ans"
+            if s[i] == t[j]:
+                ans += uniqueSubsequences(i + 1, j + 1)
+            memo[i, j] = ans
+            return ans
+        return uniqueSubsequences(0, 0)
     """
     115. Distinct Subsequences
 Hard
