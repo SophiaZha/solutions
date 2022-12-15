@@ -348,3 +348,17 @@ a.insert(0,1)
 print(a)
 
 ## https://www.turing.com/kb/22-hottest-python-tricksfor-efficient-coding
+
+txt = "Hi Sam!"
+x = "mSa"
+y = "eJo"
+mytable = txt.maketrans(x, y)
+print(txt.translate(mytable))
+# Hi Joe!
+txt = "Good night Sam!"
+x = "mSa"
+y = "eJo"
+z = "odnght" #The third parameter in the mapping table describes characters that you want to remove from the string:
+mytable = txt.maketrans(x, y, z)
+print(txt.translate(mytable))
+# G i Joe!
