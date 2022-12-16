@@ -346,9 +346,7 @@ print("x = " + str(x))
 print(a)
 a.insert(0,1)
 print(a)
-
 ## https://www.turing.com/kb/22-hottest-python-tricksfor-efficient-coding
-
 txt = "Hi Sam!"
 x = "mSa"
 y = "eJo"
