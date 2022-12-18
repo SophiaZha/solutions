@@ -360,3 +360,11 @@ z = "odnght" #The third parameter in the mapping table describes characters that
 mytable = txt.maketrans(x, y, z)
 print(txt.translate(mytable))
 # G i Joe!
+# define string
+string = "Python is awesome, isn't it?"
+substring = "is"
+
+count = string.count(substring)
+
+# print count
+print("The count is:", count) #2 as there are 2 occurences
