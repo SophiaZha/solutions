@@ -226,14 +226,10 @@ print("use operator itemgetter  " + new_ma_val)
 my_new_dict = {"q": 18, "z": 10, "o": 13}
 fin_max = max(my_new_dict, key=my_new_dict.get)
 print("my_new_dict Maximum value:",fin_max)   # q
-
-
 # initializing list
 li1 = [6, 7, 9, 4, 3, 5, 8, 10, 1]
-
 # using heapify() to convert list into heap
 heapq.heapify(li1)
-
 # using nlargest to print 3 largest numbers
 # prints 10, 9 and 8
 print("The 3 largest numbers in list are : ", end="")
@@ -352,7 +348,6 @@ print(txt.translate(mytable))
 # define string
 string = "Python is awesome, isn't it?"
 substring = "is"
-
 count = string.count(substring)
 
 # print count
