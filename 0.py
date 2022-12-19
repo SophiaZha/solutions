@@ -15,14 +15,8 @@ z = str(3.0)  # z will be '3.0'
 x = int(1)   # x will be 1
 y = int(2.8) # y will be 2
 z = int("3") # z will be 3
-
-
-
 a = " Hello, World! "
 print(a.strip()) # returns "Hello, World!"
-
-
-
 txt = "I could eat bananas all day, bananas are my favorite fruit"
 x = txt.rpartition("bananas")
 print(x)
@@ -331,14 +325,9 @@ a = [[[i*i for i in range(3)] for j in range(4)] for m in range(2)]
  [[0, 1, 4], [0, 1, 4], [0, 1, 4], [0, 1, 4]]]
 
 a = [[i*i for i in range(3)] for ajkdfjasdfjdsafjadsk in range(4)]
-
-
 a = [[i for i in range(0)] for j in range(3)]
 m = {i:[] for i in range(3)}
 b = [[] for j in range(4)]
-
-
-
 a = [1,2,3,4]
 print(a)
 x = a.pop(0)
