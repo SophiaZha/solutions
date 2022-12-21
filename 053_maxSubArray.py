@@ -1,10 +1,7 @@
 from typing import List
-
-
 class Solution: #L
     def maxSubArray(self, nums: List[int]) -> int:
         res = nums[0]
-
         total = 0
         for n in nums:
             total += n
@@ -25,6 +22,23 @@ class Solution: #L
 
         return max_subarray
 
+    def maxSubArray3(self, nums: List[int]) -> int:
+        for i in range(1, len(nums)):
+            if nums[i-1] > 0:
+                    nums[i] += nums[i-1]
+        return max(nums)
+
+    def maxSubArrayL(self, nums: List[int]) -> int:
+        res = nums[0]
+        curSum = res
+
+        for i in nums[1:]:
+            if curSum > 0:
+                curSum += i
+            else:
+                curSum = i
+            res = max( res,  curSum)
+        return res
 """
 53. Maximum Subarray
 Medium
