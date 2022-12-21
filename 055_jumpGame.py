@@ -10,6 +10,16 @@ class Solution:  # L
                 goal = i
 
         return True if goal == 0 else False
+
+    def canJumpO(self, nums: List[int]) -> bool:
+        goal = len(nums) - 1
+        #for i in reversed(range(len(nums) -2 )):   -- wrong if this way
+        #for i in reversed(range(len(nums) -1 )):   -- good if this way
+        for i in range(len(nums) - 2, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
+        return goal == 0
+
 """
 55. Jump Game
 Medium
