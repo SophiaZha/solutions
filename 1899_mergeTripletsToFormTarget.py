@@ -1,5 +1,4 @@
 from typing import List
-
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
         good = set()
@@ -10,7 +9,6 @@ class Solution:
                 if v == target[i]:
                     good.add(i)
         return len(good) == 3
-
 """
 1899. Merge Triplets to Form Target Triplet
 Medium
@@ -50,7 +48,6 @@ Update the third triplet to be [max(2,1), max(5,2), max(3,5)] = [2,5,5]. triplet
 - Choose the third and fourth triplets [[2,5,3],[2,3,4],[2,5,5],[5,2,3]]. 
 Update the fourth triplet to be [max(2,5), max(5,2), max(5,3)] = [5,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],[5,5,5]].
 The target triplet [5,5,5] is now an element of triplets.
- 
 
 Constraints:
 
