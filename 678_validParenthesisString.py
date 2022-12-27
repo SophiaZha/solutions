@@ -2,7 +2,6 @@ class Solution:
     def checkValidString(self, s: str) -> bool:
         # Dynamic Programming: O(n^2)
         dp = {(len(s), 0): True}  # key=(i, leftCount) -> isValid
-
         def dfs(i, left):
             if i == len(s) or left < 0:
                 return left == 0
@@ -18,7 +17,6 @@ class Solution:
                     dfs(i + 1, left + 1) or dfs(i + 1, left - 1) or dfs(i + 1, left)
                 )
             return dp[(i, left)]
-
         return dfs(0, 0)
 
     def checkValidString2(self, s: str) -> bool:
