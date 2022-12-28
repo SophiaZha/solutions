@@ -7,7 +7,6 @@ class Solution:
                 return left == 0
             if (i, left) in dp:
                 return dp[(i, left)]
-
             if s[i] == "(":
                 dp[(i, left)] = dfs(i + 1, left + 1)
             elif s[i] == ")":
