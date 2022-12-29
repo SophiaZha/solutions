@@ -352,3 +352,9 @@ count = string.count(substring)
 
 # print count
 print("The count is:", count) #2 as there are 2 occurences
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+print(type(thisdict))
