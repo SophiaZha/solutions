@@ -21,7 +21,6 @@ class Solution:
     def checkValidString2(self, s: str) -> bool:
         # Greedy: O(n)
         leftMin, leftMax = 0, 0
-
         for c in s:
             if c == "(":
                 leftMin, leftMax = leftMin + 1, leftMax + 1
