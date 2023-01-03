@@ -5,6 +5,28 @@ import operator
 import math
 from collections import OrderedDict
 
+# creating a simple dict
+my_dict = {'kiwi': 4, 'apple': 5, 'cat': 3}
+
+# creating empty ordered dict
+ordered_dict = OrderedDict()
+print(ordered_dict)
+
+# creating ordered dict from dict
+ordered_dict = OrderedDict(my_dict)
+print(ordered_dict)
+# adding elements to dict
+ordered_dict['dog'] = 3
+
+# replacing a dict key value
+ordered_dict['kiwi'] = 10
+print(ordered_dict)
+
+# removing and adding a value
+ordered_dict.pop('kiwi')
+print(ordered_dict)
+ordered_dict['kiwi'] = 4
+print(ordered_dict)
 x = float(1)     # x will be 1.0
 y = float(2.8)   # y will be 2.8
 z = float("3")   # z will be 3.0
