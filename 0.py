@@ -4,6 +4,14 @@ from collections import defaultdict, Counter
 import operator
 import math
 from collections import OrderedDict
+numbers = [2, 4, 6, 8, 1]
+
+for number in numbers:
+    if number % 2 == 1:
+        print(number)
+        break
+else:
+    print("No odd numbers")
 
 # creating a simple dict
 my_dict = {'kiwi': 4, 'apple': 5, 'cat': 3}
