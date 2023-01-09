@@ -23,6 +23,7 @@ def get_index( maxLen: int ) -> int:
 
 word = input("Enter a word: ")
 lens = len(word)
+wordlist = [ x for x in word]
 
 while True:
     index = get_index(lens)
@@ -30,8 +31,8 @@ while True:
         exit()
     else:
         c = get_letter()
-        word = word[:index] + c + word[index+1:]
-        print(word)
+        wordlist[index] = c
+        print("".join(wordlist))
 
 
 """
@@ -56,6 +57,7 @@ You should have a function, get_index, that repeatedly asks the user for an inde
 You should have another function, get_letter, that repeatedly asks the user for a letter until
 they enter exactly one lowercase letter. (If they enter more than one character, you should
  reply Must be exactly one character!. If they enter a capital letter, you should reply Character must be a lowercase letter!.)
+ 
 You should store a list version of the current word in a variable. This is what you should update each time the user swaps out a new letter.
 Each time you have to print the current word, print the string version of the list you are keeping in your variable.
 Here’s what an example run of your program might look like:
