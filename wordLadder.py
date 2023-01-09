@@ -18,17 +18,17 @@ def get_index( maxLen: int ) -> int:
         if  -1 <= value < maxLen:
             return value
         else:
-            print("Invalid Index")
+            print("Invalid index")
             continue
 
-word = input("Enter a word: ")
+word = input("Enter a word:")
 lens = len(word)
 wordlist = [ x for x in word]
 
 while True:
     index = get_index(lens)
     if index == -1:
-        exit()
+        break
     else:
         c = get_letter()
         wordlist[index] = c
