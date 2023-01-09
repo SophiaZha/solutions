@@ -1,35 +1,38 @@
 def get_letter():
     while True:
-        letterinput = input("Enter (-1) to exit. Enter a leter: ")
-        if letterinput == -1:
-            break
+        letterinput = str(input("Enter a letter:"))
+        if len(letterinput) > 1:
+            print("Must be exactly one character!")
+            continue
+        elif 'A' <= letterinput <= 'Z':
+            print("Character must be a lowercase letter!")
+            continue
+        elif 'a' <= letterinput <= 'z':
+            return letterinput
         else:
-            newletter = letterinput.lower()
-            break
-    return newletter
+            continue
 
-
-def get_index():
+def get_index( maxLen: int ) -> int:
     while True:
-        value = int(input("Enter (-1) to exit. Enter a number: "))
-        if value == -1:
-            break
-
-    return value
-
+        value = int(input("Enter an index (-1 to quit):"))
+        if  -1 <= value < maxLen:
+            return value
+        else:
+            print("Invalid Index")
+            continue
 
 word = input("Enter a word: ")
-wordlist = list(word)
-index = get_index()
-# while True:
-#   index = get_index()
-#   if index == -1:
-#      break
+lens = len(word)
 
+while True:
+    index = get_index(lens)
+    if index == -1:
+        exit()
+    else:
+        c = get_letter()
+        word = word[:index] + c + word[index+1:]
+        print(word)
 
-letter = get_letter()
-wordlist[index] = letter
-print("".join(wordlist))
 
 """
 Your friend wants to try to make a word ladder! This is a list of words where each word
