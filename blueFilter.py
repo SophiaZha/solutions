@@ -17,14 +17,6 @@ image.set_position(70, 70)
 image.set_size(IMAGE_WIDTH, IMAGE_HEIGHT)
 add(image)
 
-
-
-
-
-
-
-
-
 """
 In this exercise, you’ll get some more practice writing image filters!
 

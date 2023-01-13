@@ -1,5 +1,3 @@
-
-
 """
 In this exercise we’ll get some practice modifying pixels with the Image class.
 

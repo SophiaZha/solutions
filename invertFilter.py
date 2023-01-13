@@ -1,5 +1,4 @@
 from tkinter import Image
-
 import timer
 
 IMAGE_URL = "https://codehs.com/uploads/c709d869e62686611c1ac849367b3245"

@@ -13,7 +13,6 @@ class Solution:
                 hash[num % 60] += 1
         return res
 
-
 arr = [3, 60, 60, 60]
 so = Solution()
 print(so.music(arr, 4))
