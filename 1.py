@@ -32,3 +32,15 @@ print(Status.COMPLETED.value)  # 2
 string = "Abc"
 
 print(string * 5)  # AbcAbcAbcAbcAbc
+#11. Merge dictionaries in a single readable line
+first_dictionary = {'name': 'Fatos', 'location': 'Munich'}
+second_dictionary = {'name': 'Fatos', 'surname': 'Morina',
+                     'location': 'Bavaria, Munich'}
+result = first_dictionary | second_dictionary
+print(result)
+# {'name': 'Fatos', 'location': 'Bavaria, Munich', 'surname': 'Morina'}
+
+#12 Find the index of an element in a tuple
+books = ('Atomic habits', 'Ego is the enemy', 'Outliers', 'Mastery')
+print(books.index('Mastery'))   # 3
+print(books.index('Outliers'))   # 3
