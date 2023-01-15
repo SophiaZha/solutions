@@ -44,3 +44,14 @@ print(result)
 books = ('Atomic habits', 'Ego is the enemy', 'Outliers', 'Mastery')
 print(books.index('Mastery'))   # 3
 print(books.index('Outliers'))   # 3
+list_num = [1,2,3,4]
+tup_num = (1,2,3,4)
+
+print(list_num)
+print(tup_num)
+list_num[2] = 5
+print(list_num)
+
+print(tup_num[2])
+print(dir(list_num))
+print(dir(tup_num))
