@@ -33,7 +33,7 @@ string = "Abc"
 
 print(string * 5)  # AbcAbcAbcAbcAbc
 #11. Merge dictionaries in a single readable line
-first_dictionary = {'name': 'Fatos', 'location': 'Munich'}
+first_dictionary = {'name': 'Fatos', 'location': 'Munich', 'name': 'lei'}
 second_dictionary = {'name': 'Fatos', 'surname': 'Morina',
                      'location': 'Bavaria, Munich'}
 result = first_dictionary | second_dictionary
