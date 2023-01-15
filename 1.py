@@ -1,5 +1,5 @@
 from enum import Enum
-
+import math
 my_list = [1, 2, 3, 4]
 print(my_list)  # [1, 2, 3, 4]
 print(*my_list)  # 1 2 3 4
@@ -55,3 +55,5 @@ print(list_num)
 print(tup_num[2])
 print(dir(list_num))
 print(dir(tup_num))
+
+print(math.floor(math.log2(78)))
