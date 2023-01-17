@@ -57,8 +57,8 @@ print(dir(list_num))
 print(dir(tup_num))
 
 print(math.floor(math.log2(78)))
-
 def subtract(a, b):
     return a - b
 print((subtract(a=1, b=3)))  # -2
 print((subtract(b=3, a=1)))  # -2
+
