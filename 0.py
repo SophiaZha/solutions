@@ -397,3 +397,11 @@ thisdict = {
   "year": 1964
 }
 print(type(thisdict))
+print(1, 2, 3, "a", "z", "this is here", "here is something else")
+
+print("Hello", end="")
+print("World")  # HelloWorld
+print("Hello", end=" ")
+print("World")  # Hello World
+print('words',   'with', 'commas', 'in', 'between', sep='? ')
+# words, with, commas, in, between

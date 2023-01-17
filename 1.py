@@ -9,6 +9,7 @@ def sum_of_elements(*arg):
         total += i
     return total
 
+
 result = sum_of_elements(*[1, 2, 3, 4])
 print(result)  # 10
 
@@ -62,3 +63,10 @@ def subtract(a, b):
 print((subtract(a=1, b=3)))  # -2
 print((subtract(b=3, a=1)))  # -2
 
+print("hello")
+def brighten_color(color_value):
+   return color_value + 50
+
+y = 90
+x = brighten_color(y)
+print("x after brighten color " + str(x) )
