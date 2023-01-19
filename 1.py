@@ -62,3 +62,8 @@ def subtract(a, b):
     return a - b
 print((subtract(a=1, b=3)))  # -2
 print((subtract(b=3, a=1)))  # -2
+
+print(1_000_000_000)  # 1000000000
+print(1_234_567)  # 1234567
+print("9", "01", "2022", sep="/")  # 29/01/2022
+print("name", "domain.com", sep="@")  # name@domain.com
