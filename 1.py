@@ -1,5 +1,14 @@
 from enum import Enum
 import math
+import ast
+
+def string_to_list(string):
+    return ast.literal_eval(string)
+
+string = "[[1, 2, 3],[4, 5, 6]]"
+my_list = string_to_list(string)
+print(my_list)  # [[1, 2, 3], [4, 5, 6]]
+
 my_list = [1, 2, 3, 4]
 print(my_list)  # [1, 2, 3, 4]
 print(*my_list)  # 1 2 3 4
@@ -67,3 +76,5 @@ print(1_000_000_000)  # 1000000000
 print(1_234_567)  # 1234567
 print("9", "01", "2022", sep="/")  # 29/01/2022
 print("name", "domain.com", sep="@")  # name@domain.com
+
+
