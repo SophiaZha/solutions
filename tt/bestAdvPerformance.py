@@ -3,9 +3,7 @@ from typing import List
 
 class Solution:
     def getBestAdvPerformance(self, budget : int , adv_type: List[List[int]] ) -> int:
-
         dp =  [[0 for i in range( budget + 1 )] for j in range(len(adv_type) + 1)]
-
         for a in range(len(adv_type)):
             for d in range(budget + 1):
                 if adv_type[a][0] <= d :
