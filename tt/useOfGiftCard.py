@@ -12,18 +12,14 @@ class Solution:
         amount = int(amount)
         coins = [5, 3, 1]
         dp = [[[0,[]] for j in range(amount + 1)] for k in range(3)]
-        dp[0][0][0] = 1
-        dp[1][0][0] = 1
-        dp[2][0][0] = 1
-        dp[0][0][1] = [0]
-        dp[1][0][1] = [0]
-        dp[2][0][1] = [0]
+        for i in range(3):
+            dp[i][0][0] = 1
+            dp[i][0][1] = [0]
         c = 0
-        ret = 0
         for coin in coins:
             for x in range(coin, amount + 1):
-                dp[c][x][0] += dp[c][x - coin][0]
                 if dp[c][x - coin][0] > 0:
+                    dp[c][x][0] += dp[c][x - coin][0]
                     dp[c][x][1] = [ i + 1 for i in dp[c][x - coin][1]]
                 if c > 0:
                     if dp[c-1][x][0] > 0:
