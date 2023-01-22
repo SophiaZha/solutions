@@ -6,12 +6,12 @@ def get_shortest_time(startNode, endNode, paths):
     routes = collections.defaultdict(list)
     for p in paths:
         routes[p[0]].append((int(p[2]), p[1]))
-        heap = [(0, startNode)]
+        minHeap = [(0, startNode)]
         visited = set()
         time_dict = {}
         time_dict[startNode] = 0
-    while heap:
-        curr_time, curr_loc = heapq.heappop(heap)
+    while minHeap:
+        curr_time, curr_loc = heapq.heappop(minHeap)
         if curr_loc not in visited:
             visited.add(curr_loc)
             if curr_loc == endNode:
@@ -23,7 +23,7 @@ def get_shortest_time(startNode, endNode, paths):
                 new_time = curr_time + time
                 if prev == -1 or new_time < prev:
                     time_dict[to_loc] = new_time
-                    heapq.heappush(heap, (new_time, to_loc))
+                    heapq.heappush(minHeap, (new_time, to_loc))
     return 0
 start = "S0"
 end = "S4"
