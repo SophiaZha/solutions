@@ -4,8 +4,8 @@ import collections
 import heapq
 def get_shortest_time(startNode, endNode, paths):
     routes = collections.defaultdict(list)
-    for p in paths:
-        routes[p[0]].append((int(p[2]), p[1]))
+    for segmentStart, segmentEnd, segmentTime in paths:
+        routes[segmentStart].append((int(segmentTime), segmentEnd))
         minHeap = [(0, startNode)]
         visited = set()
         time_dict = {}
@@ -29,7 +29,7 @@ start = "S0"
 end = "S4"
 paths = [
     ["S0", "S1", 16 ],
-    ["S0", "S2", 6],
+    ["S0", "S2", 26],
     ["S1", "S3", 8],
     ["S2", "S3", 9],
     ["S2", "S4", 3],
