@@ -8,15 +8,15 @@ class Solution:
         for curAdvCostIndex in range(len(adv_type)):
             curAdvCost = adv_type[curAdvCostIndex][0]
             for currTotalMoneyUsed in range(budget + 1):
-                mostUserReachableWithoutConsideringCurrentAdv = dp[curAdvCostIndex][currTotalMoneyUsed]
+                mostUserReachableIfNotUseTheCurrentAdv = dp[curAdvCostIndex][currTotalMoneyUsed]
                 if curAdvCost <= currTotalMoneyUsed :
                     curSingleAdvUserReachable = adv_type[curAdvCostIndex][1]
                     mostUserReachableByTheMoneyExcludingCurrentAdvCost = dp[curAdvCostIndex][currTotalMoneyUsed - curAdvCost]
                     mostUserReachableIfChooseUseCurrentAdv = mostUserReachableByTheMoneyExcludingCurrentAdvCost + curSingleAdvUserReachable
-                    newMostUserReachable = max(mostUserReachableWithoutConsideringCurrentAdv, mostUserReachableIfChooseUseCurrentAdv)
+                    newMostUserReachableAfterConsideringCurrentAdv = max(mostUserReachableIfNotUseTheCurrentAdv, mostUserReachableIfChooseUseCurrentAdv)
                 else:
-                    newMostUserReachable = mostUserReachableWithoutConsideringCurrentAdv
-                dp[curAdvCostIndex + 1][currTotalMoneyUsed]  = newMostUserReachable
+                    newMostUserReachableAfterConsideringCurrentAdv = mostUserReachableIfNotUseTheCurrentAdv
+                dp[curAdvCostIndex + 1][currTotalMoneyUsed]  = newMostUserReachableAfterConsideringCurrentAdv
         return dp[len(adv_type)][budget]
 
     def getBestAdvPerformanceO(self, budget: int, adv_type: List[List[int]]) -> int:
@@ -32,11 +32,11 @@ class Solution:
 so = Solution()
 n = 5
 adv_type = [[1, 6],[2,10], [3,12]]  # $, user_quantity
+n = 100
+adv_type = [[1000, 3000],[500,2000], [200,1000], [100,800],[50,200]]  # $, user_quantity
 n = 10
 adv_type = [[10, 3000],[5,2000], [3,1000], [2,800],[1,200]]  # $, user_quantity
 adv_type = [[3,1000], [2,800],[1,200], [10, 3000],[5,2000]]  # $, user_quantity
-n = 100
-adv_type = [[1000, 3000],[500,2000], [200,1000], [100,800],[50,200]]  # $, user_quantity
 print(so.getBestAdvPerformanceO(n, adv_type))
 print(so.getBestAdvPerformance(n, adv_type))
 
