@@ -1,8 +1,7 @@
 # https://leetcode.com/problems/coin-change-ii/solution/
 # https://github.com/neetcode-gh/leetcode/blob/main/python/0322-coin-change.py
 # https://www.youtube.com/watch?v=Mjy4hd2xgrs
-import sys
-from typing import List
+# find the total combination for the exact number of cards used to reach the total.
 class Solution:
     def change(self, amount: int,  numberOfCards: int) -> int:
         if amount < 10 or amount % 10 != 0:
@@ -29,11 +28,7 @@ class Solution:
             c += 1
         ret = dp[2][amount][1].count(numberOfCards)
         return -1 if ret == 0 else ret
-# for line in sys.stdin:
-#     if 'q' == line.rstrip():
-#         break
-#     input = line.split(" ")
-# numberOfCards, totalAmount = int(input[0]), int(input[1])
+
 so = Solution()
 totalAmount = 80
 numberOfCards = 4
