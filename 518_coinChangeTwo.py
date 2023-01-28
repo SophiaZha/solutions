@@ -1,6 +1,15 @@
 from typing import List
 
 class Solution:
+    # the shorted and easiest solution below - official
+    def change(self, amount: int, coins: List[int]) -> int:
+        result = [0] * ( amount + 1 )
+        result[0] = 1
+        for coin in coins:
+            for i in range( coin, amount + 1):
+                result[i] = result[i] + result[i - coin];
+        return result[amount]
+
     def change(self, amount: int, coins: List[int]) -> int:
         # Time: O(n*m)
         # Memory: O(n*m)
