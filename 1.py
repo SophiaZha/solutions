@@ -13,6 +13,12 @@ print(my_string[0:10:3])  # adgj
 print(my_string[0:10:2])  # acegi
 print(my_string[0:10:1])  # abcdefghij
 print(my_string[::-1])
+print(my_string[-7:-2])	# CDEFG
+
+my_string = "This is just a sentence"
+print(my_string[10:0:-1])  # suj si sih
+# Take two steps forward
+print(my_string[10:0:-2])  # sjs i
 
 def string_to_list(string):
     return ast.literal_eval(string)
