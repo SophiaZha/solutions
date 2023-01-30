@@ -2,6 +2,18 @@ from enum import Enum
 import math
 import ast
 
+my_string = "abcdefghijklmnopqrstuvwxyz"
+print(my_string[0:5])  # This
+
+#https://www.learnbyexample.org/python-string-slicing/
+# Take three steps forward
+# If S is a string, the expression S [ start : stop : step ] returns the portion of the string from index start to index stop, at a step size step.
+my_string = "abcdefghijklmnopqrstuvwxyz"
+print(my_string[0:10:3])  # adgj
+print(my_string[0:10:2])  # acegi
+print(my_string[0:10:1])  # abcdefghij
+print(my_string[::-1])
+
 def string_to_list(string):
     return ast.literal_eval(string)
 
