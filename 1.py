@@ -2,6 +2,22 @@ from enum import Enum
 import math
 import ast
 
+first_list = [1, 2, 3]
+second_list = [1, 2, 3]
+
+# Is their actual value the same?
+print(first_list == second_list)  # True
+
+# Are they pointing to the same object in memory
+print(first_list is second_list)
+# False, since they have same values, but in different objects in memory
+
+
+third_list = first_list
+
+print(third_list is first_list)
+# True, since both point to the same object in memory
+
 my_string = "abcdefghijklmnopqrstuvwxyz"
 print(my_string[0:5])  # This
 
