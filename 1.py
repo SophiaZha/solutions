@@ -112,3 +112,17 @@ print("9", "01", "2022", sep="/")  # 29/01/2022
 print("name", "domain.com", sep="@")  # name@domain.com
 
 
+groceries = ['milk', 'bread', 'tea']
+
+new_groceries = sorted(groceries)
+# new_groceries = ['bread', 'milk', 'tea']
+
+print(new_groceries)
+
+# groceries = ['milk', 'bread', 'tea']
+print(groceries)
+
+groceries.sort()
+
+# groceries = ['bread', 'milk', 'tea']
+print(groceries)
