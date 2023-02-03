@@ -126,3 +126,13 @@ groceries.sort()
 
 # groceries = ['bread', 'milk', 'tea']
 print(groceries)
+#98. You can check whether a value is not part of a list using “not in”
+odd_numbers = [1, 3, 5, 7, 9]
+even_numbers = []
+
+for i in range(9):
+    if i not in odd_numbers:
+        even_numbers.append(i)
+
+print(even_numbers)  # [0, 2, 4, 6, 8]
+print(ast)
