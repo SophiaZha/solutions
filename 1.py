@@ -70,3 +70,9 @@ def brighten_color(color_value):
 y = 90
 x = brighten_color(y)
 print("x after brighten color " + str(x) )
+first_dictionary = {'name': 'Fatos', 'location': 'Munich'}
+second_dictionary = {'name': 'Fatos', 'surname': 'Morina',
+                     'location': 'Bavaria, Munich'}
+result = first_dictionary | second_dictionary
+print(result)
+# {'name': 'Fatos', 'location': 'Bavaria, Munich', 'surname': 'Morina'}
