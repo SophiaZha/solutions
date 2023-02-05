@@ -136,3 +136,5 @@ for i in range(9):
 
 print(even_numbers)  # [0, 2, 4, 6, 8]
 print(ast)
+print("29", "01", "2022", sep="/")  # 29/01/2022
+print("name", "domain.com", sep="@")  # name@domain.com
