@@ -33,10 +33,11 @@ so = Solution()
 n = 5
 adv_type = [[1, 6],[2,10], [3,12]]  # $, user_quantity
 n = 100
-adv_type = [[1000, 3000],[500,2000], [200,1000], [100,800],[50,200]]  # $, user_quantity
-n = 10
+n = 50
 adv_type = [[10, 3000],[5,2000], [3,1000], [2,800],[1,200]]  # $, user_quantity
 adv_type = [[3,1000], [2,800],[1,200], [10, 3000],[5,2000]]  # $, user_quantity
+
+adv_type = [[1000, 3000],[500,2000], [200,1000], [100,800],[50,200]]  # $, user_quantity
 print(so.getBestAdvPerformanceO(n, adv_type))
 print(so.getBestAdvPerformance(n, adv_type))
 

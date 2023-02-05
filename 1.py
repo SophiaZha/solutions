@@ -52,6 +52,7 @@ def sum_of_elements(*arg):
         total += i
     return total
 
+
 result = sum_of_elements(*[1, 2, 3, 4])
 print(result)  # 10
 
@@ -136,5 +137,14 @@ for i in range(9):
 
 print(even_numbers)  # [0, 2, 4, 6, 8]
 print(ast)
+y = 90
+x = brighten_color(y)
+print("x after brighten color " + str(x) )
+first_dictionary = {'name': 'Fatos', 'location': 'Munich'}
+second_dictionary = {'name': 'Fatos', 'surname': 'Morina',
+                     'location': 'Bavaria, Munich'}
+result = first_dictionary | second_dictionary
+print(result)
+# {'name': 'Fatos', 'location': 'Bavaria, Munich', 'surname': 'Morina'}
 print("29", "01", "2022", sep="/")  # 29/01/2022
 print("name", "domain.com", sep="@")  # name@domain.com
