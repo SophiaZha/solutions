@@ -148,3 +148,8 @@ print(result)
 # {'name': 'Fatos', 'location': 'Bavaria, Munich', 'surname': 'Morina'}
 print("29", "01", "2022", sep="/")  # 29/01/2022
 print("name", "domain.com", sep="@")  # name@domain.com
+my_list = ['a', 'b', 'c', 'd']
+
+my_list.reverse()
+
+print(my_list)  # ['d', 'c', 'b', 'a']
