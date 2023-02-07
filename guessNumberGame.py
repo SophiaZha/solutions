@@ -27,14 +27,3 @@ while True:
     for i in range(len(guessHistory)):
         print( str(i+1) + " Guessed number " + guessHistory[i][0] + " has perfect match count: " + guessHistory[i][2] + ", has common digits of :" + guessHistory[i][1])
 
-
-
-
-
-
-
-
-
-
-inputList = [];
-
