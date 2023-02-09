@@ -156,3 +156,6 @@ print(my_list)  # ['d', 'c', 'b', 'a']
 books = ('Atomic habits', 'Ego is the enemy', 'Outliers', 'Mastery')
 
 print(books.index('Mastery'))   # 3
+# 31
+my_string = "abcdef"
+print(my_string.startswith("b"))  # False
