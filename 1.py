@@ -137,9 +137,9 @@ for i in range(9):
 
 print(even_numbers)  # [0, 2, 4, 6, 8]
 print(ast)
-y = 90
-x = brighten_color(y)
-print("x after brighten color " + str(x) )
+# y = 90
+# x = brighten_color(y)
+# print("x after brighten color " + str(x) )
 first_dictionary = {'name': 'Fatos', 'location': 'Munich'}
 second_dictionary = {'name': 'Fatos', 'surname': 'Morina',
                      'location': 'Bavaria, Munich'}
@@ -153,3 +153,6 @@ my_list = ['a', 'b', 'c', 'd']
 my_list.reverse()
 
 print(my_list)  # ['d', 'c', 'b', 'a']
+books = ('Atomic habits', 'Ego is the enemy', 'Outliers', 'Mastery')
+
+print(books.index('Mastery'))   # 3
