@@ -159,3 +159,32 @@ print(books.index('Mastery'))   # 3
 # 31
 my_string = "abcdef"
 print(my_string.startswith("b"))  # False
+
+number = 1
+print(id(number))  # 4325215472
+print(id(1))  # 4325215472
+
+number = 3
+print(id(number))  # 4325215536
+print(id(1))  # 4325215472
+name = "Fatos"
+print(id(name))  # 4422282544
+name = "fatos"
+print(id(name))  # 4422346608
+my_tuple = (1, 2, 3, 4)
+print(id(my_tuple))  # 4499290128
+
+my_tuple = ('a', 'b')
+print(id(my_tuple))  # 4498867584
+cities = ["Munich", "Zurich", "London"]
+print(id(cities))  # 4482699712
+
+cities.append("Berlin")
+print(id(cities))  # 4482699712
+my_set = {1, 2, 3, 4}
+print(id(my_set))  # 4352726176
+my_set.add(5)
+print(id(my_set))  # 4352726176
+my_set = frozenset(['a', 'b', 'c', 'd'])
+
+my_set.add("a")
