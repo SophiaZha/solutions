@@ -1,6 +1,10 @@
 from enum import Enum
 import math
 import ast
+def check_if_anagram(first_word, second_word):
+    first_word = first_word.lower()
+    second_word = second_word.lower()
+    return sorted(first_word) == sorted(second_word)
 
 first_list = [1, 2, 3]
 second_list = [1, 2, 3]
@@ -186,5 +190,10 @@ print(id(my_set))  # 4352726176
 my_set.add(5)
 print(id(my_set))  # 4352726176
 my_set = frozenset(['a', 'b', 'c', 'd'])
-
 my_set.add("a")
+print("hello")
+#38
+print(check_if_anagram("testinG", "Testing"))  # True
+print(check_if_anagram("Here", "Rehe"))  # True
+print(check_if_anagram("Know", "Now"))  # False
+
