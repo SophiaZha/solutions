@@ -190,10 +190,21 @@ print(id(my_set))  # 4352726176
 my_set.add(5)
 print(id(my_set))  # 4352726176
 my_set = frozenset(['a', 'b', 'c', 'd'])
-my_set.add("a")
+#my_set.add("a")
 print("hello")
 #38
 print(check_if_anagram("testinG", "Testing"))  # True
 print(check_if_anagram("Here", "Rehe"))  # True
 print(check_if_anagram("Know", "Now"))  # False
 
+#40
+dictionary = {"a": 1, "b": 2, "c": 3}
+
+keys = dictionary.keys()
+
+print(list(keys))  # ['a', 'b', 'c']
+dictionary = {"a": 1, "b": 2, "c": 3}
+
+values = dictionary.values()
+
+print(list(values))  # [1, 2, 3]
