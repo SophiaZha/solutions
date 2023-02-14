@@ -208,3 +208,10 @@ dictionary = {"a": 1, "b": 2, "c": 3}
 values = dictionary.values()
 
 print(list(values))  # [1, 2, 3]
+
+#42
+dictionary = {"a": 1, "b": 2, "c": 3}
+
+reversed_dictionary = {j: i for i, j in dictionary.items()}
+
+print(reversed)  # {1: 'a', 2: 'b', 3: 'c'}
