@@ -223,3 +223,9 @@ x = 10 #44
 y = 12
 result = (x - False)*(y * True)
 print(result)  # 0.8333333333333334
+
+print(bool(.0))  # False
+print(bool(3))  # True
+print(bool("-"))  # True
+print(bool("string"))  # True
+print(bool(" "))  # True
