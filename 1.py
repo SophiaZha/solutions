@@ -215,3 +215,11 @@ dictionary = {"a": 1, "b": 2, "c": 3}
 reversed_dictionary = {j: i for i, j in dictionary.items()}
 
 print(reversed)  # {1: 'a', 2: 'b', 3: 'c'}
+#43
+print(int(False))  # 0
+print(int(True))  # 0
+print(float(True))  # 1.0
+x = 10 #44
+y = 12
+result = (x - False)*(y * True)
+print(result)  # 0.8333333333333334
