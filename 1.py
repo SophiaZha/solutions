@@ -229,3 +229,9 @@ print(bool(3))  # True
 print(bool("-"))  # True
 print(bool("string"))  # True
 print(bool(" "))  # True
+#47
+my_list = [3, 4, 5]
+
+my_list.append(6)
+my_list.insert(0, 2)
+print(my_list)  # [2, 3, 4, 5, 6]
