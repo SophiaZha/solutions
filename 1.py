@@ -235,3 +235,11 @@ my_list = [3, 4, 5]
 my_list.append(6)
 my_list.insert(0, 2)
 print(my_list)  # [2, 3, 4, 5, 6]
+#48. Lambda functions can only be in one line
+#comparison = lambda x: if x > 3:
+#   print("x > 3")
+#                else:
+#                    print("x is not greater than 3")
+#
+##
+# comparison = lambda x: "x > 3" if x > 3
