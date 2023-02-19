@@ -242,4 +242,11 @@ print(my_list)  # [2, 3, 4, 5, 6]
 #                    print("x is not greater than 3")
 #
 ##
-# comparison = lambda x: "x > 3" if x > 3
+comparison = lambda x: "x > 3" if x > 3 else False
+print(bool(comparison))
+#51 map() returns a new object
+my_list = [1, 2, 3, 4]
+squared = map(lambda x: x ** 2, my_list)
+
+print(list(squared))   # [1, 4, 9, 16]
+print(my_list)  # [1, 2, 3, 4]
