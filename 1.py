@@ -250,3 +250,6 @@ squared = map(lambda x: x ** 2, my_list)
 
 print(list(squared))   # [1, 4, 9, 16]
 print(my_list)  # [1, 2, 3, 4]
+for number in range(1, 10, 3):
+    print(number, end=" ")
+# 1 4 7
