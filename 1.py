@@ -253,3 +253,19 @@ print(my_list)  # [1, 2, 3, 4]
 for number in range(1, 10, 3):
     print(number, end=" ")
 # 1 4 7
+# 54. You don’t need to compare the length with 0
+def get_element_with_comparison(my_list):
+    if len(my_list) > 0:
+        return my_list[0]
+
+
+def get_first_element(my_list):
+    if len(my_list):
+        return my_list[0]
+
+
+elements = [1, 2, 3, 4]
+first_result = get_element_with_comparison(elements)
+second_result = get_element_with_comparison(elements)
+
+print(first_result == second_result)  # True
