@@ -269,3 +269,11 @@ first_result = get_element_with_comparison(elements)
 second_result = get_element_with_comparison(elements)
 
 print(first_result == second_result)  # True
+
+class Engineer:
+    def __init__(self, name):
+        self.name = name
+        self.__starting_salary = 62000
+#56. You can access private properties even outside their intended scope
+dain = Engineer('Dain')
+print(dain._Engineer__starting_salary)  # 62000
