@@ -1,3 +1,4 @@
+import sys
 from enum import Enum
 import math
 import ast
@@ -277,3 +278,5 @@ class Engineer:
 #56. You can access private properties even outside their intended scope
 dain = Engineer('Dain')
 print(dain._Engineer__starting_salary)  # 62000
+#57. Check the memory usage of an object
+print(sys.getsizeof("bitcoin"))  # 56
