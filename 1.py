@@ -280,3 +280,13 @@ dain = Engineer('Dain')
 print(dain._Engineer__starting_salary)  # 62000
 #57. Check the memory usage of an object
 print(sys.getsizeof("bitcoin"))  # 56
+
+def get_sum(*arguments):
+    result = 0
+    for i in arguments:
+        result += i
+    return result
+#58. You can define a method that can be called with as many parameters as you want
+print(get_sum(1, 2, 3))  # 6
+print(get_sum(1, 2, 3, 4, 5))  # 15
+print(get_sum(1, 2, 3, 4, 5, 6, 7))  # 28
