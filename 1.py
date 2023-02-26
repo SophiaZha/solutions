@@ -287,6 +287,21 @@ def get_sum(*arguments):
         result += i
     return result
 #58. You can define a method that can be called with as many parameters as you want
+#59. call parent class initializer usering super()
 print(get_sum(1, 2, 3))  # 6
 print(get_sum(1, 2, 3, 4, 5))  # 15
 print(get_sum(1, 2, 3, 4, 5, 6, 7))  # 28
+class Parent:
+    def __init__(self, city, address):
+        self.city = city
+        self.address = address
+
+
+class Child(Parent):
+    def __init__(self, city, address, university):
+        super().__init__(city, address)
+        self.university = university
+
+
+child = Child('Zürich', 'Rämistrasse 101', 'ETH Zürich')
+print(child.university)  # ETH Zürich
