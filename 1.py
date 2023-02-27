@@ -322,3 +322,16 @@ may_expenses = Expenses(1000, 300)
 total_expenses = april_expenses + may_expenses
 print(total_expenses.rent)  # 2000
 print(total_expenses.groceries)  # 500
+#61. You can also redefine the “<” and “==” operators inside your own classes
+class Game:
+    def __init__(self, score):
+        self.score = score
+
+    def __lt__(self, other):
+        return self.score < other.score
+
+
+first = Game(1)
+second = Game(2)
+
+print(first < second)  # True
