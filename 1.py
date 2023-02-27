@@ -305,3 +305,20 @@ class Child(Parent):
 
 child = Child('Zürich', 'Rämistrasse 101', 'ETH Zürich')
 print(child.university)  # ETH Zürich
+
+class Expenses:
+    def __init__(self, rent, groceries):
+        self.rent = rent
+        self.groceries = groceries
+
+    def __add__(self, other):
+        return Expenses(self.rent + other.rent,
+                        self.groceries + other.groceries)
+
+
+april_expenses = Expenses(1000, 200)
+may_expenses = Expenses(1000, 300)
+
+total_expenses = april_expenses + may_expenses
+print(total_expenses.rent)  # 2000
+print(total_expenses.groceries)  # 500
