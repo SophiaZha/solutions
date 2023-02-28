@@ -333,5 +333,21 @@ class Game:
 
 first = Game(1)
 second = Game(2)
-
+#63. class equal
 print(first < second)  # True
+class Journey:
+    def __init__(self, location, destination, duration):
+        self.location = location
+        self.destination = destination
+        self.duration = duration
+
+    def __eq__(self, other):
+        return ((self.location == other.location) and
+                (self.destination == other.destination) and
+                (self.duration == other.duration))
+
+
+first = Journey('Location A', 'Destination A', '30min')
+second = Journey('Location B', 'Destination B', '30min')
+
+print(first == second)
