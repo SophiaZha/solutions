@@ -351,3 +351,14 @@ first = Journey('Location A', 'Destination A', '30min')
 second = Journey('Location B', 'Destination B', '30min')
 
 print(first == second)
+#62. define print object
+class Rectangle:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __repr__(self):
+        return repr('Rectangle with area=' + str(self.a * self.b))
+
+
+print(Rectangle(3, 4))  # 'Rectangle with area=12'
