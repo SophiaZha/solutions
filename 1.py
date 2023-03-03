@@ -362,3 +362,11 @@ class Rectangle:
 
 
 print(Rectangle(3, 4))  # 'Rectangle with area=12'
+#64. swap case
+string = "This is just a sentence."
+result = string.swapcase()
+print(result)  # tHIS IS JUST A SENTENCE.
+#65. check is space
+string = "  "
+result = string.isspace()
+print(result)  # True
