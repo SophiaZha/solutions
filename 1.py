@@ -370,3 +370,12 @@ print(result)  # tHIS IS JUST A SENTENCE.
 string = "  "
 result = string.isspace()
 print(result)  # True
+#65. isalphanumeric
+name = "Password"
+print(name.isalnum())  # True, because all characters are alphabets
+name = "Secure Password "
+print(name.isalnum())  # False, because it contains whitespaces
+name = "S3cur3P4ssw0rd"
+print(name.isalnum())  # True
+name = "133"
+print(name.isalnum())  # True, because all characters are numbers
