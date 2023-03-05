@@ -29,16 +29,17 @@ class Solution: #L
         return max(nums)
 
     def maxSubArrayL(self, nums: List[int]) -> int:
-        res = nums[0]
-        curSum = res
+        maxSum = nums[0]
+        curSum = maxSum
 
-        for i in nums[1:]:
-            if curSum > 0:
-                curSum += i
+        for n in nums[1:]:
+            if curSum < 0:
+                curSum = n
             else:
-                curSum = i
-            res = max( res,  curSum)
-        return res
+                curSum += n
+            maxSum = max(maxSum, curSum )
+
+        return maxSum
 """
 53. Maximum Subarray
 Medium
