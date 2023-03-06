@@ -384,5 +384,6 @@ print(name.isalnum())  # True, because all characters are numbers
 string = "This is a sentence with       "
 # Remove trailing spaces from the right
 print(string.rstrip())  # "This is a sentence with"
+print(string.rstrip("h "))  # "This is a sentence with"
 string = "this here is a sentence..,,,,aaaaasd"
 print(string.rstrip(",dsace."))  # "this here is a sentence"
