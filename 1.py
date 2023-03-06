@@ -379,3 +379,10 @@ name = "S3cur3P4ssw0rd"
 print(name.isalnum())  # True
 name = "133"
 print(name.isalnum())  # True, because all characters are numbers
+
+#67. remove right based characters
+string = "This is a sentence with       "
+# Remove trailing spaces from the right
+print(string.rstrip())  # "This is a sentence with"
+string = "this here is a sentence..,,,,aaaaasd"
+print(string.rstrip(",dsace."))  # "this here is a sentence"
