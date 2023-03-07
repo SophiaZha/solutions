@@ -387,3 +387,12 @@ print(string.rstrip())  # "This is a sentence with"
 print(string.rstrip("h "))  # "This is a sentence with"
 string = "this here is a sentence..,,,,aaaaasd"
 print(string.rstrip(",dsace."))  # "this here is a sentence"
+#68. Check if a string represents a number
+string = "seven"
+print(string.isdigit())  # False
+string = "1337"
+print(string.isdigit())  # True
+string = "5a"
+print(string.isdigit())  # False, because it contains the character 'a'
+string = "2**5"
+print(string.isdigit())  # False
