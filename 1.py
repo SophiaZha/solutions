@@ -396,3 +396,17 @@ string = "5a"
 print(string.isdigit())  # False, because it contains the character 'a'
 string = "2**5"
 print(string.isdigit())  # False
+
+#70. is Title
+string = "This is a sentence"
+print(string.istitle())  # False
+
+string = "10 Python Tips"
+print(string.istitle())  # True
+
+string = "How to Print A String in Python"
+# False, because of the first characters being lowercase in "to" and "in"
+print(string.istitle())
+
+string = "PYTHON"
+print(string.istitle())  # False. It's titlelized version is "Python"
