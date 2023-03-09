@@ -410,3 +410,8 @@ print(string.istitle())
 
 string = "PYTHON"
 print(string.istitle())  # False. It's titlelized version is "Python"
+
+numbers = (1, 2, 3, 4)
+
+print(numbers[-1])  # 4
+print(numbers[-4])  # 1
