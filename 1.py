@@ -415,3 +415,8 @@ numbers = (1, 2, 3, 4)
 
 print(numbers[-1])  # 4
 print(numbers[-4])  # 1
+#72. Nest a list and a tuple inside a tuple
+mixed_tuple = (("a"*10, 3, 4), ['first', 'second', 'third'])
+
+print(mixed_tuple[1])  # ['first', 'second', 'third']
+print(mixed_tuple[0])  # ('aaaaaaaaaa', 3, 4)
