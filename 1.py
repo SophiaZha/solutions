@@ -420,3 +420,6 @@ mixed_tuple = (("a"*10, 3, 4), ['first', 'second', 'third'])
 
 print(mixed_tuple[1])  # ['first', 'second', 'third']
 print(mixed_tuple[0])  # ('aaaaaaaaaa', 3, 4)
+
+names = ["Besim", "Albert", "Besim", "Fisnik", "Meriton"]
+print(names.count("Besim"))  # 2
