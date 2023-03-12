@@ -420,6 +420,22 @@ mixed_tuple = (("a"*10, 3, 4), ['first', 'second', 'third'])
 
 print(mixed_tuple[1])  # ['first', 'second', 'third']
 print(mixed_tuple[0])  # ('aaaaaaaaaa', 3, 4)
-
+#73. Quickly count the number of times an element appears in a list that satisfies a condition
 names = ["Besim", "Albert", "Besim", "Fisnik", "Meriton"]
 print(names.count("Besim"))  # 2
+#74. You can easily get the last n elements using slice()
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+slicing = slice(-4, None)
+# Getting the last 3 elements from the list
+print(my_list[slicing])  # [4, 5, 6]
+# Getting only the third element starting from the right
+print(my_list[-3])  # 4
+
+
+
+
+string = "Data Science"
+# start = 1, stop = None (don't stop anywhere), step = 1
+# contains 1, 3 and 5 indices
+slice_object = slice(5, None)
+print(string[slice_object])   # Science
