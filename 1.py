@@ -459,3 +459,6 @@ print(List[:0:-2])
 
 my_tuple = ('a', 1, 'f', 'a', 5, 'a')
 print(my_tuple.count('a'))  # 3
+#76. index of element at tuple
+my_tuple = ('a', 1, 'f', 'a', 5, 'a')
+print(my_tuple.index('f'))  #  2
