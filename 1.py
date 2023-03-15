@@ -462,3 +462,7 @@ print(my_tuple.count('a'))  # 3
 #76. index of element at tuple
 my_tuple = ('a', 1, 'f', 'a', 5, 'a')
 print(my_tuple.index('f'))  #  2
+
+#77. subtuples making jumps
+my_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+print(my_tuple[::3])  # (1, 4, 7, 10)
