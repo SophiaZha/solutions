@@ -469,3 +469,16 @@ print(my_tuple[::3])  # (1, 4, 7, 10)
 
 my_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 print(my_tuple[3:])  # (4, 5, 6, 7, 8, 9, 10)
+
+#79. remove all elments
+my_list = [1, 2, 3, 4]
+my_list.clear()
+print(my_list)  # []
+
+my_set = {1, 2, 3}
+my_set.clear()
+print(my_set)  # set()
+
+my_dict = {"a": 1, "b": 2}
+my_dict.clear()
+print(my_dict)  # {}
