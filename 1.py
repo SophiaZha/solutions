@@ -488,3 +488,8 @@ first_set = {4, 5, 6}
 second_set = {1, 2, 3}
 
 print(first_set.union(second_set))  # {1, 2, 3, 4, 5, 6}
+
+def is_positive(number):
+    print("Positive" if number > 0 else "Negative")  # Positive
+
+is_positive(-3)
