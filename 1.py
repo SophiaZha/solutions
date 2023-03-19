@@ -482,3 +482,9 @@ print(my_set)  # set()
 my_dict = {"a": 1, "b": 2}
 my_dict.clear()
 print(my_dict)  # {}
+
+#80. join 2 sets
+first_set = {4, 5, 6}
+second_set = {1, 2, 3}
+
+print(first_set.union(second_set))  # {1, 2, 3, 4, 5, 6}
