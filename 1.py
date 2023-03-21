@@ -499,3 +499,17 @@ def is_positive(number):
     print("Positive" if number > 0 else "Negative")  # Positive
 
 is_positive(-3)
+
+math_points = 51
+biology_points = 78
+physics_points = 56
+history_points = 72
+
+my_conditions = [math_points > 50, biology_points > 50,
+                 physics_points > 50, history_points > 50]
+
+if all(my_conditions):
+    print("Congratulations! You have passed all of the exams.")
+else:
+    print("I am sorry, but it seems that you have to repeat at least one exam.")
+# Congratulations! You have passed all of the exams.
