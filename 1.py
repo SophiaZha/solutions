@@ -528,3 +528,6 @@ if any(my_conditions):
 else:
     print("I am sorry, but it seems that you have to repeat at least one exam.")
 # Congratulations! You have passed all of the exams.
+# 84. Any non-empty string is evaluated to True
+print(bool("Non empty"))  # True
+print(bool(""))  # False
