@@ -531,3 +531,9 @@ else:
 # 84. Any non-empty string is evaluated to True
 print(bool("Non empty"))  # True
 print(bool(""))  # False
+# 85. Any non-empty list, tuple, or dictionary is evaluated to True
+print(bool([]))  # False
+print(bool(set([])))  # False
+
+print(bool({}))  # False
+print(bool({"a": 1}))  # True
