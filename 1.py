@@ -537,3 +537,7 @@ print(bool(set([])))  # False
 
 print(bool({}))  # False
 print(bool({"a": 1}))  # True
+
+print(bool(False))  # False
+print(bool(None))  # False
+print(bool(0))  # False
