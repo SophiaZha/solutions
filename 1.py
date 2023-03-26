@@ -541,3 +541,9 @@ print(bool({"a": 1}))  # True
 print(bool(False))  # False
 print(bool(None))  # False
 print(bool(0))  # False
+#87. You cannot change the value of a global variable just by mentioning it inside a function
+string = "string"
+def do_nothing():
+  string = "inside a method"
+do_nothing()
+print(string)  # string
