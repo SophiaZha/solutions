@@ -547,3 +547,15 @@ def do_nothing():
   string = "inside a method"
 do_nothing()
 print(string)  # string
+
+string = "string"
+
+
+def do_nothing():
+    global string
+    string = "inside a method"
+
+
+do_nothing()
+
+print(string)  # inside a method
