@@ -555,6 +555,15 @@ def do_nothing():
     global string
     string = "inside a method"
 
+from collections import Counter
+
+result = Counter("Banana")
+print(result)  # Counter({'a': 3, 'n': 2, 'B': 1})
+
+
+result = Counter([1, 2, 1, 3, 1, 4, 1, 5, 1, 6])
+print(result)  # Counter({1: 5, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1})
+
 
 do_nothing()
 
