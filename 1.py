@@ -560,7 +560,6 @@ from collections import Counter
 result = Counter("Banana")
 print(result)  # Counter({'a': 3, 'n': 2, 'B': 1})
 
-
 result = Counter([1, 2, 1, 3, 1, 4, 1, 5, 1, 6])
 print(result)  # Counter({1: 5, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1})
 
@@ -568,3 +567,15 @@ print(result)  # Counter({1: 5, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1})
 do_nothing()
 
 print(string)  # inside a method
+
+from collections import Counter
+
+def check_if_anagram(first_string, second_string):
+    first_string = first_string.lower()
+    second_string = second_string.lower()
+    return Counter(first_string) == Counter(second_string)
+
+
+print(check_if_anagram('testinG', 'Testing'))  # True
+print(check_if_anagram('Here', 'Rehe'))  # True
+print(check_if_anagram('Know', 'Now'))  # False
