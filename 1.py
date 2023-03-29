@@ -579,3 +579,16 @@ def check_if_anagram(first_string, second_string):
 print(check_if_anagram('testinG', 'Testing'))  # True
 print(check_if_anagram('Here', 'Rehe'))  # True
 print(check_if_anagram('Know', 'Now'))  # False
+
+from itertools import count
+
+my_vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+
+current_counter = count()
+
+string = "This is just a sentence."
+
+for i in string:
+    if i in my_vowels:
+        print(f"Current vowel: {i}")
+        print(f"Number of vowels found so far: {next(current_counter)}")
