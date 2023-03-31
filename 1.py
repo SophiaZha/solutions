@@ -592,3 +592,10 @@ for i in string:
     if i in my_vowels:
         print(f"Current vowel: {i}")
         print(f"Number of vowels found so far: {next(current_counter)}")
+
+# sort elements of a string or list based on their frequency
+from collections import Counter
+
+result = Counter([1, 2, 3, 2, 2, 2, 2])
+print(result)  # Counter({2: 5, 1: 1, 3: 1})
+print(result.most_common())  # [(2, 5), (1, 1), (3, 1)]
