@@ -599,3 +599,7 @@ from collections import Counter
 result = Counter([1, 2, 3, 2, 2, 2, 2])
 print(result)  # Counter({2: 5, 1: 1, 3: 1})
 print(result.most_common())  # [(2, 5), (1, 1), (3, 1)]
+#most frequent element at a list
+my_list = ['1', 1, 0, 'a', 'b', 2, 'a', 'c', 'a']
+
+print(max(set(my_list), key=my_list.count))  # a
