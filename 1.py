@@ -2,6 +2,7 @@ import sys
 from enum import Enum
 import math
 import ast
+import copy
 def check_if_anagram(first_word, second_word):
     first_word = first_word.lower()
     second_word = second_word.lower()
@@ -603,3 +604,21 @@ print(result.most_common())  # [(2, 5), (1, 1), (3, 1)]
 my_list = ['1', 1, 0, 'a', 'b', 2, 'a', 'c', 'a']
 
 print(max(set(my_list), key=my_list.count))  # a
+
+first_list = [[1, 2, 3], ['a', 'b', 'c']]
+
+second_list = first_list.copy()
+
+first_list[0][2] = 831
+
+print(first_list)  # [[1, 2, 831], ['a', 'b', 'c']]
+print(second_list)  # [[1, 2, 831], ['a', 'b', 'c']]
+
+first_list = [[1, 2, 3], ['a', 'b', 'c']]
+
+second_list = copy.deepcopy(first_list)
+
+first_list[0][2] = 831
+
+print(first_list)  # [[1, 2, 831], ['a', 'b', 'c']]
+print(second_list)  # [[1, 2, 3], ['a', 'b', 'c']]
