@@ -622,3 +622,5 @@ first_list[0][2] = 831
 
 print(first_list)  # [[1, 2, 831], ['a', 'b', 'c']]
 print(second_list)  # [[1, 2, 3], ['a', 'b', 'c']]
+my_dictonary = {"name": "Name", "surname": "Surname"}
+print(my_dictonary["age"])
