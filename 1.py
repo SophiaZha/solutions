@@ -631,3 +631,21 @@ my_dictonary['name'] = "Name"
 my_dictonary['surname'] = "Surname"
 
 print(my_dictonary["age"])
+
+class OddNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
+
+    def __next__(self):
+        x = self.a
+        self.a += 2
+        return x
+
+
+odd_numbers_object = OddNumbers()
+iterator = iter(odd_numbers_object)
+
+print(next(iterator))  # 1
+print(next(iterator))  # 3
+print(next(iterator))  # 5
