@@ -649,3 +649,5 @@ iterator = iter(odd_numbers_object)
 print(next(iterator))  # 1
 print(next(iterator))  # 3
 print(next(iterator))  # 5
+my_set = set([1, 2, 1, 2, 3, 4, 5])
+print(list(my_set))  # [1, 2, 3, 4, 5]
