@@ -651,3 +651,20 @@ print(next(iterator))  # 3
 print(next(iterator))  # 5
 my_set = set([1, 2, 1, 2, 3, 4, 5])
 print(list(my_set))  # [1, 2, 3, 4, 5]
+
+#sort() sorts the original list.
+#sorted() returns a new sorted list.
+groceries = ['milk', 'bread', 'tea']
+
+new_groceries = sorted(groceries)
+# new_groceries = ['bread', 'milk', 'tea']
+
+print(new_groceries)
+
+# groceries = ['milk', 'bread', 'tea']
+print(groceries)
+
+groceries.sort()
+
+# groceries = ['bread', 'milk', 'tea']
+print(groceries)
