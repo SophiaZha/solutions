@@ -19,7 +19,7 @@ class Solution:
 
         return root
 
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invertTree1(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
 
