@@ -19,6 +19,16 @@ class Solution:
 
         return root
 
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return None
+
+        right = self.invertTree(root.right)
+        left = self.invertTree(root.left)
+        root.left = right
+        root.right = left
+        return root
+
     def invertTreeO(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
