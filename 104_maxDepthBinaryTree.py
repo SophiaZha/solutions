@@ -33,8 +33,6 @@ def build_tree(leet_code_input: str, should_print_tree_code_to_console=False):
         exec(execution_statement)
     return root
 
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val

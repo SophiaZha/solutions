@@ -668,3 +668,6 @@ groceries.sort()
 
 # groceries = ['bread', 'milk', 'tea']
 print(groceries)
+import torch
+
+print(torch)  # <module 'torch' from '/Users/...'
