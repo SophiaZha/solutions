@@ -671,3 +671,11 @@ print(groceries)
 import torch
 
 print(torch)  # <module 'torch' from '/Users/...'
+
+import uuid
+
+# Generate a UUID from a host ID, sequence number, and the current time
+print(uuid.uuid1())  # 308490b6-afe4-11eb-95f7-0c4de9a0c5af
+
+# Generate a random UUID
+print(uuid.uuid4())  # 93bc700b-253e-4081-a358-24b60591076a
