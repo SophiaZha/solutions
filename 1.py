@@ -18,7 +18,6 @@ print(first_list == second_list)  # True
 print(first_list is second_list)
 # False, since they have same values, but in different objects in memory
 
-
 third_list = first_list
 
 print(third_list is first_list)
