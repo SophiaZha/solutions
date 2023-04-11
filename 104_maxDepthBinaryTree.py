@@ -64,6 +64,23 @@ class Solution:
             level += 1
         return level
 
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        node_q = deque([root])
+        level = 0
+
+        while node_q:
+            for i in range(len(node_q)):
+                this_node = node_q.popleft();
+                if this_node.left:
+                    node_q.append(this_node.left)
+                if this_node.right:
+                    node_q.append(this_node.right)
+            level += 1
+        return level
+
     def maxDepthdfs(self, root: Optional[TreeNode]) -> int:
         stack = [[root, 1]]
         res = 0
