@@ -84,7 +84,6 @@ class Solution:
     def maxDepthdfs(self, root: Optional[TreeNode]) -> int:
         stack = [[root, 1]]
         res = 0
-
         while stack:
             node, level = stack.pop()
             if node:
@@ -95,24 +94,19 @@ class Solution:
         return res
 
 
-    def maxDepth(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
         stack = []
-        if root is not None:
-            stack.append((1, root))
+        curr_level = 0
+        if root:
+            stack.append( (1, root) )
+            while stack:
+                prev_level, node = stack.pop()
+                if node:
+                    curr_level = max(curr_level, prev_level)
+                    stack.append( ( prev_level + 1, node.left))
+                    stack.append( ( prev_level + 1, node.right))
+        return curr_level
 
-        depth = 0
-        while stack != []:
-            current_depth, root = stack.pop()
-            if root is not None:
-                depth = max(depth, current_depth)
-                stack.append((current_depth + 1, root.left))
-                stack.append((current_depth + 1, root.right))
-
-        return depth
 s = Solution()
 r = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
 print(s.maxDepth(r))
