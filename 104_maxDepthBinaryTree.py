@@ -90,9 +90,7 @@ class Solution:
                 res = max(res, level)
                 stack.append([node.left, level + 1])
                 stack.append([node.right, level + 1])
-
         return res
-
 
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         stack = []
