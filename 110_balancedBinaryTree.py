@@ -1,4 +1,3 @@
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -10,12 +9,9 @@ class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         def dfs(root):
             if not root: return [True, 0]
-
             left, right = dfs(root.left), dfs(root.right)
             balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
-
             return [balanced, 1 + max(left[1], right[1])]
-
         return dfs(root)[0]
 ################################################################################Official Solution ,height redudant calculation->
 #    Time  complexity: O(n * log(n))
@@ -29,7 +25,6 @@ class Solution:
         # An empty tree satisfies the definition of a balanced tree
         if not root:
             return True
-
         # Check if subtrees have height within 1. If they do, check if the
         # subtrees are balanced
         return abs(self.height(root.left) - self.height(root.right)) < 2 \
@@ -45,7 +40,6 @@ class Solution:
         # An empty tree is balanced and has height -1
         if not root:
             return True, -1
-
         # Check subtrees to see if they are balanced.
         leftIsBalanced, leftHeight = self.isBalancedHelper(root.left)
         if not leftIsBalanced:
@@ -53,7 +47,6 @@ class Solution:
         rightIsBalanced, rightHeight = self.isBalancedHelper(root.right)
         if not rightIsBalanced:
             return False, 0
-
         # If the subtrees are balanced, check if the current tree is balanced
         # using their height
         return (abs(leftHeight - rightHeight) < 2), 1 + max(leftHeight, rightHeight)
