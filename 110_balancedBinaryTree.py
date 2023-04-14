@@ -6,6 +6,18 @@ class TreeNode:
 
 from typing import Optional
 class Solution:
+    def isHeight(self, root):
+        if not root:
+            return -1
+        return 1 + max(self.isHeight(root.left), self.isHeight(root.right))
+
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+
+        return abs(self.isHeight(root.left) - self.isHeight(root.right)) <= 1 \
+               and self.isBalanced(root.left) and self.isBalanced(root.right)
+
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         def dfs(root):
             if not root: return [True, 0]
