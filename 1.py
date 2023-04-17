@@ -682,3 +682,10 @@ import sys
 
 mylist = range(0, 10000)
 print(sys.getsizeof(mylist))
+
+a = "Hello World!"
+print(a[::-1])
+
+"""
+!dlroW olleH
+"""
