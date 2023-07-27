@@ -12,6 +12,24 @@ class Solution:
             stack.pop()
 
         return not stack
+
+    def isValid(self, s: str) -> bool:
+        stack = []
+        mappings = { ")" :"(", "]" : "[", "}" : "{"}
+
+        for c in s:
+            if c in mappings:
+                if stack:
+                    if stack[-1] == mappings[c]:
+                        stack.pop()
+                    else:
+                        return False
+                else:
+                    return False
+            else:
+                stack.append(c)
+        return not stack
+
 """
 20. Valid Parentheses
 Easy
