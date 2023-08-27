@@ -3,21 +3,25 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        dp = {}  # key=(i, buying) val=max_profit
-        def dfs(i, buying):
+        dp = {}
+
+        def dfs(i, canbuy):
             if i >= len(prices):
                 return 0
-            if (i, buying) in dp:
-                return dp[(i, buying)]
+            if (i, canbuy) in dp:
+                return dp[(i, canbuy)]
 
-            cooldown = dfs(i + 1, buying)
-            if buying:
-                buy = dfs(i + 1, not buying) - prices[i]
-                dp[(i, buying)] = max(buy, cooldown)
+            if canbuy:
+                profit = dfs(i + 1, False) - prices[i]
+                cooldown = dfs(i + 1, True)
+                dp[(i, True)] = max(profit, cooldown)
             else:
-                sell = dfs(i + 2, not buying) + prices[i]
-                dp[(i, buying)] = max(sell, cooldown)
-            return dp[(i, buying)]
+                profit = dfs(i + 2, True) + prices[i]
+                cooldown = dfs(i + 1, False)
+                dp[(i, False)] = max(profit, cooldown)
+
+            return dp[(i, canbuy)]
+
         return dfs(0, True)
 
     def maxProfit2(self, prices: List[int]) -> int:
