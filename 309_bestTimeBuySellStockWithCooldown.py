@@ -5,20 +5,21 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         dp = {}
 
-        def dfs(i, canbuy):
+        def dfs(i, canbuy) -> int:
             if i >= len(prices):
                 return 0
+
             if (i, canbuy) in dp:
                 return dp[(i, canbuy)]
 
             if canbuy:
-                profit = dfs(i + 1, False) - prices[i]
-                cooldown = dfs(i + 1, True)
-                dp[(i, True)] = max(profit, cooldown)
+                profit_if_buy = dfs(i + 1, False) - prices[i]
+                profit_if_hold = dfs(i + 1, canbuy)
+                dp[(i, canbuy)] = max(profit_if_buy, profit_if_hold)
             else:
-                profit = dfs(i + 2, True) + prices[i]
-                cooldown = dfs(i + 1, False)
-                dp[(i, False)] = max(profit, cooldown)
+                profit_if_sell = dfs(i + 2, True) + prices[i]
+                profit_if_hold = dfs(i + 1, canbuy)
+                dp[(i, canbuy)] = max(profit_if_sell, profit_if_hold)
 
             return dp[(i, canbuy)]
 
