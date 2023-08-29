@@ -10,7 +10,6 @@ class Solution: #L
                     dp[i][j] = 1 + dp[i + 1][j + 1]
                 else:
                     dp[i][j] = max(dp[i][j + 1], dp[i + 1][j])
-
         return dp[0][0]
 
     def longestCommonSubsequence1(self, text1: str, text2: str) -> int:
@@ -119,11 +118,13 @@ sol = Solution()
 text1 = "abcba"
 text2 = "abcbcba"
 print(sol.longestCommonSubsequence(text1, text2))
+print(sol.longestCommonSubsequence8(text1, text2))
 
 text1 = "abcde"
 text2 = "ace"
 sol = Solution()
 print(sol.longestCommonSubsequence(text1, text2))
+print(sol.longestCommonSubsequence8(text1, text2))
 
 
 
