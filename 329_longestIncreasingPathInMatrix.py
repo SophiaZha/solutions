@@ -3,26 +3,25 @@ from typing import List
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         ROWS, COLS = len(matrix), len(matrix[0])
-        dp = {}  # (r, c) -> LIP
-
-        def dfs(r, c, prevVal):
-            if r < 0 or r == ROWS or c < 0 or c == COLS or matrix[r][c] <= prevVal:
+        dp = {}
+        def dfs(i, j, pre_val):
+            if i < 0 or j < 0 or i >= ROWS or j >= COLS or matrix[i][j] <= pre_val:
                 return 0
-            if (r, c) in dp:
-                return dp[(r, c)]
+            if ( i, j) in dp:
+                return dp[(i, j)]
+            path = 1
+            path = max(path, 1 + dfs(i + 1, j, matrix[i][j]))
+            path = max(path, 1 + dfs(i, j + 1, matrix[i][j]))
+            path = max(path, 1 + dfs(i -1,  j, matrix[i][j]))
+            path = max(path, 1 + dfs(i, j - 1, matrix[i][j]))
+            dp[(i, j)] = path
+            return path
 
-            res = 1
-            res = max(res, 1 + dfs(r + 1, c, matrix[r][c]))
-            res = max(res, 1 + dfs(r - 1, c, matrix[r][c]))
-            res = max(res, 1 + dfs(r, c + 1, matrix[r][c]))
-            res = max(res, 1 + dfs(r, c - 1, matrix[r][c]))
-            dp[(r, c)] = res
-            return res
-
-        for r in range(ROWS):
-            for c in range(COLS):
-                dfs(r, c, -1)
+        for i in range(ROWS):
+            for j in range(COLS):
+                dfs( i, j , -1)
         return max(dp.values())
+
  """
 329. Longest Increasing Path in a Matrix
 Hard
