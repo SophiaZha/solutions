@@ -1,18 +1,33 @@
 class Solution:
+    def minDistanceN(selfslef, word1: str, word2: str) -> int:
+        ROWS, COLS = len(word1), len(word2)
+        print("ROWS :", ROWS, ", COLS :" , COLS)
+        dp = [[float("inf")] * (COLS + 1) for y in range(ROWS + 1)]
+        for y in range(COLS + 1):
+            dp[ROWS][y] = COLS - y
+        for i in range(ROWS + 1):
+            dp[i][COLS] = ROWS - i
+        for i in range(ROWS - 1, -1, -1):
+            for j in range( COLS -1, -1, -1):
+                if word1[i] == word2[j]:
+                    dp[i][j] = dp[i + 1][j + 1]
+                else:
+                    dp[i][j] = 1 + min(dp[i + 1][j], dp[i + 1][j + 1], dp[i][j + 1])
+        return dp[0][0]
+
     def minDistance(self, word1: str, word2: str) -> int:
         dp = [[float("inf")] * (len(word2) + 1) for i in range(len(word1) + 1)]
-
+        print("len word1 :" ,  len(word1) ,  ", len word2 :" , len(word2))
         for j in range(len(word2) + 1):
             dp[len(word1)][j] = len(word2) - j
         for i in range(len(word1) + 1):
             dp[i][len(word2)] = len(word1) - i
-
         for i in range(len(word1) - 1, -1, -1):
             for j in range(len(word2) - 1, -1, -1):
                 if word1[i] == word2[j]:
                     dp[i][j] = dp[i + 1][j + 1]
                 else:
-                    dp[i][j] = 1 + min(dp[i + 1][j], dp[i][j + 1], dp[i + 1][j + 1])
+                    dp[i][j] = 1 + min(dp[i + 1][j], dp[i + 1][j + 1], dp[i ][j + 1])
         return dp[0][0]
 
     def minDistanceO(self, word1, word2):
@@ -48,6 +63,13 @@ class Solution:
                 d[i][j] = min(left, down, left_down)
 
         return d[n][m]
+
+text1 = "horse"
+text2 = "ros"
+so = Solution()
+print(so.minDistanceN(text1, text2))
+print(so.minDistanceO(text1, text2))
+print(so.minDistance(text1, text2))
 
 """
 72. Edit Distance
