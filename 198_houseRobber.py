@@ -29,56 +29,59 @@ class Solution:
         self.memo[i] = ans
         return ans
 #############
-    class Solution:  # L
-        def rob(self, nums: List[int]) -> int:
-            n1, n2 = 0, 0
+    def rob0(self, nums: List[int]) -> int:
+        n1, n2 = 0, 0
 
-            for n in nums:
-                n2, n1 = max(n + n1, n2), n2
-            return n2
+        for num in nums:
+            print("n1 ", n1 , ", n2 ", n2, ", num ", num )
+            n2, n1 = max(num + n1, n2), n2
+            print("n1 ", n1 , ", n2 ", n2, ", num ", num )
+        return n2
 
-        def rob(self, nums: List[int]) -> int:
+    def rob1(self, nums: List[int]) -> int:
 
-            # Special handling for empty case.
-            if not nums:
-                return 0
+        # Special handling for empty case.
+        if not nums:
+            return 0
 
-            maxRobbedAmount = [None for _ in range(len(nums) + 1)]
-            N = len(nums)
+        maxRobbedAmount = [None for _ in range(len(nums) + 1)]
+        N = len(nums)
 
-            # Base case initialization.
-            maxRobbedAmount[N], maxRobbedAmount[N - 1] = 0, nums[N - 1]
+        # Base case initialization.
+        maxRobbedAmount[N], maxRobbedAmount[N - 1] = 0, nums[N - 1]
 
-            # DP table calculations.
-            for i in range(N - 2, -1, -1):
-                # Same as recursive solution.
-                maxRobbedAmount[i] = max(maxRobbedAmount[i + 1], maxRobbedAmount[i + 2] + nums[i])
+        # DP table calculations.
+        for i in range(N - 2, -1, -1):
+            # Same as recursive solution.
+            maxRobbedAmount[i] = max(maxRobbedAmount[i + 1], maxRobbedAmount[i + 2] + nums[i])
 
-            return maxRobbedAmount[0]
+        return maxRobbedAmount[0]
 
     ###########
-        def rob(self, nums: List[int]) -> int:
+    def rob2(self, nums: List[int]) -> int:
 
-            # Special handling for empty case.
-            if not nums:
-                return 0
+        # Special handling for empty case.
+        if not nums:
+            return 0
 
-            N = len(nums)
+        N = len(nums)
 
-            rob_next_plus_one = 0
-            rob_next = nums[N - 1]
+        rob_next_plus_one = 0
+        rob_next = nums[N - 1]
 
-            # DP table calculations.
-            for i in range(N - 2, -1, -1):
-                # Same as recursive solution.
-                current = max(rob_next, rob_next_plus_one + nums[i])
+        # DP table calculations.
+        for i in range(N - 2, -1, -1):
+            # Same as recursive solution.
+            current = max(rob_next, rob_next_plus_one + nums[i])
 
-                # Update the variables
-                rob_next_plus_one = rob_next
-                rob_next = current
+            # Update the variables
+            rob_next_plus_one = rob_next
+            rob_next = current
 
-            return rob_next
-
+        return rob_next
+nums =  [1,2,3,1]
+so = Solution()
+print(so.rob0(nums))
 
 """
 198. House Robber

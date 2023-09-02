@@ -1,22 +1,36 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
         count = 0
-
         for i in range(len(s)):
             l, r = 0, 0
             while i - l >= 0 and i + r < len(s) and s[i - l] == s[i + r]:
                 count += 1
                 l += 1
                 r += 1
-
             l, r = 0, 0
             if i + 1 < len(s) and s[i] == s[i + 1]:
                 while i - l >= 0 and i + 1 + r < len(s) and s[i - l] == s[i + 1 + r]:
                     count += 1
                     l += 1
                     r += 1
-
         return count
+
+    def countSubstringsL(self, s: str) -> int:
+        res = 0
+        size = len(s)
+        for i in range(size):
+            res += self.isPal(s, i, i )
+            res += self.isPal(s, i, i + 1 )
+        return res
+
+    def isPal(self, s, l, r):
+        res = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            l -= 1
+            r += 1
+        return res
+
 """
 647. Palindromic Substrings
 Medium

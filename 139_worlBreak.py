@@ -14,6 +14,20 @@ class Solution:
                     break
 
         return dp[0]
+
+    def wordBreakL(self, s: str, wordDict: List[str]) -> bool:
+        size = len(s)
+        dp = [False] * ( size + 1 )
+        dp[size] = True
+
+        for i in range(size -1, -1 , -1):
+            for w in wordDict:
+                if i + len(w) <= size and s[i:i+len(w)] == w:
+                    if dp[i+ len(w)]:
+                        dp[i] = True
+                        break
+        return dp[0]
+
 ########### OBFS
     def wordBreakOBFS(self, s: str, wordDict: List[str]) -> bool:
         word_set = set(wordDict)
