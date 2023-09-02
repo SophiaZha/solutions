@@ -33,7 +33,6 @@ class Solution:
         n1, n2 = 0, 0
 
         for num in nums:
-            print("n1 ", n1 , ", n2 ", n2, ", num ", num )
             n2, n1 = max(num + n1, n2), n2
             print("n1 ", n1 , ", n2 ", n2, ", num ", num )
         return n2
@@ -80,6 +79,7 @@ class Solution:
 
         return rob_next
 nums =  [1,2,3,1]
+nums =  [2,1,1,2]
 so = Solution()
 print(so.rob0(nums))
 

@@ -86,6 +86,24 @@ class Solution:
                     dp[i][j] = dp[i - 1][j] or dp[i - 1][j - curr]
         return dp[n][half]
 
+    def canPartitionL(self, nums: List[int]) -> bool:
+        dp = set()
+        dp.add(0)
+        total = sum(nums)
+        if total % 2 == 1:
+            return False
+        target = total //2
+
+        for n in nums:
+            nextDp = set()
+            for u in dp:
+                if u + n == target:
+                    return True
+                else:
+                    nextDp.add( u + n)
+                    nextDp.add( u )
+            dp = nextDp
+        return False
 
 nums = [1,5,11,5]
 nums = [1,5,9,5]
