@@ -8,11 +8,22 @@ class Solution:
 
         for i in range(len(s1), -1, -1):
             for j in range(len(s2), -1, -1):
+                print("begin i=", i, ", i+j=", (i + j), " j=", j)
                 if i < len(s1) and s1[i] == s3[i + j] and dp[i + 1][j]:
+                    print("i=", i , ", i+j=" , (i+j), " j=", j)
                     dp[i][j] = True
                 if j < len(s2) and s2[j] == s3[i + j] and dp[i][j + 1]:
+                    print("i=", i , ", i+j=" , (i+j), " j=", j)
                     dp[i][j] = True
         return dp[0][0]
+
+s1 = "aabcc"
+s2 = "dbbca"
+s3 = "aadbbcbcac"
+so = Solution()
+print(so.isInterleave(s1,s2,s3))
+
+
 
 """
 97. Interleaving String
