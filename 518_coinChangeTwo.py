@@ -54,6 +54,26 @@ class Solution:
                     nextDP[a] += nextDP[a - coins[i]]
             dp = nextDP
         return dp[amount]
+
+    def changeL(self, amount: int, coins: List[int]) -> int:
+        dp = [[0] * (amount + 1) for i in range(len(coins) + 1)]
+        for i in range(len(coins) + 1):
+            dp[i][0] = 1
+
+        for i in range(len(coins) - 1, -1, -1):
+            dp[i] = dp[i + 1]
+            for j in range(1, amount + 1):
+                if j - coins[i] >= 0:
+                    dp[i][j] += dp[i][j - coins[i]]
+
+        return dp[0][amount]
+
+amount = 5
+coins = [1,2,5]
+so= Solution()
+print(so.change2(amount, coins))
+
+
 """
 518. Coin Change II
 Medium
