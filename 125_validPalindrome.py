@@ -15,6 +15,13 @@ class Solution(object):
             l += 1
             r -= 1
         return True
+
+    def isPalindromeL(self, s: str) -> bool:
+        cleanStr = filter(lambda x: x.isalnum(), s)
+        lowerStrList = list(map(lambda x: x.lower(), cleanStr))
+        reverseStrList = lowerStrList[::-1]
+        return lowerStrList == reverseStrList
+
 """
 125. Valid Palindrome
 Easy
