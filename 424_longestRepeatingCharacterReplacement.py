@@ -32,6 +32,29 @@ class Solution:
             res = max(res, r - l + 1)
         return res
 
+    def characterReplacementL(self, s: str, k: int) -> int:  # can be further improved by below characterReplacementL2
+        l, res, maxF, count = 0, 0, 0, {}
+
+        for i, c in enumerate(s):  # enumerate better as it has both index and value
+            count[c] = count.get(c, 0) + 1
+            if i - l + 1 - max(count.values()) > k:
+                count[s[l]] -= 1
+                l += 1
+            res = max(res, i - l + 1)
+        return res
+
+    def characterReplacementL2(self, s: str, k: int) -> int:
+        l, res, maxF, count = 0, 0, 0, {}
+
+        for i, c in enumerate(s):
+            count[c] = count.get(c, 0) + 1
+            maxF = max(maxF, count[c])
+            if i - l + 1 - maxF > k:
+                count[s[l]] -= 1
+                l += 1
+            res = max(res, i - l + 1)
+        return res
+
 so = Solution()
 s = "AABABBA"
 k = 1
