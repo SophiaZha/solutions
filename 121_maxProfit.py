@@ -11,6 +11,15 @@ class Solution:
             res = max(res, prices[r] - prices[l])
 
         return res
+
+   def maxProfitL(self, prices: List[int]) -> int:
+        res = 0
+        lowest = float("inf")
+        for p in prices:
+            lowest = min(lowest, p)
+            if p > lowest:
+                res = max(res, p - lowest)
+        return res
 """
 121. Best Time to Buy and Sell Stock
 Easy
