@@ -67,11 +67,31 @@ class Solution:
 
         return matched == 26
 
+    def checkInclusionL(self, s1: str, s2: str) -> bool:  # this runs less than half the time of the above solution
+        if len(s1) > len(s2):
+            return False
+        hashmap1 = {}
+        hashmap2 = {}
+        for i in range(len(s1)):
+            hashmap1[s1[i]] = hashmap1.get(s1[i], 0) + 1
+            hashmap2[s2[i]] = hashmap2.get(s2[i], 0) + 1
+        if hashmap1 == hashmap2:
+            return True
+        for i in range(1, len(s2) - len(s1) + 1):
+            hashmap2[s2[i + len(s1) -1 ]] = hashmap2.get(s2[i + len(s1) -1 ], 0) + 1
+            if hashmap2[s2[i -1 ]] == 1:
+                hashmap2.pop(s2[i -1 ], None)
+            else:
+                hashmap2[s2[i -1]] = hashmap2[s2[i -1]] - 1
+            if hashmap1 == hashmap2:
+                return True
+        return False
 
 s1 = "ab"
-s2 = "a"
+s2 = "eidbaooo"
 so = Solution()
 print(so.checkInclusion2(s1, s2))
+print(so.checkInclusionL(s1, s2))
 
 """
 567. Permutation in String
