@@ -16,6 +16,21 @@ class Solution:
             res.append([x, y])
         return res
 
+    def kClosestL(self, points: List[List[int]], k: int) -> List[List[int]]:
+        pts = []
+        for x, y in points:
+            dist = abs(x - 0) ** 2 + abs(y - 0) ** 2
+            pts.append([dist, x, y])
+
+        res = []
+        heapq.heapify(pts)
+        resPoint = heapq.nsmallest(k, pts)
+        for p, x, y in resPoint:
+            res.append([x, y])
+        # for _ in range(k):
+        #     dist, x, y = heapq.heappop(pts)
+        #     res.append([x,y])
+        return res
 
 """
 973. K Closest Points to Origin
