@@ -11,9 +11,11 @@ class Solution1:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         nums.sort()
         return nums[len(nums) - k]
-
         k = len(nums) - k
 
+    def findKthLargestL(self, nums: List[int], k: int) -> int:
+        klargest = heapq.nlargest(k, nums)
+        return klargest[k-1]
 
 # Solution: QuickSelect
 # Time Complexity:
