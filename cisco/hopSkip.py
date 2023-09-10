@@ -1,18 +1,7 @@
 from typing import List
-
-
 class Solution:
-    # r, c = map(int, input().split())
-    # matrix = []
-    # for i in range(r):
-    #     matrix.append([int(j) for j in input().split()])
     def getHopSkip(self, matrix: List[List[int]]) -> int:
         r, c = len(matrix), len(matrix[0])
-        # matrix = [
-        #     [29, 8, 37],
-        #     [15, 41, 3],
-        #     [1, 10, 14]
-        # ]
         visited = [[False] * c for _ in range(r)]
         currR, currC = 0, 0
         dxdy = ((1, 0), (0, 1), (-1, 0), (0, -1))
