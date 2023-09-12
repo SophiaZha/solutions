@@ -29,9 +29,7 @@ class Solution:
 
         return island
 
-
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands1(self, grid: List[List[str]]) -> int:
         if not grid or not grid[0]:
             return 0
 
@@ -60,10 +58,7 @@ class Solution:
                     dfs(r, c)
         return islands
 
-
-# BFS Version
-class SolutionBFS:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands2(self, grid: List[List[str]]) -> int:
         if not grid:
             return 0
 
@@ -95,9 +90,7 @@ class SolutionBFS:
 
         return islands
 
-################################L
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands3(self, grid: List[List[str]]) -> int:
 
         q = deque()
         rows, cols = len(grid), len(grid[0])
@@ -136,6 +129,41 @@ class Solution:
 
         return island
 
+    def numIslandsL(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+        island = 0
+        rows, cols = len(grid), len(grid[0])
+        visited = set()
+        def bfs(r, c):
+            q = deque()
+            visited.add((r,c))
+            q.append((r,c))
+            while q:
+                row, col = q.popleft()
+                directions= [[1,0],[-1,0],[0,1],[0,-1]]
+                for dr, dc in directions:
+                    r, c = dr + row, dc + col
+                    if (r) in range(rows) and (c) in range(cols) and grid[r][c] == "1" and (r, c ) not in visited :
+                        q.append((r, c))
+                        visited.add((r, c))
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1" and (r,c) not in visited:
+                    bfs(r, c)
+                    island += 1
+        return island
+
+so = Solution()
+grid = [["1","1","1","1","0"],
+        ["1","1","0","1","0"],
+        ["1","1","0","0","0"],
+        ["0","0","0","0","0"]]
+print(so.numIslandsL(grid))
+# print(so.numIslands(grid))
+# print(so.numIslands1(grid))
+# print(so.numIslands2(grid))
+# print(so.numIslands3(grid))
 
 """
 200. Number of Islands
