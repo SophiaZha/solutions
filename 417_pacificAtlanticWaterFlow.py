@@ -147,6 +147,12 @@ class Solution:
 
         p_reachable = set()
         a_reachable = set()
+        # for i in range(rows):
+        #     for j in range(cols):
+        #         if i == 0 or j == 0:
+        #             dfs(i, j, pset)
+        #         if i == rows - 1 or j == cols - 1:
+        #             dfs(i, j, aset)
         for i in range(rows):
             dfs(i, 0, p_reachable)
             dfs(i, cols - 1, a_reachable)

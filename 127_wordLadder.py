@@ -1,7 +1,6 @@
 import collections
 from typing import List
 
-
 class Solution:
     def getPatterns(self, word):
         p = []
