@@ -6,21 +6,19 @@ class Solution:
         q = collections.deque()
         fresh = 0
         time = 0
-
         for r in range(len(grid)):
             for c in range(len(grid[0])):
                 if grid[r][c] == 1:
                     fresh += 1
                 if grid[r][c] == 2:
                     q.append((r, c))
-
         directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         while fresh > 0 and q:
             length = len(q)
             for i in range(length):
                 r, c = q.popleft()
 
-                for dr, dc in directions:sky
+                for dr, dc in directions:
                     row, col = r + dr, c + dc
                     # if in bounds and nonrotten, make rotten
                     # and add to q
@@ -36,8 +34,8 @@ class Solution:
         return time if fresh == 0 else -1
 
 #############################L  Time O(N*M); Space O(N*M)
-class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
+
+    def orangesRotting2(self, grid: List[List[int]]) -> int:
         q = collections.deque()
         rows, cols = len(grid), len(grid[0])
         time = 0
@@ -66,8 +64,7 @@ class Solution:
         return time if fresh == 0 else -1
 
 ################################ O in place, Time O(n^2 * M^2); Space O(1)
-class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
+    def orangesRotting3(self, grid: List[List[int]]) -> int:
         ROWS, COLS = len(grid), len(grid[0])
 
         # run the rotting process, by marking the rotten oranges with the timestamp
@@ -99,6 +96,35 @@ class Solution:
                     return -1
         # return elapsed minutes if no fresh orange left
         return timestamp - 2
+
+    def orangesRottingL(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+        fresh, q = 0, []
+        visit = set()
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 1:
+                    fresh +=1
+                elif grid[r][c] == 2:
+                    q.append((r, c))
+
+        time = 0
+        while fresh > 0 and q:
+            for i in range(len(q)):
+                r, c = q.pop(0)
+                for x, y in ((r+1,c), (r-1,c), (r,c+1), (r,c-1)):
+                    if ( x in range(rows) and y in range(cols) and grid[x][y] ==1
+                    ):
+                        grid[x][y] = 2
+                        q.append((x, y))
+                        fresh -= 1
+            time += 1
+        return time if fresh == 0 else -1
+
+so = Solution()
+grid = [[2,1,1],[1,1,0],[0,1,1]]
+print(so.orangesRottingL(grid))
+
 """
 994. Rotting Oranges
 Medium
