@@ -71,6 +71,23 @@ class Solution:
                     q.append((r, c))
         bfs()
 
+    def wallsAndGatesL(self, rooms: List[List[int]]) -> None:
+        rows, cols = len(rooms), len(rooms[0])
+        step, q  = 0, []
+        for i in range(rows):
+            for j in range(cols):
+                if rooms[i][j] == 0:
+                    q.append((i, j))
+        while q:
+            step += 1
+            for i in range(len(q)):
+                (r, c)= q.pop(0)
+                for x, y in ((r + 1,c),(r -1,c),(r,c+1),(r,c-1)):
+                    if( x in range(rows) and y in range(cols)
+                        and rooms[x][y] == 2147483647
+                    ):
+                        q.append((x,y))
+                        rooms[x][y] = step
 """
 [LeetCode] 286. Walls and Gates
 Medium 
