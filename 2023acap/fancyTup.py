@@ -77,6 +77,7 @@ class fancyTuple:
     def __len__(self):
         return len(self.animals)
 
+
     def len(self):
         return len(self.animals)
 
@@ -88,6 +89,7 @@ print(fancyTuple("dog", "pig", "cat", "rat", "bird").first)
 print(fancyTuple("dog", "pig").second)
 print( fancyTuple("dog", "pig").len() )
 print(len(fancyTuple("dog", "pig")))
+
 
 
 
