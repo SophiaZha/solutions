@@ -79,6 +79,28 @@ class Solution:
 
         return course_seq if len(course_seq) == numCourses else []
 
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        req_to_target_course = defaultdict(list)
+        reqCourseNum = defaultdict(int)
+        res = []
+
+        for crs, req in prerequisites:
+            req_to_target_course[req].append(crs)
+            reqCourseNum[crs] += 1
+
+        no_req_courses = [k for k in range(numCourses) if k not in reqCourseNum ]
+
+        while no_req_courses:
+            crs = no_req_courses.pop(0)
+            res.append(crs)
+            for target in req_to_target_course[crs]:
+                reqCourseNum[target] -=1
+                if reqCourseNum[target] == 0:
+                    no_req_courses.append(target)
+
+        return res if len(res) == numCourses else []
+
+
 
 """
 210. Course Schedule II

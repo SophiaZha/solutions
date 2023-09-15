@@ -1,0 +1,6 @@
+class aListNode:
+
+    struct ListNode {
+
+
+    }:

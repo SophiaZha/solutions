@@ -1,3 +1,4 @@
+import collections
 from typing import List
 
 class Solution:
@@ -111,6 +112,31 @@ class Solution:
             if not dfs(i):
                 return False
 
+        return True
+
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        depList = collections.defaultdict(list)
+        visited, cycle = set(), set()
+
+        for crs, dep in prerequisites:
+            depList[crs].append(dep)
+
+        def dfs(i):
+            if i in visited:
+                return True
+            elif i in cycle:
+                return False
+            cycle.add(i)
+            for dep in depList[i]:
+                if dfs(dep) == False:
+                    return False
+            cycle.remove(i)
+            visited.add(i)
+            return True
+
+        for i in range(numCourses):
+            if dfs(i) == False:
+                return False
         return True
 
 
