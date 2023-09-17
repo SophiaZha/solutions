@@ -24,6 +24,10 @@ class Limit:
     def get_limit():
         return Limit.max_limit
 
+    @staticmethod
+    def set_limit(limit):
+        Limit.max_limit = limit
+
 
 class Product:
     product_count = 0
@@ -43,7 +47,9 @@ class Product:
 # Example usage:
 try:
     # Set the maximum product limit
-    Limit.max_limit = 3
+    #Limit.max_limit = 3
+    Limit.set_limit(2)
+    print("Limit is" , Limit.get_limit())
 
     # Creating product instances
     try:

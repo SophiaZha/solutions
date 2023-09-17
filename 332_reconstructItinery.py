@@ -24,9 +24,8 @@ class Solution:
                 res.pop()
         dfs("JFK")
         return res
-#############
-    class Solution:
-        def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+
+        def findItineraryL(self, tickets: List[List[str]]) -> List[str]:
             res = ["JFK"]
             adj = {s: [] for s, d in tickets}
             tickets.sort()
@@ -49,7 +48,14 @@ class Solution:
             dfs("JFK")
             return res
 
-    """
+tickets = [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
+
+so = Solution()
+print(so.findItinerary(tickets))
+
+
+
+"""
     332. Reconstruct Itinerary
 Hard
 
