@@ -4,13 +4,18 @@ class Solution:
         res = []
         tmp_res = []
         def dfs(i):
+            print("dfs ", i)
             if (i == len(nums)):
                 res.append(tmp_res.copy())
+                print("res for ", i , " = " + str(res) )
                 return
             else:
+                print("t0 for ", i, " = " + str(res), end="___")
                 tmp_res.append(nums[i])
+                print("t1 for ", i, " = " + str(tmp_res), end="___")
                 dfs(i + 1)
                 tmp_res.pop()
+                print("t2 for ", i, " = " + str(tmp_res), end="...")
                 dfs(i + 1)
         dfs(0)
         return res
@@ -83,12 +88,12 @@ class Solution:
 
 mynum = [1, 2, 3]
 x = Solution()
-# print(x.subsets(mynum))
+print(x.subsets(mynum))
 # print(x.subset2(mynum))
 # print(x.subset3(mynum))
 # print(x.subsets4(mynum))
-print(x.subsetsB(mynum))
-print(x.subsetsB2(mynum))
+# print(x.subsetsB(mynum))
+# print(x.subsetsB2(mynum))
 
 """ 
 78. Subsets
