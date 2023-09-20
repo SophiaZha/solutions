@@ -41,14 +41,14 @@ class Solution:
         date_end_scale = collections.defaultdict(int)
         date_end_scale[date_price_ratio[0][0]] = 1
         date_end_scale[date_price_ratio[0][1]] = date_price_ratio[0][2]
-
+        res = date_end_scale[date_price_ratio[0][1]]
         for i in range(1, len(date_price_ratio) ):
             curr_max_ratio_at_segment_start = max({date_end_scale[key] for key in date_end_scale if key <= date_price_ratio[i][0]})
             # subset_values = {date_end_scale[key] for key in date_end_scale if key <= 20221522}
             # curr_max_ratio_at_segment_start = max({date_end_scale[key] for key in date_end_scale if key <= 20221522 })
             date_end_scale[date_price_ratio[i][1]] = curr_max_ratio_at_segment_start * date_price_ratio[i][2]
-            print(date_price_ratio[i][1],date_end_scale[date_price_ratio[i][1]] )
-        return round(1000.0 * ( date_end_scale[date_price_ratio[-1][1]] -1 ))
+            res = max(res, date_end_scale[date_price_ratio[i][1]] )
+        return round(1000.0 * (res -1 ))
 
 so = Solution()
 # Sample input data
@@ -66,5 +66,5 @@ input_data2 = ["G,12/19/2023,112.19","G,12/01/2023,116.41", "G,12/07/2023,111.36
 # Calculate max profit
 max_profit = so.calculate_max_profit(input_data)
 print("Maximum profit:", max_profit)
-max_profit = so.calculate_max_profit(input_data2)
-print("Maximum profit 2:", max_profit)
+max_profit2 = so.calculate_max_profit(input_data2)
+print("Maximum profit 2:", max_profit2)
