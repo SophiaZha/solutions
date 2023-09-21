@@ -3,7 +3,7 @@ import datetime
 import time
 class Solution:
     def calculate_max_profit(self,input_data):
-        dates, matrix, segment_profit_ratio = set(), [] ,[]
+        dates, matrix, seg_profit_ratio = set(), [] ,[]
         stock_details = collections.defaultdict(list)
         for i, row in enumerate(input_data):
             symbol, date, price = row.split(',')
@@ -21,21 +21,21 @@ class Solution:
                 else:
                     scale = price/pre_price
                     if scale > 1:
-                        segment_profit_ratio.append([pre_date, date, scale])
+                        seg_profit_ratio.append([pre_date, date, scale])
                     pre_date = date
                     pre_price = price
-        print("segment profit ratio....")
-        segment_profit_ratio = sorted(segment_profit_ratio, key= lambda x: (x[0], x[1]))
-        for x in segment_profit_ratio:
+        print("seg profit ratio....")
+        seg_profit_ratio = sorted(seg_profit_ratio, key= lambda x: (x[0], x[1]))
+        for x in seg_profit_ratio:
             print(x)
         date_profit_ratio = collections.defaultdict(int)
-        date_profit_ratio[segment_profit_ratio[0][0]] = 1
-        date_profit_ratio[segment_profit_ratio[0][1]] = segment_profit_ratio[0][2]
-        res = date_profit_ratio[segment_profit_ratio[0][1]]
-        for i in range(1, len(segment_profit_ratio)):
-            curr_max_ratio_at_segment_start = max({date_profit_ratio[key] for key in date_profit_ratio if key <= segment_profit_ratio[i][0]})
-            date_profit_ratio[segment_profit_ratio[i][1]] = curr_max_ratio_at_segment_start * segment_profit_ratio[i][2]
-            res = max(res, date_profit_ratio[segment_profit_ratio[i][1]])
+        date_profit_ratio[seg_profit_ratio[0][0]] = 1
+        date_profit_ratio[seg_profit_ratio[0][1]] = seg_profit_ratio[0][2]
+        res = date_profit_ratio[seg_profit_ratio[0][1]]
+        for i in range(1, len(seg_profit_ratio)):
+            ratio_at_seg_start = max({date_profit_ratio[key] for key in date_profit_ratio if key <= seg_profit_ratio[i][0]})
+            date_profit_ratio[seg_profit_ratio[i][1]] = ratio_at_seg_start * seg_profit_ratio[i][2]
+            res = max(res, date_profit_ratio[seg_profit_ratio[i][1]])
         return round(1000.0 * (res -1 ))
 
 so = Solution()
