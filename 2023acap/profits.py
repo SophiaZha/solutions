@@ -1,6 +1,8 @@
+from typing import List
 import collections
 import datetime
 import time
+import bisect
 class Solution:
     def calculate_max_profit(self,input_data):
         dates, matrix, seg_profit_ratio = set(), [] ,[]
@@ -31,11 +33,21 @@ class Solution:
         date_profit_ratio = collections.defaultdict(int)
         date_profit_ratio[seg_profit_ratio[0][0]] = 1
         date_profit_ratio[seg_profit_ratio[0][1]] = seg_profit_ratio[0][2]
+        print("assign date_profit_ratio for ", seg_profit_ratio[0][1], " = ", date_profit_ratio[seg_profit_ratio[0][1]])
         res = date_profit_ratio[seg_profit_ratio[0][1]]
         for i in range(1, len(seg_profit_ratio)):
-            ratio_at_seg_start = max({date_profit_ratio[key] for key in date_profit_ratio if key <= seg_profit_ratio[i][0]})
+            # ratio_at_seg_start = max({date_profit_ratio[key] for key in date_profit_ratio if key <= seg_profit_ratio[i][0]}) #replaced
+            date_sorted = sorted(date_profit_ratio.keys())
+            index = bisect.bisect_right(date_sorted, seg_profit_ratio[i][0])
+            ratio_at_seg_start = date_profit_ratio[date_sorted[index - 1]]
+
             date_profit_ratio[seg_profit_ratio[i][1]] = ratio_at_seg_start * seg_profit_ratio[i][2]
+            print("assign date_profit_ratio for " , seg_profit_ratio[i][1] ,  " = " ,  date_profit_ratio[seg_profit_ratio[i][1]] )
             res = max(res, date_profit_ratio[seg_profit_ratio[i][1]])
+        print("date profit ratio...")
+        for key, value in date_profit_ratio.items():
+            print(key, value)
+
         return round(1000.0 * (res -1 ))
 
 so = Solution()
