@@ -18,6 +18,7 @@ class Solution:
             print("backtrack curr "+ str(curr), " ", end = " ")
             if len(curr) == len(nums):
                 ans.append(curr[:])
+                print("finiding curr " + str(curr), " ", end=" ")
                 return
             for num in nums:
                 print("num in nums is: ", num, " ", end = "")
@@ -63,4 +64,40 @@ Accepted
 1,317,142
 Submissions
 1,780,171
+"""
+"""
+C:\Users\user\AppData\Local\Microsoft\WindowsApps\python3.9.exe C:/Users/user/PycharmProjects/solutions/046_permutations.py 
+backtrack curr []   num in nums is:  1   appending :  1
+backtrack curr [1]   num in nums is:  1  num in nums is:  2   appending :  2
+backtrack curr [1, 2]   num in nums is:  1  num in nums is:  2  num in nums is:  3   appending :  3
+backtrack curr [1, 2, 3]   finiding curr [1, 2, 3]   poping :  3
+poping :  2
+num in nums is:  3   appending :  3
+backtrack curr [1, 3]   num in nums is:  1  num in nums is:  2   appending :  2
+backtrack curr [1, 3, 2]   finiding curr [1, 3, 2]   poping :  2
+num in nums is:  3  poping :  3
+poping :  1
+num in nums is:  2   appending :  2
+backtrack curr [2]   num in nums is:  1   appending :  1
+backtrack curr [2, 1]   num in nums is:  1  num in nums is:  2  num in nums is:  3   appending :  3
+backtrack curr [2, 1, 3]   finiding curr [2, 1, 3]   poping :  3
+poping :  1
+num in nums is:  2  num in nums is:  3   appending :  3
+backtrack curr [2, 3]   num in nums is:  1   appending :  1
+backtrack curr [2, 3, 1]   finiding curr [2, 3, 1]   poping :  1
+num in nums is:  2  num in nums is:  3  poping :  3
+poping :  2
+num in nums is:  3   appending :  3
+backtrack curr [3]   num in nums is:  1   appending :  1
+backtrack curr [3, 1]   num in nums is:  1  num in nums is:  2   appending :  2
+backtrack curr [3, 1, 2]   finiding curr [3, 1, 2]   poping :  2
+num in nums is:  3  poping :  1
+num in nums is:  2   appending :  2
+backtrack curr [3, 2]   num in nums is:  1   appending :  1
+backtrack curr [3, 2, 1]   finiding curr [3, 2, 1]   poping :  1
+num in nums is:  2  num in nums is:  3  poping :  2
+num in nums is:  3  poping :  3
+[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+
+Process finished with exit code 0
 """
