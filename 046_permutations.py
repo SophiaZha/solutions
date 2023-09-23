@@ -12,9 +12,30 @@ class Solution:
             res.extend(perms)
             nums.append(n)
         return res
+
+    def permuteO(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(curr):
+            print("backtrack curr "+ str(curr), " ", end = " ")
+            if len(curr) == len(nums):
+                ans.append(curr[:])
+                return
+            for num in nums:
+                print("num in nums is: ", num, " ", end = "")
+                if num not in curr:
+                    print(" appending : ", num)
+                    curr.append(num)
+                    backtrack(curr)
+                    print("poping : ", num)
+                    curr.pop()
+
+        ans = []
+        backtrack([])
+        return ans
 nums = [1,2,3]
 s = Solution()
-print(s.permute(nums))
+# print(s.permute(nums))
+# nums = [1,2,3]
+print(s.permuteO(nums))
 """
 46. Permutations   https://www.youtube.com/watch?v=s7AvT7cGdSo
 Medium
