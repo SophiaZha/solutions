@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -22,11 +23,34 @@ class Solution:
                 prev = candidates[i]
         backtrack([], 0, target)
         return res
+    def combinationSumO(self, candidates: List[int], target: int) -> List[List[int]]:
+        def backtrack(comb, remain, curr, counter, results):
+            if remain == 0:
+                results.append(list(comb))
+                return
+            elif remain < 0:
+                return
+            for next_curr in range(curr, len(counter)):
+                candidate, freq = counter[next_curr]
+                if freq <= 0:
+                    continue
+                comb.append(candidate)
+                counter[next_curr] = (candidate, freq-1)
+                backtrack(comb, remain - candidate, next_curr, counter, results)
+                counter[next_curr] = (candidate, freq)
+                comb.pop()
+        results = []
+        counter = Counter(candidates)
+        counter = [(c, counter[c]) for c in counter]
+        backtrack(comb = [], remain = target, curr = 0,
+                  counter = counter, results = results)
+        return results
 candidates = [10,1,2,7,6,1,5]  # 1, 1, 2, 5, 6, 7, 10,
 target = 8
 so = Solution()
 print(so.combinationSum2(candidates, target))
-
+print(so.combinationSumO(candidates, target))
+#[[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
 
 """
 40. Combination Sum II
@@ -79,7 +103,6 @@ Submissions
 """
 
 """
-C:\Users\user\AppData\Local\Microsoft\WindowsApps\python3.9.exe C:/Users/user/PycharmProjects/solutions/040_combinationSumII.py 
 calling backtrack cur =  [] , pos =  0 , target =  8 candidates[ 0 ] =  1  prev =  -1 appending candidates[ 0 ] =  1
 calling backtrack cur =  [1] , pos =  1 , target =  7 candidates[ 1 ] =  1  prev =  -1 appending candidates[ 1 ] =  1
 calling backtrack cur =  [1, 1] , pos =  2 , target =  6 candidates[ 2 ] =  2  prev =  -1 appending candidates[ 2 ] =  2
