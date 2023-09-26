@@ -26,7 +26,7 @@ class Solution:
                     print(" appending : ", num)
                     curr.append(num)
                     backtrack(curr)
-                    print("poping : ", num)
+                    print("popping : ", num)
                     curr.pop()
 
         ans = []

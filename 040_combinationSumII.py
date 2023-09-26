@@ -19,10 +19,10 @@ class Solution:
                 print("appending candidates[", i, "] = ", candidates[i])
                 backtrack(cur, i + 1, target - candidates[i])
                 print("pop cur [", (len(cur) -1), "] = ", cur[-1])
-                cur.pop()
-                prev = candidates[i]
+                prev = cur.pop()
         backtrack([], 0, target)
         return res
+
     def combinationSumO(self, candidates: List[int], target: int) -> List[List[int]]:
         def backtrack(comb, remain, curr, counter, results):
             if remain == 0:
@@ -45,11 +45,31 @@ class Solution:
         backtrack(comb = [], remain = target, curr = 0,
                   counter = counter, results = results)
         return results
+    def combinationSumOI(self, candidates: List[int], target: int) -> List[List[int]]:
+        def backtrack(comb, remain, curr, results):
+            if remain == 0:
+                results.append(list(comb))
+                return
+            for next_curr in range(curr, len(candidates)):
+                if next_curr > curr \
+                  and candidates[next_curr] == candidates[next_curr-1]:
+                    continue
+                pick = candidates[next_curr]
+                if remain - pick < 0:
+                    break
+                comb.append(pick)
+                backtrack(comb, remain - pick, next_curr + 1, results)
+                comb.pop()
+        candidates.sort()
+        comb, results = [], []
+        backtrack(comb, target, 0, results)
+        return results
 candidates = [10,1,2,7,6,1,5]  # 1, 1, 2, 5, 6, 7, 10,
 target = 8
 so = Solution()
-print(so.combinationSum2(candidates, target))
+# print(so.combinationSum2(candidates, target))
 print(so.combinationSumO(candidates, target))
+# print(so.combinationSumOI(candidates, target))
 #[[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
 
 """
