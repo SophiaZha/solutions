@@ -2,6 +2,26 @@ import collections
 from typing import List
 
 class Solution:
+    def canFinishL(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        visited = 0
+        adj = collections.defaultdict(list)
+        req_count = [0]*numCourses
+        for crs, req in prerequisites:
+            adj[req].append(crs)
+            req_count[crs] +=1
+        q = []
+        for crs in range(numCourses):
+            if req_count[crs] == 0:
+                q.append(crs)
+        while q:
+            visited += 1
+            allowed_crs = q.pop(0)
+            for next_crs in adj[allowed_crs]:
+                req_count[next_crs] -=1
+                if req_count[next_crs] == 0:
+                    q.append(next_crs)
+        return visited == numCourses
+
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # dfs
         preMap = {i: [] for i in range(numCourses)}
