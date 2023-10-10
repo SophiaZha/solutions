@@ -126,10 +126,29 @@ class Solution:
             if dfs(i) == False:
                 return []
         return res
+
+    def findOrderBest(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        adj = collections.defaultdict(list)
+        dep_count = [0] * numCourses
+        for crs, req in prerequisites:
+            adj[req].append(crs)
+            dep_count[crs] += 1
+        q = [k for k in range(numCourses) if dep_count[k] == 0]
+        res = []
+        while q:
+            crs_taken = q.pop(0)
+            res.append(crs_taken)
+            for dep in adj[crs_taken]:
+                dep_count[dep] -= 1
+                if dep_count[dep] == 0:
+                    q.append(dep)
+        return res if numCourses == len(res) else []
+
+
 n = 4
 pre = [[2,0],[1,0],[3,1],[3,2],[1,3]]
 so = Solution()
-print(so.findOrderL(n, pre))
+print(so.findOrderBest(n, pre))
 
 """
 210. Course Schedule II
