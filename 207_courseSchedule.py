@@ -26,7 +26,6 @@ class Solution:
         # dfs
         preMap = {i: [] for i in range(numCourses)}
         # preMap = [[] for i in range(numCourses)]  ###### this line is equally good as the above one
-
         # map each course to : prereq list
         for crs, pre in prerequisites:
             preMap[crs].append(pre)
@@ -52,59 +51,7 @@ class Solution:
                 return False
         return True
 ############################################### topological sort
-class GNode(object):
-    """  data structure represent a vertex in the graph."""
-    def __init__(self):
-        self.inDegrees = 0
-        self.outNodes = []
-
-class Solution(object):
-    def canFinish(self, numCourses, prerequisites):
-        """
-        :type numCourses: int
-        :type prerequisites: List[List[int]]
-        :rtype: bool
-        """
-        from collections import defaultdict, deque
-        # key: index of node; value: GNode
-        graph = defaultdict(GNode)
-
-        totalDeps = 0
-        for relation in prerequisites:
-            nextCourse, prevCourse = relation[0], relation[1]
-            graph[prevCourse].outNodes.append(nextCourse)
-            graph[nextCourse].inDegrees += 1
-            totalDeps += 1
-
-        # we start from courses that have no prerequisites.
-        # we could use either set, stack or queue to keep track of courses with no dependence.
-        nodepCourses = deque()
-        for index, node in graph.items():
-            if node.inDegrees == 0:
-                nodepCourses.append(index)
-
-        removedEdges = 0
-        while nodepCourses:
-            # pop out course without dependency
-            course = nodepCourses.pop()
-
-            # remove its outgoing edges one by one
-            for nextCourse in graph[course].outNodes:
-                graph[nextCourse].inDegrees -= 1
-                removedEdges += 1
-                # while removing edges, we might discover new courses with prerequisites removed, i.e. new courses without prerequisites.
-                if graph[nextCourse].inDegrees == 0:
-                    nodepCourses.append(nextCourse)
-
-        if removedEdges == totalDeps:
-            return True
-        else:
-            # if there are still some edges left, then there exist some cycles
-            # Due to the dead-lock (dependencies), we cannot remove the cyclic edges
-            return False
-################################################## L
-class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish2(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
 
         req_dict = [[] for i in range(numCourses)]
         for cs, req in prerequisites:
@@ -134,7 +81,7 @@ class Solution:
 
         return True
 
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish3(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         depList = collections.defaultdict(list)
         visited, cycle = set(), set()
 
@@ -158,6 +105,36 @@ class Solution:
             if dfs(i) == False:
                 return False
         return True
+
+    def canFinish9(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adj = collections.defaultdict(list)
+        for crs, req in prerequisites:
+            adj[crs].append(req)
+        visiting = set()
+        def dfs(crs):
+            visiting.add(crs)
+            for req in adj[crs][:]:
+                if req in visiting:
+                    return False
+                if dfs(req):
+                    adj[crs].remove(req)
+                else:
+                    return False
+            visiting.remove(crs)
+            return True
+        for i in range(numCourses):
+            if dfs(i) == False:
+                return False
+        return True
+n = 4
+pre = [[2,0],[1,0],[3,1],[3,2],[1,3]]
+so = Solution()
+print(so.canFinish2(n, pre))
+print(so.canFinish3(n, pre))
+print(so.canFinish(n, pre))
+print(so.canFinishL(n, pre))
+print(so.canFinish9(n, pre))
+
 
 
 """

@@ -1,5 +1,6 @@
 from typing import List
-
+import collections
+from collections import defaultdict, deque
 
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
@@ -30,9 +31,7 @@ class Solution:
                 return []
         return courseOrderToTake
 #####################
-from collections import defaultdict, deque
-class Solution:
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder0(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         adj_list = defaultdict(list)
         indegree = {}
         for dest, src in prerequisites:
@@ -55,9 +54,7 @@ class Solution:
                         zero_indegree_queue.append(neighbor)
 
         return topological_sorted_order if len(topological_sorted_order) == numCourses else []
-############################## L
-class Solution:
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder1(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         adj_list = defaultdict(list)
         indegree = {}
 
@@ -79,7 +76,7 @@ class Solution:
 
         return course_seq if len(course_seq) == numCourses else []
 
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder2(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         req_to_target_course = defaultdict(list)
         reqCourseNum = defaultdict(int)
         res = []
@@ -100,7 +97,39 @@ class Solution:
 
         return res if len(res) == numCourses else []
 
-
+    def findOrderL(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        res = []
+        adj = collections.defaultdict(list)
+        for crs, req in prerequisites:
+            adj[crs].append(req)
+        visited, cycle = set(), set()
+        def dfs(crs: int) -> bool:
+            if crs in visited:
+                return True
+            cycle.add(crs)
+            tmp = adj[crs][:]
+            for dep in tmp:
+                if dep in cycle:
+                    return False
+                if dfs(dep) == False:
+                    return False
+                else:
+                    adj[crs].remove(dep)
+                    print("remove dep ", dep, " from crs ", crs)
+            adj[crs] = []
+            print("set adj ", crs, " as blank[]")
+            cycle.remove(crs)
+            res.append(crs)
+            visited.add(crs)
+            return True
+        for i in range(numCourses):
+            if dfs(i) == False:
+                return []
+        return res
+n = 4
+pre = [[2,0],[1,0],[3,1],[3,2],[1,3]]
+so = Solution()
+print(so.findOrderL(n, pre))
 
 """
 210. Course Schedule II
