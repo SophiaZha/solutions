@@ -48,6 +48,27 @@ class Solution:
             dfs("JFK")
             return res
 
+
+    def findItinerary0(self, tickets: List[List[str]]) -> List[str]:
+        tickets.sort()
+        adj = collections.defaultdict(list)
+        for a, z in tickets:
+            adj[a].append(z)
+        res = ["JFK"]
+        def dfs(a):
+            if len(res) == len(tickets) +1:
+                return True
+            for z in adj[a][:]:
+                adj[a].pop(0)
+                res.append(z)
+                if dfs(z):
+                    return res
+                res.pop()
+                adj[a].append(z)
+            return False
+        dfs("JFK")
+        return res
+
 tickets = [["JFK", "SFO"], ["JFK", "ATL"], ["SFO", "ATL"], ["ATL", "JFK"], ["ATL", "SFO"]]
 
 so = Solution()
