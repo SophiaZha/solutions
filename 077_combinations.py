@@ -1,5 +1,21 @@
 from typing import List
 class Solution:
+    def combineNN(self, n: int, k: int) -> List[List[int]]:
+        res = []
+        def helper(start, comb):
+            print(" in i = ", start , " comb = ", comb)
+            if len(comb) == k:
+                print(comb)
+                res.append(comb.copy())
+                return
+            for i in range(start, n+1):
+                print(" range i = ", i, end="")
+                comb.append(i)
+                helper(i+1, comb)
+                print(" pop ", comb.pop(), end="")
+        helper(1, [])
+        return res
+
     def combine(self, n: int, k: int) -> List[List[int]]:
         sub, res = [], []
         def dfs(i, sub):
@@ -15,20 +31,8 @@ class Solution:
         dfs(1, sub)
         return res
 
-   def combineNN(self, n: int, k: int) -> List[List[int]]:
-        res = []
-        def helper(start, comb):
-            if len(comb) == k:
-                res.append(comb.copy())
-                return
-            for i in range(start, n+1):
-                comb.append(i)
-                helper(i+1, comb)
-                comb.pop()
-        helper(1, [])
-        return res
 n = 4
-k = 2
+k = 3
 so = Solution()
 print(so.combine(n, k))
 print(so.combineNN(n, k))

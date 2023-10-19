@@ -83,8 +83,17 @@ class Solution:
 
             # append subset corresponding to that bitmask
             output.append([nums[j] for j in range(n) if bitmask[j] == '1'])
-
         return output
+
+    def subsets0(self, nums: List[int]) -> List[List[int]]:
+        N = len(nums)
+        res = []
+        for i in range(2**N, 2**(N+1)):
+            bitmap = bin(i)[3:]
+            tmp = [ nums[k] for k in range(N) if bitmap[k] == '1']
+            print(bin(i) + ", "+bin(i)[3:] + ", " + str(tmp))
+            res.append(tmp)
+        return res
 
 mynum = [1, 2, 3]
 x = Solution()
