@@ -43,10 +43,44 @@ class Solution:
                 s -= 1
         return q
 
-digits = "23"
+    def letterCombinations9(self, digits: str) -> List[str]:
+        d2c = {
+            "1":"",
+            "2":"abc",
+            "3":"def",
+            "4":"ghi",
+            "5":"jkl",
+            "6":"mno",
+            "7":"pqrs",
+            "8":"tuv",
+            "9":"wxyz"
+        }
+        res = []
+        q = []
+        p = 0
+        print(digits[0])
+        for c in d2c[digits[0]]:
+            q.append(c)
+        while q:
+            p += 1
+            if p == len(digits):
+                return q
+
+            for i in range(len(q)):
+                st = q.pop(0)
+                if len(st) < len(digits):
+                    for c in d2c[digits[p]]:
+                        q.append(st + c)
 sol = Solution()
-print(sol.letterCombinations(digits))
+digits = "23"
+print(sol.letterCombinations9(digits))
+digits = ""
 print(sol.letterCombinationsL(digits))
+print(sol.letterCombinations9(digits))
+digits = "2"
+print(sol.letterCombinations9(digits))
+# print(sol.letterCombinations(digits))
+# print(sol.letterCombinationsL(digits))
 
 
 
