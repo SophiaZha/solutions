@@ -4,10 +4,10 @@ class Solution:
         res = []
         tmp_res = []
         def dfs(i):
-            print("dfs ", i)
+            print("dfs(", i, ") ")
             if (i == len(nums)):
                 res.append(tmp_res.copy())
-                print("res for ", i , " = " + str(res) )
+                print(" res for = " + str(res) )
                 return
             else:
                 print("t0 for ", i, " = " + str(res), end="___")
