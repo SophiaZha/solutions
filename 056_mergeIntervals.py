@@ -15,6 +15,19 @@ class Solution:
                 output[-1][1] = max(output[-1][1], end)
         return output
 
+    def mergeL(self, intervals: List[List[int]]) -> List[List[int]]:
+        res = []
+        intervals.sort()
+        [a, z] = intervals[0]
+        for i in range(1, len(intervals)):
+            if z < intervals[i][0]:
+                res.append([a,z])
+                [a, z] = intervals[i]
+            else:
+                a, z = min(a, intervals[i][0]), max(z, intervals[i][1])
+        res.append([a, z])
+        return res
+
 """
 56. Merge Intervals
 Medium
