@@ -2,11 +2,9 @@ from typing import List
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-
         intervals.sort(key=lambda pair: pair[0])
         output = []
         output.append(intervals[0])
-
         for start, end in intervals[1:]:
             if output[-1][1] < start:
                 output.append([start, end])

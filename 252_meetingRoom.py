@@ -9,6 +9,20 @@ class Solution: #L
             if i1[1] > i2[0]:
                 return False
         return True
+
+    def canAttendMeetingsL(self, intervals):
+        if len(intervals) == 0:
+            return True
+        intervals.sort()
+        preEnd = intervals[0][1]
+        for start, end in intervals[1:]:
+            if preEnd > start:
+                return False
+            else:
+                preEnd = end
+        return True
+
+
 """
 252. Meeting Rooms
 Easy

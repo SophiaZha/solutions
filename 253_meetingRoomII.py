@@ -3,9 +3,21 @@ from typing import List
 
 
 class Solution:
-    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+    def minMeetingRoomsL(self, intervals: List[List[int]]) -> int:
+        time = []
+        for start, end in intervals:
+            time.append([start, 1])
+            time.append([end, -1])
+        time.sort()
+        count = 0
+        res = 0
+        for timing, n in time:
+            count += n
+            res = max(res, count)
+        return res
 
-        # If there is no meeting to schedule then no room needs to be allocated.
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+       # If there is no meeting to schedule then no room needs to be allocated.
         if not intervals:
             return 0
 
