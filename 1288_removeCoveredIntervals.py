@@ -1,7 +1,8 @@
 from typing import List
 class Solution:
     def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
-        intervals = sorted(intervals, key = lambda x: (x[0], -x[1]))
+        # intervals = sorted(intervals, key = lambda x: (x[0], -x[1]))
+        intervals.sort(key = lambda x: (x[0], -x[1]))
         count = len(intervals)
         a, z = intervals[0]
         for i in range(1, count):
