@@ -5,7 +5,6 @@ class Solution:
         self, intervals: List[List[int]], newInterval: List[int]
     ) -> List[List[int]]:
         res = []
-
         for i in range(len(intervals)):
             if newInterval[1] < intervals[i][0]:
                 res.append(newInterval)
@@ -38,15 +37,14 @@ intervals = [[1,3],[6,9]]
 newInterval =  [2,5]
 sol = Solution()
 
-print(sol.insert(intervals, newInterval))
+print(sol.insertL(intervals, newInterval))
 intervals = []
 newInterval = [5,7]
 print(sol.insertL(intervals, newInterval))
 
-
-intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
-newInterval = [4,8]
-print(sol.insert(intervals, newInterval))
+# intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
+# newInterval = [4,8]
+# print(sol.insert(intervals, newInterval))
 
 
 """

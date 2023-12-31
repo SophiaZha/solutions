@@ -26,6 +26,16 @@ class Solution:
         res.append([a, z])
         return res
 
+    def mergeLL(self, intervals: List[List[int]]) -> List[List[int]]:
+        res = []
+        intervals.sort()
+        res.append(intervals[0])
+        for na, nz in intervals[1:]:
+            if res[-1][1] >= na:
+                res[-1][1] = max(res[-1][1], nz)
+            else:
+                res.append([na, nz])
+        return res
 """
 56. Merge Intervals
 Medium
