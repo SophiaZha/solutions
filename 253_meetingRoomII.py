@@ -77,6 +77,18 @@ class Solution:
 
         return used_rooms
 
+    def minMeetingRoomsL(self, intervals: List[List[int]]) -> int:
+        intervals.sort()
+        minHeap = []
+        res, rooms = 0, 0
+        for a, z in intervals:
+            heappush(minHeap, [a, 1])
+            heappush(minHeap, [z, -1])
+        while minHeap:
+            t, s = heappop(minHeap)
+            rooms += s
+            res = max( rooms, res)
+        return res
 
 sol = Solution()
 intervals = [[0, 30], [5, 10], [15, 20]]
