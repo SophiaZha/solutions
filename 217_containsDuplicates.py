@@ -8,6 +8,14 @@ class ContainsDuplicate:
             hashset.add(n)
         return False
 
+    def containsDuplicateNlogN(self, nums: List[int]) -> bool:
+        nums.sort()
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                return True
+        return False
+
+
 nums = [1,2,3,4,5,6,7,8,12,2,143]
 xx = ContainsDuplicate()
 print(xx.containsDuplicate(nums))
