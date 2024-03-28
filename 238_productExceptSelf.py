@@ -1,10 +1,7 @@
 from typing import List
-
-
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         res = [1] * (len(nums))
-
         prefix = 1
         for i in range(len(nums)):
             res[i] = prefix
@@ -15,6 +12,20 @@ class Solution:
 #       same reversed range, but difficult to follow
             res[i] *= postfix
             postfix *= nums[i]
+        return res
+
+    def productExceptSelfL(self, nums: List[int]) -> List[int]:
+        prefix, postfix = [0]*len(nums), [0] *len(nums)
+        prefix[0] = 1
+        postfix[len(nums) -1 ] = 1
+        for i in range(1, len(nums)):
+            prefix[i] = nums[i -1] * prefix[i-1]
+        for i in range(len(nums) -2, -1, -1):
+            postfix[i] = nums[i+1] * postfix[i+1]
+
+        res = [0]*len(nums)
+        for i in range(len(nums)):
+            res[i] = prefix[i] * postfix[i]
         return res
 
 sol = Solution()

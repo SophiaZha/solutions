@@ -4,7 +4,6 @@ from typing import List
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         ans = collections.defaultdict(list)
-
         for s in strs:
             count = [0] * 26
             for c in s:
@@ -14,13 +13,18 @@ class Solution:
 
     def groupAnagrams2(self, strs):
         ans = collections.defaultdict(list)
-
         for str in strs:
             strKey = [0] * 26
             for i in range(len(str)):
                 strKey[ord(str[i]) - ord('a')] = strKey[ord(str[i]) - ord('a')] + 1
             ans[tuple(strKey)].append(str)
 
+        return ans.values()
+
+    def groupAnagramsL(self, strs: List[str]) -> List[List[str]]:
+        ans = collections.defaultdict(list)
+        for s in strs:
+            ans[tuple(sorted(s))].append(s)
         return ans.values()
 
 solution = Solution()

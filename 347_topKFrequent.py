@@ -1,3 +1,8 @@
+import heapq
+from collections import Counter
+from typing import List
+
+
 class Solution(object):
     def topKFrequent(self, nums, k):
         count = {}
@@ -15,6 +20,13 @@ class Solution(object):
                 if len(res) == k:
                     return res
 
+    def topKFrequentL(self, nums: List[int], k: int) -> List[int]:
+        if k == len(nums):
+            return nums
+
+        count = Counter(nums)
+        return heapq.nlargest(k, count.keys(), key=count.get)
+
     def getMyCity(self, cityname = "New York"):
         return cityname
 
@@ -23,6 +35,7 @@ nums = [1,2,3,4,5,6,100,100]
 k = 2
 solution = Solution()
 print(solution.topKFrequent(nums, k))
+print(solution.topKFrequentL(nums, k))
 print(solution.getMyCity())
 print(solution.getMyCity("Austin"))
 """
