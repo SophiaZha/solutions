@@ -18,6 +18,50 @@ class Solution:
                 box[(i//3, j//3)].add(board[i][j])
         return True
 
+    def isValidSudokuL(self, board: List[List[str]]) -> bool:
+        rows, cols, boxes = collections.defaultdict(set), collections.defaultdict(set), collections.defaultdict(set)
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                if ( board[r][c] in rows[r] or
+                   board[r][c] in cols[c] or
+                   board[r][c] in boxes[ ((r//3)*3 + c//3)] ) :
+                   return False
+                else:
+                    rows[r].add(board[r][c])
+                    cols[c].add(board[r][c])
+                    boxes[((r//3)*3 + c//3)].add(board[r][c])
+        return True
+
+    def isValidSudokuL2(self, board: List[List[str]]) -> bool:
+        N = 9
+        rows = [[0] * N for _ in range(N)]
+        cols = [[0] * N for _ in range(N)]
+        boxes = [[0] * N for _ in range(N)]
+
+        for r in range(N):
+            for c in range(N):
+                if board[r][c] == ".":
+                    continue
+
+                pos = int(board[r][c]) -1
+                if rows[r][pos] == 1:
+                    return False
+                else:
+                    rows[r][pos] = 1
+
+                if cols[c][pos] == 1:
+                    return False
+                else:
+                    cols[c][pos] = 1
+
+                if boxes[ (r//3)* 3 + c//3 ][pos] == 1:
+                    return False
+                else:
+                    boxes[ (r//3)* 3 + c//3 ][pos] = 1
+        return True
+
 so = Solution()
 
 board =\
